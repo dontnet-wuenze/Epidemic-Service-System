@@ -1,5 +1,7 @@
 <template>
-  <div id="app">
+  <div class="page">
+    <p>首页</p>
+    <div class="box">12555</div>
   </div>
 </template>
 
@@ -9,6 +11,10 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.page {
+  .box {
+    color: red;
+  }
+}
 </style>
