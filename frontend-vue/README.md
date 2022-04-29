@@ -67,5 +67,5 @@ npm run serve
 生成打包之后的项目文件,此文件主要用于项目部署。
 
 ```
-**npm run bulid** 
+npm run bulid 
 ```
