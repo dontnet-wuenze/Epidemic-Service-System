@@ -1,15 +1,15 @@
 <template>
-    <el-main>
-      <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane label="核酸检测" name="first">
-          <button @click="jump('nucleicResult')">登录</button>
-        </el-tab-pane>
-        <el-tab-pane label="审批交互" name="second">配置管理</el-tab-pane>
-        <el-tab-pane label="疫情监控" name="third">角色管理</el-tab-pane>
-        <el-tab-pane label="健康打卡" name="fourth">定时任务补偿</el-tab-pane>
-      </el-tabs>
-      <router-view></router-view>
-    </el-main>
+  <el-container style="height: 100%">
+    <el-header>
+      <el-row>
+        <el-col :span="8">浙江大学疫情服务与管理系统</el-col>
+        <el-col :span="8" :offset="8">
+          <div><button @click="change('/login')">登录</button></div>
+        </el-col>
+      </el-row>
+    </el-header>
+    <router-view></router-view>
+  </el-container>
 </template>
 
 <script>
@@ -17,8 +17,8 @@
 export default {
   name: 'App',
   methods: {
-    jump (name) {
-      this.$router.push({name: name})
+    change (path) {
+      this.$router.push(path)
     }
   },
   components: {
