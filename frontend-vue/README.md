@@ -36,9 +36,9 @@ vue2 + vuex + vue-router + ES6/7 + sass + element-ui
 
 
 ## 开发：
-#### 克隆仓库到本地
+#### 克隆仓库到本地(注意要克隆 develop 分支作为我们的开发分支)
 ```
-git clone https://github.com/dontnet-wuenze/Epidemic-Service-System
+git clone -b develop https://github.com/dontnet-wuenze/Epidemic-Service-System
 ```
 
 #### 切换到前端项目目录
@@ -68,4 +68,19 @@ npm run serve
 
 ```
 npm run bulid 
+```
+
+### 本地开发 git 流程
+#### 切记！！！ 不要把代码提交到 master 分支 ！！！
+
+#### 开发时要切换到自己的分支进行开发
+```
+git checkout -b dev-xxx(你自己的名字)
+```
+
+#### 开发完毕后，切换到 develop 分支，并提交代码
+```
+git checkout develop
+git merge dev-xxx
+git push origin develop
 ```
