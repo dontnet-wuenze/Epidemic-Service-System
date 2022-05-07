@@ -5,11 +5,12 @@
 ![](https://img.shields.io/badge/vue-2.6.11-blue)
 ![](https://img.shields.io/badge/vuex-3.6.2-blue)
 ![](https://img.shields.io/badge/vue--router-3.5.3-blue)
+![](https://img.shields.io/badge/axios-0.27.2-pink)
 ![](https://img.shields.io/badge/eslint-%3E%3D6.0.0-yellow)
 ![](https://img.shields.io/badge/sass-=1.26.5-red)
 
 ## 技术栈
-vue2 + vuex + vue-router + ES6/7 + sass + element-ui
+vue2 + vuex + vue-router + axios + ES6/7 + sass + element-ui
 
 ## 参考文档
 
@@ -20,6 +21,8 @@ vue2 + vuex + vue-router + ES6/7 + sass + element-ui
 - [vue-router](https://router.vuejs.org/zh/)：Vue Router 是 Vue.js 官方的路由管理器。
 
 - [vue-cli](https://cli.vuejs.org/zh/)：开发标准工具。
+
+- [axios](https://www.axios.com/)：基于 XMLHttpRequest 的一个小型的 HTTP 客户端。
 
 - [sass](https://www.sass.hk/)：Sass 是一款强化 CSS 的辅助工具，它在 CSS 语法的基础上增加了变量 (variables)、嵌套 (nested rules)、混合 (mixins)、导入 (inline imports) 等高级功能
 
