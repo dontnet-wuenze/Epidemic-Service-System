@@ -1,5 +1,5 @@
 <template>
   <div>
-    结果查询
+    预约
   </div>
 </template>

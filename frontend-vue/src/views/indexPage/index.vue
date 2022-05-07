@@ -1,33 +1,43 @@
 <template>
     <el-main>
-      <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane label="核酸检测" name="first">
-          <button @click="jump('nucleicResult')">登录</button>
-        </el-tab-pane>
-        <el-tab-pane label="审批交互" name="second">配置管理</el-tab-pane>
-        <el-tab-pane label="疫情监控" name="third">角色管理</el-tab-pane>
-        <el-tab-pane label="健康打卡" name="fourth">定时任务补偿</el-tab-pane>
-      </el-tabs>
-      <router-view></router-view>
+        <el-tabs v-model="activeName" @tab-click="handleClick" stretch>
+          <el-tab-pane label="核酸检测" name="first">
+            <NucleicIndex></NucleicIndex>
+          </el-tab-pane>
+          <el-tab-pane label="审批交互" name="second">配置管理</el-tab-pane>
+          <el-tab-pane label="疫情监控" name="third">角色管理</el-tab-pane>
+          <el-tab-pane label="健康打卡" name="fourth">定时任务补偿</el-tab-pane>
+        </el-tabs>
     </el-main>
 </template>
 
 <script>
-//import HelloWorld from "@/components/HelloWorld";
+ import NucleicIndex from '@/views/nucleic/index.vue';
 export default {
-  name: 'App',
+  name: 'Index',
+  data() {
+    return {
+      activeName: 'first',
+    }
+  },
   methods: {
     jump (name) {
       this.$router.push({name: name})
     }
   },
   components: {
-    //HelloWorld
+    NucleicIndex
   }
 }
 </script>
 
 <style>
+
+.main-container {
+  position: relative;
+  left: 0;
+  right: 0;
+}
 .el-row {
   margin-bottom: 20px;
   width: 100%;
@@ -71,5 +81,9 @@ body > .el-container {
   line-height: 320px;
 }
 
+::v-deep .el-tabs__nav-scroll{
+  width:50%;
+  margin:0 auto
+}
 
 </style>

@@ -1,5 +1,5 @@
 <template>
   <div>
-    结果查询
+    上传结果
   </div>
 </template>
