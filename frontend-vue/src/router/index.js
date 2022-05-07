@@ -24,6 +24,16 @@ const routeList=[
                 },
                 component:()=>import('../views/indexPage/index.vue')
             },
+
+            // 核酸检测模块
+            {
+                path:'/nucleic/appointment',
+                name: 'nucleicAppointment',
+                meta: {
+                    title: "核酸检测预约"
+                },
+                component:()=>import('../views/nucleic/appointment.vue')
+            },
             {
                 path:'/nucleic/result',
                 name: 'nucleicResult',
@@ -31,7 +41,15 @@ const routeList=[
                     title: "核酸检测结果"
                 },
                 component:()=>import('../views/nucleic/result.vue')
-            }
+            },
+            {
+                path:'/nucleic/upload',
+                name: 'nucleicUpload',
+                meta: {
+                    title: "核酸结果上传"
+                },
+                component:()=>import('../views/nucleic/upload.vue')
+            },
         ]
     }, {
         path:'/login',
