@@ -38,7 +38,7 @@ vue2 + vuex + vue-router + ES6/7 + sass + element-ui
 ## 开发：
 #### 克隆仓库到本地(注意要克隆 develop 分支作为我们的开发分支)
 ```
-git clone -b develop https://github.com/dontnet-wuenze/Epidemic-Service-System
+git clone https://github.com/dontnet-wuenze/Epidemic-Service-System
 ```
 
 #### 切换到前端项目目录
