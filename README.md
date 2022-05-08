@@ -59,7 +59,7 @@ git push origin {yourname}-dev #提交你的开发分支到远程仓库
 1. 远程的 master 分支作为release分支，不要改动。develop 分支是大家的公共开发分支，需要保证上面代码的正确性和稳定性，只允许通过pull request进行改动。
 1. 不要直接从本地push到远端的develop分支，远端的develop分支只允许在github平台上通过pull request进行修改。
 2. 如果merge时有冲突的发生，请根据实际情况手动解决冲突，并在pull request时指定别人对你做code review。
-2. merge选项统一用 -no-rebase，不要用-rebase
+2. merge选项统一用 --no-rebase，不要用--rebase
 3. 有不知道如何解决的冲突，或者有任何问题，随时在群里问。
 
 注：如果github时不时push/pull不上去很正常，可以试试挂个梯子，并且设置让shell里也走你的代理端口。
