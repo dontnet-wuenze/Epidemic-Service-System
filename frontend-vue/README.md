@@ -39,11 +39,6 @@ vue2 + vuex + vue-router + axios + ES6/7 + sass + element-ui
 
 
 ## 开发：
-#### 克隆仓库到本地(注意要克隆 develop 分支作为我们的开发分支)
-```
-git clone -b develop https://github.com/dontnet-wuenze/Epidemic-Service-System
-```
-
 #### 切换到前端项目目录
 ```
 cd Epidemic-Service-System/frontend-vue
@@ -66,6 +61,8 @@ npm run serve
 ```
 运行之后，会默认打开本地访问路径：http://localhost:8080
 
+也可以使用 vue ui 命令通过图形界面对vue项目进行管理
+
 **发布：**
 生成打包之后的项目文件,此文件主要用于项目部署。
 
@@ -74,16 +71,4 @@ npm run bulid
 ```
 
 ### 本地开发 git 流程
-#### 切记！！！ 不要把代码提交到 master 分支 ！！！
-
-#### 开发时要切换到自己的分支进行开发
-```
-git checkout -b dev-xxx(你自己的名字)
-```
-
-#### 开发完毕后，切换到 develop 分支，并提交代码
-```
-git checkout develop
-git merge dev-xxx
-git push origin develop
-```
+见根目录下的readme文档
