@@ -5,11 +5,12 @@
 ![](https://img.shields.io/badge/vue-2.6.11-blue)
 ![](https://img.shields.io/badge/vuex-3.6.2-blue)
 ![](https://img.shields.io/badge/vue--router-3.5.3-blue)
+![](https://img.shields.io/badge/axios-0.27.2-pink)
 ![](https://img.shields.io/badge/eslint-%3E%3D6.0.0-yellow)
 ![](https://img.shields.io/badge/sass-=1.26.5-red)
 
 ## 技术栈
-vue2 + vuex + vue-router + ES6/7 + sass + element-ui
+vue2 + vuex + vue-router + axios + ES6/7 + sass + element-ui
 
 ## 参考文档
 
@@ -20,6 +21,8 @@ vue2 + vuex + vue-router + ES6/7 + sass + element-ui
 - [vue-router](https://router.vuejs.org/zh/)：Vue Router 是 Vue.js 官方的路由管理器。
 
 - [vue-cli](https://cli.vuejs.org/zh/)：开发标准工具。
+
+- [axios](https://www.axios.com/)：基于 XMLHttpRequest 的一个小型的 HTTP 客户端。
 
 - [sass](https://www.sass.hk/)：Sass 是一款强化 CSS 的辅助工具，它在 CSS 语法的基础上增加了变量 (variables)、嵌套 (nested rules)、混合 (mixins)、导入 (inline imports) 等高级功能
 
@@ -36,11 +39,6 @@ vue2 + vuex + vue-router + ES6/7 + sass + element-ui
 
 
 ## 开发：
-#### 克隆仓库到本地(注意要克隆 develop 分支作为我们的开发分支)
-```
-git clone https://github.com/dontnet-wuenze/Epidemic-Service-System
-```
-
 #### 切换到前端项目目录
 ```
 cd Epidemic-Service-System/frontend-vue
@@ -63,6 +61,8 @@ npm run serve
 ```
 运行之后，会默认打开本地访问路径：http://localhost:8080
 
+也可以使用 vue ui 命令通过图形界面对vue项目进行管理
+
 **发布：**
 生成打包之后的项目文件,此文件主要用于项目部署。
 
@@ -71,16 +71,4 @@ npm run bulid
 ```
 
 ### 本地开发 git 流程
-#### 切记！！！ 不要把代码提交到 master 分支 ！！！
-
-#### 开发时要切换到自己的分支进行开发
-```
-git checkout -b dev-xxx(你自己的名字)
-```
-
-#### 开发完毕后，切换到 develop 分支，并提交代码
-```
-git checkout develop
-git merge dev-xxx
-git push origin develop
-```
+见根目录下的readme文档

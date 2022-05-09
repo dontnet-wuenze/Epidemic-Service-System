@@ -1,27 +1,30 @@
-<!-- template>
-  <div id="app">
-    <button @click="change('/')">首页</button>
-    <button @click="change('/login')">登录</button>
-    <router-view></router-view>
-  </div>
-</template-->
 <template>
-  <router-view></router-view>
+  <el-container style="height: 100%">
+    <el-header>
+      <el-row>
+        <el-col :span="8">浙江大学疫情服务与管理系统</el-col>
+        <el-col :span="8" :offset="8">
+          <div><button @click="change('/login')">登录</button></div>
+        </el-col>
+      </el-row>
+    </el-header>
+    <router-view></router-view>
+  </el-container>
 </template>
 
 <script>
-  //import HelloWorld from "@/components/HelloWorld";
-  export default {
-    name: 'App',
-    methods: {
-      change (path) {
-        this.$router.push(path)
-      }
-    },
-    components: {
-      //HelloWorld
+//import HelloWorld from "@/components/HelloWorld";
+export default {
+  name: 'Header',
+  methods: {
+    change (path) {
+      this.$router.push(path)
     }
+  },
+  components: {
+    //HelloWorld
   }
+}
 </script>
 
 <style>
