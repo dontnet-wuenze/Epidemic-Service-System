@@ -1,0 +1,23 @@
+#indexContainer {
+    text-align: center;
+    height: 200px;
+    padding: 10px;
+    color: transparent;
+}
+.el-row {
+    margin-bottom: 20px;
+}
+.el-col {
+    border-radius: 4px;
+}
+
+.grid-content {
+    border-radius: 4px;
+    height: 100px;
+    width: 100%;
+}
+.row-bg {
+    height: 100%;
+    padding: 10px;
+    padding-left: 20px;
+}
