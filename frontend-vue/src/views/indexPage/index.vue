@@ -1,18 +1,45 @@
-<template>
-    <el-main>
-        <el-tabs v-model="activeName" @tab-click="handleClick" stretch>
-          <el-tab-pane label="核酸检测" name="first">
-            <NucleicIndex></NucleicIndex>
-          </el-tab-pane>
-          <el-tab-pane label="审批交互" name="second">配置管理</el-tab-pane>
-          <el-tab-pane label="疫情监控" name="third">角色管理</el-tab-pane>
-          <el-tab-pane label="健康打卡" name="fourth">定时任务补偿</el-tab-pane>
-        </el-tabs>
+<!--template>
+    <el-main >
+      <el-tabs v-model="activeName" @tab-click="handleClick" stretch>
+        <el-tab-pane label="核酸检测" name="first">
+          <NucleicIndex></NucleicIndex>
+        </el-tab-pane>
+        <el-tab-pane label="审批交互" name="second">
+          <ApprovalIndex></ApprovalIndex>
+        </el-tab-pane>
+        <el-tab-pane label="疫情监控" name="third">
+          <MonitorIndex></MonitorIndex>
+        </el-tab-pane>
+        <el-tab-pane label="健康打卡" name="fourth">
+          <HealthIndex></HealthIndex>
+        </el-tab-pane>
+      </el-tabs>
     </el-main>
+</template-->
+
+<template>
+    <el-tabs v-model="activeName" @tab-click="handleClick" stretch>
+      <el-tab-pane label="核酸检测" name="first">
+        <NucleicIndex></NucleicIndex>
+      </el-tab-pane>
+      <el-tab-pane label="审批交互" name="second">
+        <ApprovalIndex></ApprovalIndex>
+      </el-tab-pane>
+      <el-tab-pane label="疫情监控" name="third">
+        <MonitorIndex></MonitorIndex>
+      </el-tab-pane>
+      <el-tab-pane label="健康打卡" name="fourth">
+        <HealthIndex></HealthIndex>
+      </el-tab-pane>
+    </el-tabs>
 </template>
 
 <script>
  import NucleicIndex from '@/views/nucleic/index.vue';
+ import ApprovalIndex from '@/views/approval/index.vue';
+ import MonitorIndex from '@/views/monitor/index.vue';
+ import HealthIndex from '@/views/health/index.vue';
+
 export default {
   name: 'Index',
   data() {
@@ -26,12 +53,37 @@ export default {
     }
   },
   components: {
-    NucleicIndex
+    NucleicIndex,
+    ApprovalIndex,
+    MonitorIndex,
+    HealthIndex
   }
 }
 </script>
 
-<style>
+<style scoped>
+
+.blue-bg{
+  background: url('../../../public/img/health/blue-bg.png') no-repeat left top;
+  background-size: 100% auto;
+  width:100%;
+}
+
+.banner {
+  width: 100%;
+  text-align: center;
+  margin: 40px 0;
+}
+
+.content-box {
+  width: 70%;
+  height: 600px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgb(0 0 0 / 40%);
+  background: #fff;
+  margin: 0 auto;
+  position: relative;
+}
 
 .main-container {
   position: relative;
@@ -66,6 +118,7 @@ export default {
   color: #333;
   text-align: center;
   line-height: 100%;
+  height: auto;
 }
 
 body > .el-container {
