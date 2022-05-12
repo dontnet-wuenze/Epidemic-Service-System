@@ -50,6 +50,24 @@ const routeList=[
                 },
                 component:()=>import('../views/nucleic/upload.vue')
             },
+
+            // 健康打卡模块
+            {
+                path: '/health/passcode',
+                name: 'healthPasscode',
+                meta: {
+                    title: "通行码"
+                },
+                component:()=>import('../views/health/passcode.vue')
+            },
+            {
+                path: '/health/attend',
+                name: 'healthAttend',
+                meta: {
+                    title: "健康打卡"
+                },
+                component:()=>import('../views/health/attend.vue')
+            }
         ]
     }, {
         path:'/login',
