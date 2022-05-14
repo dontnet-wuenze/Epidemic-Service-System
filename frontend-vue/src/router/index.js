@@ -67,6 +67,31 @@ const routeList=[
                     title: "健康打卡"
                 },
                 component:()=>import('../views/health/attend.vue')
+            },
+            // 疫情监控模块
+            {
+                path: '/monitor/whole_school',
+                name: 'wholeschool',
+                meta: {
+                    title: "全校核酸检测扫码统计"
+                },
+                component:()=>import('../views/monitor/whole_school.vue')
+            },
+            {
+                path: '/monitor/Undergraduate',
+                name: 'Undergraduate',
+                meta: {
+                    title: "本科生核酸情况统计"
+                },
+                component:()=>import('../views/monitor/Undergraduate.vue')
+            },
+            {
+                path: '/monitor/in_school',
+                name: 'in_school',
+                meta: {
+                    title: "在校人数分析"
+                },
+                component:()=>import('../views/monitor/in_school.vue')
             }
         ]
     }, {
