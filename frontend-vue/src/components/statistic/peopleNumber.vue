@@ -50,6 +50,12 @@ export default {
           name: '人数',
           type: 'bar',
           barWidth: 40,
+          label: {
+            normal: {
+              show: true,
+              position: 'top'
+            }
+          },
           data: [
             {
               value: 100,
