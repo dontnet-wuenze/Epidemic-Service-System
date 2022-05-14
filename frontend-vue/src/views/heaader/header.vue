@@ -4,8 +4,8 @@
       <el-row>
         <el-col :span="4" offset="3">浙江大学疫情服务与管理系统</el-col>
         <el-col :span="0.01">|</el-col>
-        <el-col :span="1"  ><a href="/index">主页</a></el-col>
-        <el-col :span="1"  ><a href="/health/attend">打卡</a></el-col>
+        <el-col :span="1"><div @click="change('/index')" style="cursor: pointer">主页</div></el-col>
+        <el-col :span="1" ><div @click="change('/health/attend')" style="cursor: pointer">打卡</div></el-col>
         <el-col :span="8" :offset="6">
           <div><button @click="change('/login')">登录</button></div>
         </el-col>
@@ -52,7 +52,7 @@ export default {
 
 .content-box {
   width: 90%;
-  height: 700px;
+  height: 750px;
   border-radius: 10px;
   box-shadow: 0 0 8px rgb(0 0 0 / 40%);
   background: #fff;
