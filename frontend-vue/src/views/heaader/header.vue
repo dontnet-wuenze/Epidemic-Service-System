@@ -16,7 +16,9 @@
         <img src="/img/health/text.png">
       </div>
       <div class="content-box">
-        <router-view></router-view>
+        <keep-alive>
+         <router-view></router-view>
+        </keep-alive>
       </div>
     </body>
   </el-container>
