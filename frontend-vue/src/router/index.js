@@ -61,13 +61,21 @@ const routeList=[
                 component:()=>import('../views/health/passcode.vue')
             },
             {
+                path: '/health/statistic',
+                name: 'healthStatistic',
+                meta: {
+                    title: "打卡统计"
+                },
+                component:()=>import('../views/health/statistic.vue')
+            },
+            {
                 path: '/health/attend',
                 name: 'healthAttend',
                 meta: {
                     title: "健康打卡"
                 },
                 component:()=>import('../views/health/attend.vue')
-            }
+            },
         ]
     }, {
         path:'/login',
