@@ -50,6 +50,16 @@ const routeList=[
                 },
                 component:()=>import('../views/nucleic/upload.vue')
             },
+            
+            // 审批交互模块
+            {
+                path: '/approval/Student_Leave_Report',
+                name: 'Student_Leave_Report',
+                meta: {
+                    title: "学生离校报备"
+                },
+                component:()=>import('../views/approval/Student_Leave_Report.vue')
+            },
 
             // 健康打卡模块
             {
