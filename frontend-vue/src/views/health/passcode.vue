@@ -2,7 +2,7 @@
   <div>
       <div class="content-box-title">
         <el-row :gutter="20" type="flex" justify="center">
-          <el-col :span="6" offset="1"><h3>吴恩泽的通行码</h3></el-col>
+          <el-col :span="6" :offset="1"><h3>吴恩泽的通行码</h3></el-col>
           <el-col :span="8"><h3>计算机科学与技术学院</h3></el-col>
           <el-col :span="3" class="content-box-title-grade"><span class="bgr-blue">本科生</span></el-col>
         </el-row>
@@ -25,8 +25,8 @@
       </div>
       <div class="content-box-jump">
         <el-row :gutter="20" type="flex" justify="center">
-          <el-col span="3">申请流程</el-col>
-          <el-col span="3">申请记录</el-col>
+          <el-col :span="3">申请流程</el-col>
+          <el-col :span="3">申请记录</el-col>
         </el-row>
       </div>
     </div>
