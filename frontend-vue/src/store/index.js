@@ -1,7 +1,8 @@
 // index.js
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {userLogin, userValidate} from '@/axios/api.js';
+import {userValidate} from '@/axios/api.js';
+import {userLogin} from '@/api/user.js';
 
 Vue.use(Vuex);
 
@@ -16,7 +17,10 @@ export default new Vuex.Store({
     },
     actions: {
         async login({commit}, username){
-            const res = await userLogin(username);
+            var data = {
+                username: username,
+            }
+            const res = await userLogin(data);
             if (res.code === 1) { // 登录失败
                 return Promise.reject(res);
             }

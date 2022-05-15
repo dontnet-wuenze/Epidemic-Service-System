@@ -18,7 +18,7 @@
 </template-->
 
 <template>
-    <el-tabs v-model="activeName" @tab-click="handleClick" stretch>
+    <el-tabs v-model="activeName" stretch>
       <el-tab-pane label="核酸检测" name="first">
         <NucleicIndex></NucleicIndex>
       </el-tab-pane>

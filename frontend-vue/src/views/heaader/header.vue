@@ -2,7 +2,7 @@
   <el-container style="min-width: 1200px">
     <el-header>
       <el-row>
-        <el-col :span="4" offset="3">浙江大学疫情服务与管理系统</el-col>
+        <el-col :span="4" :offset="3">浙江大学疫情服务与管理系统</el-col>
         <el-col :span="0.01">|</el-col>
         <el-col :span="1"><div @click="change('/index')" style="cursor: pointer">主页</div></el-col>
         <el-col :span="1" ><div @click="change('/health/attend')" style="cursor: pointer">打卡</div></el-col>
