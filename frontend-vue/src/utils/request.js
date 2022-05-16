@@ -18,6 +18,7 @@ const service = axios.create({
 })
 
 // create an axios instance
+
 service.interceptors.request.use(
     config => {
         // 在发送请求之前做什么
@@ -46,6 +47,8 @@ service.interceptors.request.use(
         return Promise.reject(error);
     }
 )
+
+
 
 // response interceptor
 service.interceptors.response.use(
@@ -121,5 +124,7 @@ service.interceptors.response.use(
         }
     }
 );
+
+
 
 export default service;
