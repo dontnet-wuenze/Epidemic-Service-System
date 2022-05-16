@@ -1,7 +1,7 @@
 <template>
   <div id="indexContainer">
     <el-row type="flex" class="row-bg" :gutter="30">
-      <el-col :span="3"><button class="grid-content" @click="jump('/monitor/whole_school')">全校核酸检测扫码统计<img src="/favicon.ico"></button></el-col>
+      <el-col :span="3"><button class="grid-content" @click="jump('/monitor/whole_school')">全校核酸检测扫码统计</button></el-col>
       <el-col :span="3"><button class="grid-content" @click="jump('/monitor/Undergraduate')">本科生核酸情况统计</button></el-col>
       <el-col :span="3"><button class="grid-content" @click="jump('/monitor/in_school')">在校人数分析</button></el-col>
     </el-row>

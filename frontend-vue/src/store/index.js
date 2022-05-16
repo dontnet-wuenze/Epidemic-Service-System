@@ -7,12 +7,16 @@ import {userLogin} from '@/api/user.js';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    state: {
+    state: localStorage.getItem('state') ? JSON.parse(localStorage.getItem('state')) : {
         username: '',
+        token: '',
     },
     mutations: {
         setUsername(state, username){
             state.username = username;
+        },
+        setToken(state, token){
+            state.token = token;
         }
     },
     actions: {
@@ -24,8 +28,9 @@ export default new Vuex.Store({
             if (res.code === 1) { // 登录失败
                 return Promise.reject(res);
             }
+            console.log(res);
             // 登录成功后将接口返回的token保存在本地
-            localStorage.setItem('token', res.token);
+            localStorage.setItem('token', res.data.token);
             // 将用户名保存在vuex中
             commit('setUsername', username);
         },

@@ -1,9 +1,8 @@
 import Mock from 'mockjs'
+
 // 接口地址
-Mock.mock('http://localhost:8080/api/user/login', (req, res) => {
+Mock.mock('http://localhost:8080/api/user/login', (req) => {
     return {
-        data: [
-            {username: 'zxc', password: '123456'}
-        ]
+        token: 'wuenze',
     }
 })
