@@ -1,5 +1,7 @@
 import vueRouter from 'vue-router'
 import Vue from 'vue';
+import store from '@/store'
+
 Vue.use(vueRouter)
 
 // 引入组件
@@ -50,7 +52,7 @@ const routeList=[
                 },
                 component:()=>import('../views/nucleic/upload.vue')
             },
-            
+
             // 审批交互模块
             {
                 path: '/approval/Student_Leave_Report',
@@ -110,22 +112,33 @@ const routeList=[
                     title: "在校人数分析"
                 },
                 component:()=>import('../views/monitor/in_school.vue')
+            },
+
+            // 登录页面
+            {
+                path:'/login',
+                name: 'login',
+                component:()=>import('../views/login/index.vue')
             }
         ]
-    }, {
-        path:'/login',
-        name: 'login',
-        component:()=>import('../views/login/index.vue')
-    }
+    },
 ];
 
 const route = new vueRouter({
     routes:routeList
 })
 
+// 无需登录可以跳转的页面
+const whiteList = ['/', '/index'];
+
 route.beforeEach((to,from,next)=>{
-    // 路由前置守卫
-    next()
+    let localToken = localStorage.getItem('token')
+    console.log('localtoken before router', localToken)
+    // 白名单直接跳转
+    if(whiteList.indexOf(to.path)>-1)
+        next()
+    else
+        next()
 })
 // 导出
 export default route;
