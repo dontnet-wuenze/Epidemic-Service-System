@@ -95,7 +95,7 @@ export default {
         localStorage.removeItem('token');
         localStorage.removeItem('state');
         this.$store.commit('logout');
-        this.$router.go(0);
+        this.$router.push('/index');
       }
     }
   },
