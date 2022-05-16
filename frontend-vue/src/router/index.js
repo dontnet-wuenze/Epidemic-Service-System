@@ -1,5 +1,6 @@
 import vueRouter from 'vue-router'
 import Vue from 'vue';
+import {Message} from "element-ui";
 import store from '@/store'
 
 Vue.use(vueRouter)
@@ -129,16 +130,29 @@ const route = new vueRouter({
 })
 
 // 无需登录可以跳转的页面
-const whiteList = ['/', '/index'];
+const whiteList = ['/', '/index', '/login', '/404', '/401', '/403', '/500', '/register', '/reset', '/reset/:token', '/reset/:token/:email'];
 
 route.beforeEach((to,from,next)=>{
     let localToken = localStorage.getItem('token')
     console.log('localtoken before router', localToken)
     // 白名单直接跳转
-    if(whiteList.indexOf(to.path)>-1)
+    if(whiteList.indexOf(to.path)>-1) {
+        if(localToken && to.path === '/login') {
+            Message('已登录,自动跳转')
+            next('/index')
+        } else {
+            next()
+        }
+    } else if(localToken) {
         next()
-    else
-        next()
+    } else {
+        Message({
+            showClose: true,
+            message: '请先登录',
+            type: 'warning'
+        });
+        next('/login')
+    }
 })
 // 导出
 export default route;

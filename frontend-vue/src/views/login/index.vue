@@ -25,9 +25,6 @@ export default {
         // 登陆成功之后，路由跳转至用户账户页或者进行你需要的操作
         this.$router.push({
           path: '/index',
-          query: {
-            date: new Date().getTime()
-          }
         })
       });
 
