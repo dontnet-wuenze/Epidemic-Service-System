@@ -29,9 +29,9 @@
                 <el-dropdown style="width: 100%;">
                   <div class="notice-box">
                     <div style="display: flex; justify-content: center; align-items: center">
-                      <div class="notice">
+                      <el-badge class="notice" :value="10">
                         <i class="el-icon-bell" style="font-size: 20px; color: white"></i>
-                      </div>
+                      </el-badge>
                     </div>
                   </div>
                   <el-dropdown-menu slot="dropdown">
@@ -44,7 +44,7 @@
                 <el-dropdown style="width: 100%" @command="handleUserMenu">
                   <div class="user-info-box">
                       <div class="user-img">
-                        <img src="/favicon.ico" height="40" width="40">
+                        <el-avatar :size="large" src="/favicon.ico"></el-avatar>
                       </div>
                       <div class="header-font">{{this.$store.state.username}}</div>
                   </div>
@@ -131,7 +131,7 @@ export default {
   height: 750px;
   border-radius: 10px;
   box-shadow: 0 0 8px rgb(0 0 0 / 40%);
-  background: #fff;
+  background: white;
   margin: 0 auto;
   position: relative;
 }
