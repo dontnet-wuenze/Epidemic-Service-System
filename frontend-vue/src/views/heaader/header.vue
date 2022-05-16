@@ -41,7 +41,7 @@
                 </el-dropdown>
               </el-col>
               <el-col :span="8">
-                <el-dropdown style="width: 100%">
+                <el-dropdown style="width: 100%" @command="handleUserMenu">
                   <div class="user-info-box">
                       <div class="user-img">
                         <img src="/favicon.ico" height="40" width="40">
@@ -50,7 +50,7 @@
                   </div>
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item>个人信息</el-dropdown-item>
-                    <el-dropdown-item>注销</el-dropdown-item>
+                    <el-dropdown-item command="logout">注销</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
               </el-col>
@@ -89,6 +89,14 @@ export default {
   methods: {
     change (path) {
       this.$router.push(path)
+    },
+    handleUserMenu(command) {
+      if (command === 'logout') {
+        localStorage.removeItem('token');
+        localStorage.removeItem('state');
+        this.$store.commit('logout');
+        this.$router.go(0);
+      }
     }
   },
   components: {
@@ -222,6 +230,11 @@ export default {
   background: url('../../../public/img/health/blue-bg.png') no-repeat left top;
   background-size: 100% auto;
   width:100%;
+}
+
+.el-dropdown-link {
+  cursor: pointer;
+  color: #409EFF;
 }
 
 body > .el-container {

@@ -22,8 +22,10 @@
     },
     methods: {
       saveState () {
-        // 缓存vuex的state数据
-        localStorage.setItem('state', JSON.stringify(this.$store.state))
+        // 如果当前是登录状态，就缓存vuex的state数据
+        if (localStorage.getItem('token')) {
+          localStorage.setItem('state', JSON.stringify(this.$store.state))
+        }
       }
     }
   }
