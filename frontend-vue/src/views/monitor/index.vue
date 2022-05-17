@@ -4,7 +4,7 @@
       <div class="grid-top">
         <div class="grid-circle">
           <div class="grid-icon">
-            <img src="/img/icon/appointment.png" alt="" style="height: 100%; width: 100%">
+            <img src="/img/icon/allnucleicStatistic.png" alt="" style="height: 100%; width: 100%">
           </div>
         </div>
       </div>
@@ -16,7 +16,7 @@
       <div class="grid-top">
         <div class="grid-circle">
           <div class="grid-icon">
-            <img src="/img/icon/nucleicResult.png" alt="" style="height: 100%; width: 100%">
+            <img src="/img/icon/nucleicStatistic.png" alt="" style="height: 100%; width: 100%">
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
       <div class="grid-top">
         <div class="grid-circle">
           <div class="grid-icon">
-            <img src="/img/icon//nucleicUpload.png" alt="" style="height: 100%; width: 100%">
+            <img src="/img/icon//numberStatistic.png" alt="" style="height: 100%; width: 100%">
           </div>
         </div>
       </div>

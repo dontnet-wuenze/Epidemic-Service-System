@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="grid-font">
-        <p>健康打卡</p>
+        <div>健康打卡</div>
       </div>
     </div>
     <div class="grid-content" @click="jump('/health/statistic')">
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="grid-font">
-        <p>打卡统计</p>
+        <div>打卡统计</div>
       </div>
     </div>
     <div class="grid-content" @click="jump('/health/passcode')">
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="grid-font">
-        <p>查看通行码</p>
+        <div>查看通行码</div>
       </div>
     </div>
   </div>
