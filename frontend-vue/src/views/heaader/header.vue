@@ -83,7 +83,8 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      this.$router.go(0);
+      //this.$router.go(0);
+      this.isLogin = !!localStorage.getItem('token');
     }
   },
   methods: {
@@ -96,6 +97,7 @@ export default {
         localStorage.removeItem('state');
         this.$store.commit('logout');
         this.$router.push('/index');
+        this.isLogin = !!localStorage.getItem('token');
       }
     }
   },
