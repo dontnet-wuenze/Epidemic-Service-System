@@ -4,7 +4,7 @@
       <div class="grid-top">
         <div class="grid-circle">
           <div class="grid-icon">
-            <img src="/img/icon/appointment.png" alt="" style="height: 100%; width: 100%">
+            <img src="/img/icon/leaveStudent.png" alt="" style="height: 100%; width: 100%">
           </div>
         </div>
       </div>
@@ -16,19 +16,19 @@
       <div class="grid-top">
         <div class="grid-circle">
           <div class="grid-icon">
-            <img src="/img/icon/nucleicResult.png" alt="" style="height: 100%; width: 100%">
+            <img src="/img/icon/workerLeave.png" alt="" style="height: 100%; width: 100%">
           </div>
         </div>
       </div>
       <div class="grid-font">
-        <p>教职工离校报备</p>
+        <p>教职工外出报备</p>
       </div>
     </div>
     <div class="grid-content" @click="jump('/nucleic/upload')">
       <div class="grid-top">
         <div class="grid-circle">
           <div class="grid-icon">
-            <img src="/img/icon//nucleicUpload.png" alt="" style="height: 100%; width: 100%">
+            <img src="/img/icon/passStudent.png" alt="" style="height: 100%; width: 100%">
           </div>
         </div>
       </div>
@@ -40,19 +40,19 @@
       <div class="grid-top">
         <div class="grid-circle">
           <div class="grid-icon">
-            <img src="/img/icon/appointment.png" alt="" style="height: 100%; width: 100%">
+            <img src="/img/icon/workerReturn.png" alt="" style="height: 100%; width: 100%">
           </div>
         </div>
       </div>
       <div class="grid-font">
-        <p>教职工通行码申请</p>
+        <p>教职工返校申请</p>
       </div>
     </div>
     <div class="grid-content" @click="jump('/nucleic/result')">
       <div class="grid-top">
         <div class="grid-circle">
           <div class="grid-icon">
-            <img src="/img/icon/nucleicResult.png" alt="" style="height: 100%; width: 100%">
+            <img src="/img/icon/approvalRecord.png" alt="" style="height: 100%; width: 100%">
           </div>
         </div>
       </div>
@@ -64,7 +64,7 @@
       <div class="grid-top">
         <div class="grid-circle">
           <div class="grid-icon">
-            <img src="/img/icon//nucleicUpload.png" alt="" style="height: 100%; width: 100%">
+            <img src="/img/icon//approvalList.png" alt="" style="height: 100%; width: 100%">
           </div>
         </div>
       </div>

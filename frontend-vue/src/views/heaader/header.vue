@@ -1,13 +1,23 @@
 <template>
-  <el-container style="min-width: 1400px">
+  <el-container style="min-width: 1600px">
     <el-header>
       <el-row style="margin-bottom: 20px;">
-        <el-col :span="1" :offset="1" style="height: 60px">
+        <!-- el-col :span="1" :offset="1" style="height: 60px">
           <div class="center">
             <img src="/favicon.ico" height="50" width="50">
           </div>
         </el-col>
-        <el-col :span="5" class="header-head">浙江大学疫情服务与管理系统</el-col>
+        <el-col :span="5" class="header-head">浙江大学疫情服务与管理系统</el-col-->
+        <el-col :span="7" :offset="1" style="height: 60px; display: flex; justify-content: flex-end">
+          <div class="title-box">
+            <div class="center">
+              <img src="/favicon.ico" height="50" width="50">
+            </div>
+            <div class="header-head">
+              <span>浙江大学疫情服务与管理系统</span>
+            </div>
+          </div>
+        </el-col>
         <el-col :span="0.01" style="color: #fff">|</el-col>
         <el-col :span="1">
           <div class="header-box" @click="change('/index')">
@@ -19,15 +29,15 @@
             <p class="header-font" style="cursor: pointer">打卡</p>
           </div>
         </el-col>
-        <el-col :span="8" :offset="6">
+        <el-col :span="8" :offset="5">
           <div v-show="!isLogin" class="header-box" @click="change('/login')">
             <p class="header-font" style="cursor: pointer">登录</p>
           </div>
-          <div v-show="isLogin" class="user-box">
+          <div v-show="isLogin" class="user-box" >
             <el-row class="sub-row" type="flex" justify="center">
               <el-col :span="3">
                 <el-dropdown style="width: 100%;">
-                  <div class="notice-box">
+                  <div class="notice-box" style="cursor: pointer">
                     <div style="display: flex; justify-content: center; align-items: center">
                       <el-badge class="notice" :value="10">
                         <i class="el-icon-bell" style="font-size: 20px; color: white"></i>
@@ -42,7 +52,7 @@
               </el-col>
               <el-col :span="8">
                 <el-dropdown style="width: 100%" @command="handleUserMenu">
-                  <div class="user-info-box">
+                  <div class="user-info-box" style="cursor: pointer">
                       <div class="user-img">
                         <el-avatar :size="large" src="/favicon.ico"></el-avatar>
                       </div>
@@ -115,8 +125,8 @@ export default {
 }
 
 .center {
-  width: 100%;
-  height: 100%;
+  width: 20px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,6 +136,14 @@ export default {
   width: 100%;
   text-align: center;
   margin: 40px 0;
+}
+
+.title-box {
+  width: 400px;
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .content-box {
@@ -187,6 +205,7 @@ export default {
   color: #fff;
   font-size: 1.3rem;
   font-family: KaiTi;
+  width: 80%;
 }
 
 .header-font{
