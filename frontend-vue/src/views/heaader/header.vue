@@ -1,5 +1,5 @@
 <template>
-  <el-container style="min-width: 1600px">
+  <el-container style="min-width: 1400px; height: 1140px">
     <el-header>
       <el-row style="margin-bottom: 20px;">
         <!-- el-col :span="1" :offset="1" style="height: 60px">
@@ -69,7 +69,7 @@
         </el-col>
       </el-row>
     </el-header>
-    <body class="blue-bg">
+    <div class="blue-bg">
       <div class="banner">
         <img src="/img/health/text.png">
       </div>
@@ -78,7 +78,46 @@
          <router-view></router-view>
         </keep-alive>
       </div>
-    </body>
+    </div>
+    <div class="footer-box">
+      <!--el-row class="footer-top">
+        <el-col :span="4">
+          <div class="footer-main">
+            <h3>链接</h3>
+          </div>
+        </el-col>
+        <el-col :span="4">
+          <div class="footer-main">
+            <h3>关于我们</h3>
+          </div>
+        </el-col>
+      </el-row-->
+      <div class="footer-top">
+        <div class="footer-main">
+          <h3>链接</h3>
+        </div>
+        <div class="footer-main">
+          <h3>关于我们</h3>
+        </div>
+        <div class="footer-social">
+          <p class="footer-social-title">ZJU EMS 2.0</p>
+          <div class="footer-social-box">
+            <a class="icon-box" href="https://github.com/dontnet-wuenze/Epidemic-Service-System" target="_blank">
+              <img class="elementdoc" src="/icon/github-fill.png">
+            </a>
+            <a class="icon-box" href="https://cn.vuejs.org" target="_blank">
+              <img class="elementdoc" src="/icon/vue.png">
+            </a>
+            <a class="icon-box" href="https://element.eleme.io" target="_blank">
+              <img class="elementdoc" src="/icon/Element.png">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>版权所有:浙江大学软件工程小组</div>
+      </div>
+    </div>
   </el-container>
 </template>
 
@@ -117,11 +156,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .blue-bg{
   background: url('../../../public/img/health/blue-bg.png') no-repeat left top;
   background-size: 100% auto;
   width:100%;
+  height: 1080px;
 }
 
 .center {
@@ -232,7 +272,7 @@ export default {
   border-radius: 4px;
 }
 
-.el-header, .el-footer {
+.el-header {
   background-color: rgba(81,153,216,.8);
   color: #333;
   text-align: center;
@@ -271,5 +311,85 @@ body > .el-container {
   line-height: 320px;
 }
 
+::v-deep .el-footer {
+  height: 100px;
+}
+
+.footer-box {
+  background-color: #f7fbfd;
+  width: 100%;
+  padding: 40px 200px;
+  box-sizing: border-box;
+  height: 340px;
+}
+
+.footer-top{
+  width: 1200px;
+  height: 260px;
+  margin: 0 auto;
+}
+
+.footer-main{
+  height: 260px;
+  width: 100px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 50px;
+}
+
+.footer-social {
+  float: right;
+  text-align: right;
+}
+
+.footer-social-title {
+  color: #666;
+  font-size: 18px;
+  line-height: 1;
+  margin: 0 10px 20px 0px;
+  padding: 0;
+  font-weight: 700;
+}
+
+.footer-social-box {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer-bottom {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-box {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.elementdoc {
+  transition: .3s;
+  display: inline-block;
+  line-height: 32px;
+  text-align: center;
+  color: #c8d6e8;
+  background-color: transparent;
+  size: 32px;
+  font-size: 32px;
+  vertical-align: middle;
+  height: 30px;
+  width: 30px;
+}
+
+.elementdoc:hover {
+  color: #409EFF;
+  height: 40px;
+  width: 40px;
+}
 
 </style>
