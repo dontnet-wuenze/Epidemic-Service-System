@@ -1,122 +1,92 @@
 <template>
-    <div>
-       <div id="myChart" :style="{width: '1000px', height: '500px'}"></div>
-        <button @click="goOff()" style="margin-left:40% ;margin-bottom: 90%;" class="button">返回</button>
-    </div>
+  <div class="statistic-container">
+    <el-row>
+      <el-col :span="4">
+        <h3>本科生核酸统计</h3>
+        <el-menu
+            :default-active="activeIndex"
+            @select="handleSelect"
+            class="el-menu-vertical"
+            @open="handleOpen"
+            @close="handleClose">
+          <el-menu-item index="b_number">
+            <i class="el-icon-s-data"></i>
+            <span slot="title">一周内统计</span>
+          </el-menu-item>
+          <el-menu-item index="b_campus">
+            <i class="el-icon-position"></i>
+            <span slot="title">校区统计</span>
+          </el-menu-item>
+          <el-menu-item index="b_no_check">
+            <i class="el-icon-user"></i>
+            <span slot="title">未核酸检测人员</span>
+          </el-menu-item>
+        </el-menu>
+      </el-col>
+      <el-col :span="20">
+        <keep-alive>
+          <component :is="activeIndex"></component>
+        </keep-alive>
+      </el-col>
+    </el-row>
+    <button @click="goOff()" style="margin-left:85%; margin-bottom: 10%;" class="button">返回</button>
+  </div>
 </template>
+
 <script>
-import * as echarts from "echarts";
-    // 引入基本模板
-    export default {
-        name: "DataCount",
-        data: () => ({
-            msg: 'Welcome to Your Vue.js App'
-        }),
-        mounted(){
-            this.drawLine();
-        },
-        methods:{
-        goOff(){
+
+import b_number from "@/components/monitor_statistic/b_number";
+import b_campus from "@/components/monitor_statistic/b_campus";
+import b_no_check from "@/components/monitor_statistic/b_no_check";
+
+
+export default {
+  name: "statistic",
+  data () {
+    return {
+      activeIndex: "b_number",
+      openNames: ['1']
+    }
+  },
+  methods: {
+    goOff(){
             this.$router.go(-1);
         },
-            drawLine(){
-                // 基于准备好的dom，初始化echarts实例
-                let myChart = echarts.init(document.getElementById('myChart'));
-                // 绘制图表
-                myChart.setOption({
-                    title: {
-                        text: '',
-                        subtext: ''
-                    },
-                    tooltip: {
-                        trigger: 'axis'
-                    },
-                    legend: {
-                        data:['未完成检测','完成检测']
-                    },
-                    toolbox: {
-                        show: true,
-                        feature: {
-                            dataZoom: {
-                                yAxisIndex: 'none'
-                            },
-                            dataView: {readOnly: false},
-                            magicType: {type: ['line', 'bar']},
-                            restore: {},
-                            saveAsImage: {}
-                        }
-                    },
-                    xAxis:  {
-                        type: 'category',
-                        boundaryGap: false,
-                        data: ['2019-02-25','2019-03-04','2019-03-18','2019-03-26','2019-04-16','2019-04-26','2019-05-04']
-                    },
-                    yAxis: {
-                        type: 'value',
-                        axisLabel: {
-                            formatter: '{value}'
-                        }
-                    },
-                    series: [
-                        {
-                            name:'未完成检测',
-                            type:'line',
-                            data:[11, 11, 15, 13, 12, 13, 10],
-                            markPoint: {
-                                data: [
-                                    {type: 'max', name: '最大值'},
-                                    {type: 'min', name: '最小值'}
-                                ]
-                            },
-                            markLine: {
-                                data: [
-                                    {type: 'average', name: '平均值'}
-                                ]
-                            }
-                        },
-                        {
-                            name:'完成检测',
-                            type:'line',
-                            data:[1, -2, 2, 5, 3, 2, 0],
-                            markPoint: {
-                                data: [
-                                    {name: '周最低', value: 2, xAxis: 1, yAxis: 1.5}
-                                ]
-                            },
-                            markLine: {
-                                data: [
-                                    {type: 'average', name: '平均值'},
-                                    [{
-                                        symbol: 'none',
-                                        x: '90%',
-                                        yAxis: 'max'
-                                    }, {
-                                        symbol: 'circle',
-                                        label: {
-                                            normal: {
-                                                position: 'start',
-                                                formatter: '最大值'
-                                            }
-                                        },
-                                        type: 'max',
-                                        name: '最高点'
-                                    }]
-                                ]
-                            }
-                        }
-                    ]
-                });
-            }
-        }
+    handleSelect (index) {
+      this.activeIndex = index;
+    },
+    handleOpen (key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose (key, keyPath) {
+      console.log(key, keyPath);
     }
+  },
+  components: {
+    b_number,
+    b_campus,
+    b_no_check
+  },
+}
 </script>
+
 <style scoped>
-    * {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-    .button {
+.statistic-container {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.statistic-aside {
+  width: 200px;
+}
+
+.el-menu-vertical:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
+.button {
     position: relative;
     background-color: #ffffff;
 	border:2px solid #008cba;
@@ -131,25 +101,5 @@ import * as echarts from "echarts";
     text-decoration: none;
     overflow: hidden;
     cursor: pointer;
-}
- 
-.button:after {
-    content: "";
-    background: #a9a9a9;
-    display: block;
-    position: absolute;
-    padding-top: 300%;
-    padding-left: 350%;
-    margin-left: -20px!important;
-    margin-top: -120%;
-    opacity: 0;
-    transition: all 0.8s
-}
- 
-.button:active:after {
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    transition: 0s
 }
 </style>
