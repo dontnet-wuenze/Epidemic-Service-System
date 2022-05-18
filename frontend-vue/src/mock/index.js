@@ -9,9 +9,9 @@ Mock.mock('http://localhost:8080/api/user/login', (req) => {
 
 Mock.mock('http://localhost:8080/api/user/code', (req) => {
     return {
-        name: '李博日',
-        department: "计算机科学与技术",
-        grade : '研究生',
-        code: 2
+        name: '李白',
+        department: "软件工程",
+        grade : '本科生',
+        code: 1
     }
 })

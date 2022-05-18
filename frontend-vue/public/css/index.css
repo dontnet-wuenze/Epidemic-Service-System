@@ -54,6 +54,10 @@
     margin: auto auto;
 }
 
+.grid-icon:hover {
+    padding-bottom: 15px;
+}
+
 .grid-font {
     font-size: 20px;
     font-weight: bold;
