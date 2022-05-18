@@ -2,10 +2,10 @@
   <el-scrollbar class="customScrollbar">
     <div class="container">
       <div class="scroll-container-title">
-        <div style="display: flex; justify-content: center; align-items: center"><h3>学生离校报备</h3></div>
+        <div style="display: flex; justify-content: center; align-items: center"><h3>教职工离校报备</h3></div>
       </div>
       <div class="scroll-container-form">
-        <el-form ref="StuLeaveForm" :label-position="labelPosition" :model="form" label-width="auto" :rules="rules">
+        <el-form ref="StaffLeaveForm" :label-position="labelPosition" :model="form" label-width="auto" :rules="rules">
           <el-row>
             <el-col :span="6">
               <el-form-item label="申请编号">
@@ -27,8 +27,8 @@
               </el-form-item>
             </el-col>
             <el-col :span="5" :offset="2">
-              <el-form-item label="学号">
-                <el-input v-model="form.stu_id" readonly="true"></el-input>
+              <el-form-item label="工号">
+                <el-input v-model="form.staff_id" readonly="true"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -46,8 +46,8 @@
           </el-row>
           <el-row>
             <el-col :span="6">
-              <el-form-item label="所在学院" prop="institute">
-                <el-select v-model="form.institute" filterable clearable placeholder="请选择学院">
+              <el-form-item label="所属学院/部门" prop="institute">
+                <el-select v-model="form.institute" filterable clearable placeholder="请选择学院/部门">
                   <el-option
                     v-for="item in institutes"
                     :key="item.value"
@@ -74,39 +74,9 @@
               </el-form-item>
             </el-col>
           </el-row>
-          <el-form-item label="是否住校" prop="in_residence">
-            <el-radio-group v-model="form.in_residence">
-              <el-radio label="true">是</el-radio>
-              <el-radio label="false">否</el-radio>
-            </el-radio-group>
-          </el-form-item>
-          <el-form-item label="家庭地址" prop="address">
+          <el-form-item label="居住地址" prop="address">
             <el-input style="width: 400px" v-model="form.address" ></el-input>
           </el-form-item>
-          <el-row>
-            <el-col :span="5">
-              <el-form-item label="家长姓名" prop="parent_name">
-                <el-input v-model="form.parent_name"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="6" :offset="1">
-              <el-form-item label="联系电话" prop="parent_tele">
-                <el-input v-model="form.parent_tele"></el-input>
-              </el-form-item> 
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span="5">
-              <el-form-item label="导师/班主任姓名" prop="tutor_name">
-                <el-input v-model="form.tutor_name"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="6" :offset="1">
-              <el-form-item label="联系电话" prop="tutor_tele">
-                <el-input v-model="form.tutor_tele"></el-input>
-              </el-form-item> 
-            </el-col>
-          </el-row>
           <el-divider></el-divider>
           <div style="display: flex;"><h4>离校信息</h4></div>
           <el-form-item label="离校日期" prop="leave_date">
@@ -126,7 +96,7 @@
           </el-form-item>
           <el-row>
             <el-form-item label="离校前往目的地" prop="location">
-              <el-cascader :options="locations" clearable filterable v-model="form.location" @change="handleChange"></el-cascader>
+              <el-cascader :options="locations" v-model="form.location" @change="handleChange"></el-cascader>
             </el-form-item>
           </el-row>
           <el-row>
@@ -154,12 +124,12 @@
           <div style="display: flex;"><h4>离校报备情况</h4></div>
             <el-form-item prop="promise">
               <el-checkbox v-model="form.promise" label="true">
-                本人承诺：以上情况信息属实。家长知情并同意离校。离校后按照疫情防控要求做好个人健康管理，如实报告相关信息
+                本人承诺：以上情况信息属实。离校后按照疫情防控要求做好个人健康管理，如实报告相关信息
               </el-checkbox>
             </el-form-item>
           <div class="submit-btn">
             <el-form-item>
-              <el-button type="primary" @click="submitForm('StuLeaveForm')">提交表单</el-button>
+              <el-button type="primary" @click="submitForm('StaffLeaveForm')">提交表单</el-button>
             </el-form-item>
           </div>
         </el-form>
@@ -196,7 +166,7 @@ export default {
       form: {
         id: '1145141919810',
         name: 'Lingsing',
-        stu_id: '3190103176',
+        staff_id: '3190103176',
         date: Date.now(),
         location:[]
       },
