@@ -7,3 +7,13 @@ export function userLogin(data) {
     data: data
   })
 }
+
+export function userCode(id) {
+  return request({
+    url: '/user/code',
+    method: 'get',
+    data: {
+      id: id
+    }
+  })
+}

@@ -54,7 +54,7 @@
                 <el-dropdown style="width: 100%" @command="handleUserMenu">
                   <div class="user-info-box" style="cursor: pointer">
                       <div class="user-img">
-                        <el-avatar :size="large" src="/favicon.ico"></el-avatar>
+                        <el-avatar size="large" src="/favicon.ico"></el-avatar>
                       </div>
                       <div class="header-font">{{this.$store.state.username}}</div>
                   </div>
