@@ -6,8 +6,9 @@
   <div  style="width: 100%;height: 400px">
     <div class="echart" id="mychart" :style="myChartStyle"></div>
   </div>
-  <div style="width: 100%;height: 100%;margin-left: 28%;" >
+  <div style="width: 100%;height: 300px;margin-left: 28%;" >
     <div id="main" style="width: 600px;height: 300px;align-items: center;"></div>
+    <button @click="goOff()" style="margin-left:40% ;margin-bottom: 90%;" class="button">返回</button>
   </div>
   
 </div>
