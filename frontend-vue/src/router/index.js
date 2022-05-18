@@ -63,6 +63,30 @@ const routeList=[
                 },
                 component:()=>import('../views/approval/Student_Leave_Report.vue')
             },
+            {
+              path: '/approval/Staff_Leave_Report',
+              name: 'Staff_Leave_Report',
+              meta: {
+                  title: "教职工离校报备"
+              },
+              component:()=>import('../views/approval/Staff_Leave_Report.vue')
+            },
+            {
+              path: '/approval/Student_Passphrase_Application',
+              name: 'Student_Passphrase_Application',
+              meta: {
+                  title: "学生通行码申请"
+              },
+              component:()=>import('../views/approval/Student_Passphrase_Application')
+            },
+            {
+              path: '/approval/Staff_Passphrase_Application',
+              name: 'Student_Passphrase_Application',
+              meta: {
+                  title: "教职工通行码申请"
+              },
+              component:()=>import('../views/approval/Staff_Passphrase_Application')
+            },
 
             // 健康打卡模块
             {

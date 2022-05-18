@@ -12,7 +12,7 @@
         <p>学生离校报备</p>
       </div>
     </div>
-    <div class="grid-content" @click="jump('/nucleic/result')">
+    <div class="grid-content" @click="jump('/approval/Staff_Leave_Report')">
       <div class="grid-top">
         <div class="grid-circle">
           <div class="grid-icon">
@@ -24,7 +24,7 @@
         <p>教职工外出报备</p>
       </div>
     </div>
-    <div class="grid-content" @click="jump('/nucleic/upload')">
+    <div class="grid-content" @click="jump('/approval/Student_Passphrase_Application')">
       <div class="grid-top">
         <div class="grid-circle">
           <div class="grid-icon">
@@ -36,7 +36,7 @@
         <p>学生通行码申请</p>
       </div>
     </div>
-    <div class="grid-content" @click="jump('/nucleic/appointment')">
+    <div class="grid-content" @click="jump('/approval/Staff_Passphrase_Application')">
       <div class="grid-top">
         <div class="grid-circle">
           <div class="grid-icon">
@@ -74,6 +74,18 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'Index',
+  methods: {
+    jump(path) {
+      this.$router.push(path)
+    }
+  }
+}
+</script>
+<style scoped src="../../../public/css/index.css"></style>
 
 <script>
 export default {
