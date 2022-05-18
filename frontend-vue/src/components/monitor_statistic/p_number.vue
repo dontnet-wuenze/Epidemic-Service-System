@@ -3,16 +3,13 @@
   <div style="width:100%;height:30px;text-align: center;">
     <div style="height:30px;width:100%;"></div>
   </div>
-  <div  style="width: 100%;height: 400px">
-    <div class="echart" id="mychart" :style="myChartStyle"></div>
-  </div>
-  <div style="width: 100%;height: 100%;margin-left: 28%;" >
+  
+  <div style="width: 100%;height: 300px;margin-left: 20%;margin-top: 10%;" >
     <div id="main" style="width: 600px;height: 300px;align-items: center;"></div>
   </div>
-  
+   
 </div>
 </template>
- 
 <script>
 import * as echarts from "echarts";
  
@@ -24,17 +21,16 @@ export default {
       taskDate: [10, 11, 9, 17, 14, 13, 14],
       myChartStyle: { float: "left", width: "100%", height: "400px" }, //图表样式
       charts: '',
-          opinion:['在校总人数','不在校总人数'],
+          opinion:['全校已完成','全校未完成'],
           opinionData:[
-            {value:335, name:'在校总人数'},
-            {value:310, name:'不在校总人数'},
+            {value:335, name:'全校已完成'},
+            {value:310, name:'全校未完成'},
                 
           ]
     };
   },
   name: '',
   mounted() {
-    this.initEcharts();
     this.$nextTick(function() {
                 this.drawPie('main')
             })
@@ -43,48 +39,6 @@ export default {
     goOff(){
             this.$router.go(-1);
         },
-    initEcharts() {
-      // 多列柱状图
-      const mulColumnZZTData = {
-        xAxis: {
-          data: this.xData
-        },
-        // 图例
-        legend: {
-          data: ["在校人数", "不在校人数"],
-          top: "0%"
-        },
-        yAxis: {},
-        series: [
-          {
-            type: "bar", //形状为柱状图
-            data: this.yData,
-            name: "在校人数", // legend属性
-            label: {
-              // 柱状图上方文本标签，默认展示数值信息
-              show: true,
-              position: "top"
-            }
-          },
-          {
-            type: "bar", //形状为柱状图
-            data: this.taskDate,
-            name: "不在校人数", // legend属性
-            label: {
-              // 柱状图上方文本标签，默认展示数值信息
-              show: true,
-              position: "top"
-            }
-          }
-        ]
-      };
-      const myChart = echarts.init(document.getElementById("mychart"));
-      myChart.setOption(mulColumnZZTData);
-      //随着屏幕大小调节图表
-      window.addEventListener("resize", () => {
-        myChart.resize();
-      });
-    },
     drawPie(id){
                this.charts = echarts.init(document.getElementById(id))
                this.charts.setOption({

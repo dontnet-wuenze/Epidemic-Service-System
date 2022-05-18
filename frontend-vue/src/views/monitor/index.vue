@@ -1,10 +1,41 @@
 <template>
   <div id="indexContainer">
-    <el-row type="flex" class="row-bg" :gutter="30">
-      <el-col :span="3"><button class="grid-content" @click="jump('/monitor/whole_school')">全校核酸检测扫码统计</button></el-col>
-      <el-col :span="3"><button class="grid-content" @click="jump('/monitor/Undergraduate')">本科生核酸情况统计</button></el-col>
-      <el-col :span="3"><button class="grid-content" @click="jump('/monitor/in_school')">在校人数分析</button></el-col>
-    </el-row>
+    <div class="grid-content" @click="jump('/monitor/whole_school')">
+      <div class="grid-top">
+        <div class="grid-circle">
+          <div class="grid-icon">
+            <img src="/img/icon/allnucleicStatistic.png" alt="" style="height: 100%; width: 100%">
+          </div>
+        </div>
+      </div>
+      <div class="grid-font">
+        <p>全校核酸检测扫码统计</p>
+      </div>
+    </div>
+    <div class="grid-content" @click="jump('/monitor/Undergraduate')">
+      <div class="grid-top">
+        <div class="grid-circle">
+          <div class="grid-icon">
+            <img src="/img/icon/nucleicStatistic.png" alt="" style="height: 100%; width: 100%">
+          </div>
+        </div>
+      </div>
+      <div class="grid-font">
+        <p>本科生核酸情况统计</p>
+      </div>
+    </div>
+    <div class="grid-content" @click="jump('/monitor/in_school')">
+      <div class="grid-top">
+        <div class="grid-circle">
+          <div class="grid-icon">
+            <img src="/img/icon//numberStatistic.png" alt="" style="height: 100%; width: 100%">
+          </div>
+        </div>
+      </div>
+      <div class="grid-font">
+        <p>在校人数分析</p>
+      </div>
+    </div>
   </div>
 </template>
 

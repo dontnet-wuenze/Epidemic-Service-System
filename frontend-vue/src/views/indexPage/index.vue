@@ -18,7 +18,7 @@
 </template-->
 
 <template>
-    <el-tabs v-model="activeName" stretch>
+    <el-tabs v-model="activeName" stretch class="new-tabs-header">
       <el-tab-pane label="核酸检测" name="first">
         <NucleicIndex></NucleicIndex>
       </el-tab-pane>
@@ -61,82 +61,27 @@ export default {
 }
 </script>
 
-<style scoped>
-
-.blue-bg{
-  background: url('../../../public/img/health/blue-bg.png') no-repeat left top;
-  background-size: 100% auto;
-  width:100%;
-}
-
-.banner {
-  width: 100%;
-  text-align: center;
-  margin: 40px 0;
-}
-
-.content-box {
-  width: 70%;
-  height: 600px;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgb(0 0 0 / 40%);
-  background: #fff;
-  margin: 0 auto;
-  position: relative;
-}
-
-.main-container {
-  position: relative;
-  left: 0;
-  right: 0;
-}
-.el-row {
-  margin-bottom: 20px;
-  width: 100%;
-}
-.el-col {
-  border-radius: 4px;
-}
-
-.el-header, .el-footer {
-  background-color: #B3C0D1;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
-  width: 100%;
-}
-
-.el-aside {
-  background-color: #D3DCE6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
-
-.el-main {
-  background-color: #E9EEF3;
-  color: #333;
-  text-align: center;
-  line-height: 100%;
-  height: auto;
-}
-
-body > .el-container {
-  margin-bottom: 40px;
-}
-
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-  line-height: 320px;
-}
+<style lang="scss" scoped>
 
 ::v-deep .el-tabs__nav-scroll{
-  width:50%;
-  margin:0 auto
+  width:70%;
+  margin:0 auto;
+  height: 80px;
+}
+
+::v-deep .el-tabs__nav {
+  height: 80px;
+}
+
+::v-deep .el-tabs__active-bar.is-top {
+  width: 230px;
+}
+
+::v-deep .el-tabs__item {
+  height: 80px;
+  width: 60px;
+  line-height: 80px;
+  font-size: 20px;
 }
 
 </style>

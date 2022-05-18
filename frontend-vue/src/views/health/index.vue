@@ -1,10 +1,41 @@
 <template>
   <div id="indexContainer">
-    <el-row type="flex" class="row-bg" :gutter="30">
-      <el-col :span="3"><button class="grid-content" @click="jump('/health/attend')">健康打卡</button></el-col>
-      <el-col :span="3"><button class="grid-content" @click="jump('/health/statistic')">打卡统计</button></el-col>
-      <el-col :span="3"><button class="grid-content" @click="jump('/health/passcode')">查看通行码</button></el-col>
-    </el-row>
+    <div class="grid-content" @click="jump('/health/attend')">
+      <div class="grid-top">
+        <div class="grid-circle">
+          <div class="grid-icon">
+            <img src="/img/icon/attend.png" alt="" style="height: 100%; width: 100%">
+          </div>
+        </div>
+      </div>
+      <div class="grid-font">
+        <div>健康打卡</div>
+      </div>
+    </div>
+    <div class="grid-content" @click="jump('/health/statistic')">
+      <div class="grid-top">
+        <div class="grid-circle">
+          <div class="grid-icon">
+            <img src="/img/icon/statistic.png" alt="" style="height: 100%; width: 100%">
+          </div>
+        </div>
+      </div>
+      <div class="grid-font">
+        <div>打卡统计</div>
+      </div>
+    </div>
+    <div class="grid-content" @click="jump('/health/passcode')">
+      <div class="grid-top">
+        <div class="grid-circle">
+          <div class="grid-icon">
+            <img src="/img/icon/passcode.png" alt="" style="height: 100%; width: 100%">
+          </div>
+        </div>
+      </div>
+      <div class="grid-font">
+        <div>查看通行码</div>
+      </div>
+    </div>
   </div>
 </template>
 
