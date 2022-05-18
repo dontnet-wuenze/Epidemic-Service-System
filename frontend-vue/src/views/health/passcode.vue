@@ -1,21 +1,21 @@
 <template>
   <div>
       <div class="content-box-title">
-        <el-row :gutter="20" type="flex" justify="center">
-          <el-col :span="6" :offset="1"><h3>吴恩泽的通行码</h3></el-col>
-          <el-col :span="8"><h3>计算机科学与技术学院</h3></el-col>
-          <el-col :span="3" class="content-box-title-grade"><span class="bgr-blue">本科生</span></el-col>
+        <el-row :gutter="20" type="flex" justify="space-around">
+          <el-col :span="6" :offset="1"><h3>{{user_name}}的通行码</h3></el-col>
+          <el-col :span="8"><h3>{{user_department}}学院</h3></el-col>
+          <el-col :span="3" class="content-box-title-grade"><span class="bgr-blue">{{user_grade}}</span></el-col>
         </el-row>
       </div>
       <strong>
-        <div class="time-box">05月12日 14:31:26</div>
+        <div class="time-box">{{read_date}}</div>
       </strong>
       <div class="content-box-qr">
         <!--canvas width="200" height="200" id="qrcode"></canvas-->
-        <img style="height: 250px; width: 250px" src="/img/health/qr.png">
+        <img style="height: 250px; width: 250px" :src="code_addr[user_code]">
       </div>
       <div class="content-box-status">
-        <div class="status-font">健康码为: 绿码</div>
+        <div class="status-font">健康码为: {{code_satatus[user_code]}}</div>
       </div>
       <div class="content-box-label">
         <div class="label-font">
@@ -33,8 +33,39 @@
 </template>
 
 <script>
+const dayjs = require('dayjs');
+import {userCode} from '@/api/user.js';
+
 export default {
-  name: "passcode"
+  name: "passcode",
+  data() {
+    return {
+      user_name: '小明',
+      user_department: '计算机科学与技术',
+      user_grade: '本科生',
+      user_code: 0,
+      code_satatus: ['蓝码', '黄码', '红码'],
+      code_addr: ['/img/health/qr-blue.png', '/img/health/qr-yellow.png', '/img/health/qr-red.png'],
+      read_date: "",
+    }
+  },
+  async mounted() {
+    let _this = this; // 声明一个变量指向Vue实例this，保证作用域一致
+    this.timer = setInterval(() => {
+      _this.read_date = dayjs().format('MM月DD日 HH:mm:ss'); // 修改数据date
+    }, 1000)
+    userCode().then(res => {
+      _this.user_code = res.data.code;
+      _this.user_name = res.data.name;
+      _this.user_department = res.data.department;
+      _this.user_grade = res.data.grade;
+    })
+  },
+  beforeDestroy() {
+    if (this.timer) {
+      clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
+    }
+  }
 }
 </script>
 
