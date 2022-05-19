@@ -1,7 +1,7 @@
 <template>
   <div class="statistic-container">
     <el-row>
-      <el-col :span="4">
+      <el-col :span="5">
         <h3>统计数据</h3>
         <el-menu
             :default-active="activeIndex"
@@ -23,7 +23,7 @@
           </el-menu-item>
         </el-menu>
       </el-col>
-      <el-col :span="20">
+      <el-col :span="19">
         <keep-alive>
           <component :is="activeIndex"></component>
         </keep-alive>

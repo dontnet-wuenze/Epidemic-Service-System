@@ -35,6 +35,7 @@ service.interceptors.request.use(
                 config.headers['X-Token'] = getToken()
             }
         }
+        config.headers['token'] = getToken();
         return config;
     },
     error => {

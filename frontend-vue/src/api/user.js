@@ -17,3 +17,18 @@ export function userCode(id) {
     }
   })
 }
+
+export function userAttendSubmit(data) {
+  return request({
+    url: '/user/attend',
+    method: 'post',
+    data: data
+  })
+}
+
+export function userAttendGet() {
+  return request({
+    url: '/user/attend',
+    method: 'get'
+  })
+}

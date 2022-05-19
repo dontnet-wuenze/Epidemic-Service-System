@@ -1,5 +1,5 @@
 <template>
-  <el-container style="min-width: 1400px; height: 1140px">
+  <el-container style="min-width: 1200px; height: 1140px">
     <el-header>
       <el-row style="margin-bottom: 20px;">
         <!-- el-col :span="1" :offset="1" style="height: 60px">
@@ -324,7 +324,6 @@ body > .el-container {
 }
 
 .footer-top{
-  width: 1200px;
   height: 260px;
   margin: 0 auto;
 }
