@@ -226,8 +226,13 @@ export default {
     this.identifyCode = ''
     this.makeCode(this.identifyCodes, 4)
     let _this = this; // 声明一个变量指向Vue实例this，保证作用域一致
+    const loading = this.$loading({
+      lock: true,
+      text: 'Loading',
+      spinner: 'el-icon-loading',
+      background: 'rgba(0, 0, 0, 0.7)'
+    });
     userAttendGet().then(res => {
-      console.log(res);
       _this.form.name = res.data.name;
       _this.form.id = res.data.id;
       _this.form.date = dayjs().format('YYYY-MM-DD');
@@ -242,6 +247,7 @@ export default {
         _this.form.contact = res.data.contact;
         _this.selected_region = regionConvert(res.data.region);
       }
+      loading.close();
     }).catch(error=> {
       console.log(error);
     })
