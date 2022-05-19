@@ -121,6 +121,8 @@
           message: '请上传附件！'})
       }
     },
+
+
     importfile (obj) {
       console.log(obj);
       const reader = new FileReader()
@@ -145,8 +147,9 @@
         const arr = []
         this.data.map(v => {
         const obj = { }
+        const temp_date = new Date((v.date-25567) * 24 * 3600000 - 5 * 60 * 1000 - 43 * 1000  - 24 * 3600000 - 8 * 3600000)
         obj.id = v.id
-        obj.date = v.date
+        obj.date = temp_date.getFullYear() + '/' + (temp_date.getMonth() + 1)+ '/' + temp_date.getDate()
         obj.result=v.result
         arr.push(obj)
         })
@@ -163,7 +166,7 @@
     },
     submitAll: function(){
       console.log(this.tableData)
-    }
+    },
   }
 }
 </script> 
