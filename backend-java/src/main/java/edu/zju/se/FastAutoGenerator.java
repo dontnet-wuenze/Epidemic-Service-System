@@ -245,7 +245,7 @@ public final class FastAutoGenerator {
     before();
     FastAutoGenerator.create(DATA_SOURCE_CONFIG)
             // 全局配置
-            .globalConfig(builder -> builder.author("Boris Li")
+            .globalConfig(builder -> builder.author("Boris Li").disableOpenDir()
                     .outputDir(System.getProperty("user.dir") + "/src/main/java/"))
             // 包配置
             .packageConfig(builder -> builder.parent("edu.zju.se"))

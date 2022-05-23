@@ -11,3 +11,6 @@ spring:
       data-locations: classpath:db/data-h2.sql
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
+server:
+  servlet:
+    context-path: /api
