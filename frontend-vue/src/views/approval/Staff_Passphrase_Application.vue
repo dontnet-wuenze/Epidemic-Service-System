@@ -1,5 +1,8 @@
 <template>
   <el-scrollbar class="customScrollbar">
+    <div style="position: relative; z-index: 0">
+        <button @click="goOff()" style="margin-left:3%; margin-bottom: 10%;" class="button">返回</button>
+    </div>
     <div class="container">
       <div class="scroll-container-title">
         <div style="display: flex; justify-content: center; align-items: center"><h3>教职工通行码申请</h3></div>
@@ -186,7 +189,7 @@
           </el-form-item>
           <el-form-item label="请上传14天通行数据查询截图" prop="route_screenshot">
             <br>
-            <el-upload action="#" list-type="picture-card" :limit="1" :auto-upload="false">
+            <el-upload ref="route_upload" action="#" list-type="picture-card" :limit="1" :auto-upload="false">
               <i slot="default" class="el-icon-plus"></i>
               <div slot="file" slot-scope="{file}">
                 <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
@@ -194,7 +197,7 @@
                   <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
                     <i class="el-icon-zoom-in"></i>
                   </span>
-                  <span class="el-upload-list__item-delete" @click="handleRemove(file)">
+                  <span class="el-upload-list__item-delete" @click="handleRemove('route_upload')">
                     <i class="el-icon-delete"></i>
                   </span>
                 </span>
@@ -212,7 +215,7 @@
           </el-form-item>
           <el-form-item label="请上传18小时核酸阴性证明截图" prop="nucleic_negative">
             <br>
-            <el-upload action="#" list-type="picture-card" :limit="1" :auto-upload="false">
+            <el-upload ref="nucleic_upload" action="#" list-type="picture-card" :limit="1" :auto-upload="false">
               <i slot="default" class="el-icon-plus"></i>
               <div slot="file" slot-scope="{file}">
                 <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
@@ -220,7 +223,7 @@
                   <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
                     <i class="el-icon-zoom-in"></i>
                   </span>
-                  <span class="el-upload-list__item-delete" @click="handleRemove(file)">
+                  <span class="el-upload-list__item-delete" @click="handleRemove('nucleic_upload')">
                     <i class="el-icon-delete"></i>
                   </span>
                 </span>
@@ -241,7 +244,7 @@
           </el-form-item>
           <el-form-item label="请上传支付宝健康疫苗接种页截图（支付宝-健康码-新冠疫苗接种）" prop="vaccine_screenshot">
             <br>
-            <el-upload action="#" list-type="picture-card" :limit="1" :auto-upload="false">
+            <el-upload ref="vaccine_upload" action="#" list-type="picture-card" :limit="1" :auto-upload="false">
               <i slot="default" class="el-icon-plus"></i>
               <div slot="file" slot-scope="{file}">
                 <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
@@ -249,7 +252,7 @@
                   <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
                     <i class="el-icon-zoom-in"></i>
                   </span>
-                  <span class="el-upload-list__item-delete" @click="handleRemove(file)">
+                  <span class="el-upload-list__item-delete" @click="handleRemove('vaccine_upload')">
                     <i class="el-icon-delete"></i>
                   </span>
                 </span>
@@ -323,15 +326,15 @@
           </el-form-item>
           <el-divider></el-divider>
           <div style="display: flex;"><h4>个人承诺</h4></div>
-            <el-form-item prop="promise">
-              <el-checkbox v-model="form.promise" label="true">
-                本人承诺：以上情况信息属实。如有相关变化，将及时报告院系。到校途中严格做好个人防护；到校后服从疫情防控要求，做好个人健康管理，如实报告相关信息。
-                <br>
-                来校前14天内未到过（含途径）中高风险地区所在县（市、区）及要求全域管控区域，本人及共同居住家庭成员返校前14天未有发热、干咳、咽痛、流涕、腹泻、
-                <br>
-                乏力、嗅（味）觉减退、肌肉酸痛等症状。如有瞒报，本人愿意承担由此引起的责任
-              </el-checkbox>
-            </el-form-item>
+          <el-form-item prop="promise">
+            <el-checkbox v-model="form.promise" label="true">
+              本人承诺：以上情况信息属实。如有相关变化，将及时报告院系。到校途中严格做好个人防护；到校后服从疫情防控要求，做好个人健康管理，如实报告相关信息。
+              <br>
+              来校前14天内未到过（含途径）中高风险地区所在县（市、区）及要求全域管控区域，本人及共同居住家庭成员返校前14天未有发热、干咳、咽痛、流涕、腹泻、
+              <br>
+              乏力、嗅（味）觉减退、肌肉酸痛等症状。如有瞒报，本人愿意承担由此引起的责任
+            </el-checkbox>
+          </el-form-item>
           <div class="submit-btn">
             <el-form-item>
               <el-button type="primary" @click="submitForm('StuPassphraseApplication')">提交表单</el-button>
@@ -402,6 +405,9 @@ export default {
         value: 'DangWei',
         label: '党委办公室(含保密办公室、信访办公室)'
       }],
+      route_list: [],
+      nucleic_list: [],
+      vaccine_list: [],
       dialogImageUrl: '',
       dialogVisible: false,
       //校验，等待完善
@@ -468,12 +474,15 @@ export default {
     }
   },
   methods: {
+    goOff(){
+      this.$router.go(-1);
+    },
     handlePictureCardPreview(file) {
         this.dialogImageUrl = file.url;
         this.dialogVisible = true;
     },
-    handleRemove(file) {
-      console.log(file);
+    handleRemove(ref_name) {
+      this.$refs[ref_name].clearFiles();
     },
     submitForm(form_name) {
       this.$refs[form_name].validate((valid) =>{
@@ -491,6 +500,26 @@ export default {
 </script>
 
 <style scoped>
+.button {
+  position: absolute;
+  z-index: 0;
+  left: 20px;
+  top: 10px;
+  background-color: #ffffff;
+  border:2px solid #008cba;
+  border-radius:8px;
+  font-size: 18px;
+  color:  #87cefa;
+  padding: 10px 20px;
+  margin: 4px 2px;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
 .container{
   height: 100%;
   margin: 10px auto;
@@ -535,9 +564,5 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.cascade_box {
-
 }
 </style>

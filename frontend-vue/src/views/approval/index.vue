@@ -48,7 +48,7 @@
         <p>教职工返校申请</p>
       </div>
     </div>
-    <div class="grid-content" @click="jump('/nucleic/result')">
+    <div class="grid-content" @click="jump('/approval/Application_Log')">
       <div class="grid-top">
         <div class="grid-circle">
           <div class="grid-icon">
@@ -60,7 +60,7 @@
         <p>申请记录</p>
       </div>
     </div>
-    <div class="grid-content" @click="jump('/nucleic/upload')">
+    <div class="grid-content" @click="jump('/approval/Form_Approval')">
       <div class="grid-top">
         <div class="grid-circle">
           <div class="grid-icon">

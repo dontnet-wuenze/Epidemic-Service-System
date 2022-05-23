@@ -87,6 +87,22 @@ const routeList=[
               },
               component:()=>import('../views/approval/Staff_Passphrase_Application')
             },
+            {
+              path: '/approval/Application_Log',
+              name: 'Application_Log',
+              meta: {
+                  title: "申请记录"
+              },
+              component:()=>import('../views/approval/Application_Log')
+            },
+            {
+              path: '/approval/Form_Approval',
+              name: 'Application_Log',
+              meta: {
+                  title: "表单审批"
+              },
+              component:()=>import('../views/approval/Form_Approval')
+            },
 
             // 健康打卡模块
             {
