@@ -59,6 +59,7 @@
                       <div class="header-font">{{this.$store.state.username}}</div>
                   </div>
                   <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>个人信息</el-dropdown-item>
                     <el-dropdown-item command="logout">注销</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>

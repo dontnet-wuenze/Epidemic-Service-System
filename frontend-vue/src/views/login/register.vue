@@ -170,7 +170,23 @@ export default {
         // 每页显示多少数据
         pageSize: 5,
       },
-      userlist: [],
+      userlist: [
+        {
+          id: '3190102222',
+          name: '王小虎',
+          department: '计算机科学与技术学院',
+          major: '计算机科学与技术',
+          class: '计科1901',
+          phone: '13888888888'
+        }, {
+          id: '3190102222',
+          name: '王小虎',
+          department: '计算机科学与技术学院',
+          major: '计算机科学与技术',
+          class: '计科1901',
+          phone: '13888888888'
+        }, 
+      ],
       total: 0,
        addDialogVisible: false,
       // 用户添加
