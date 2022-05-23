@@ -138,16 +138,41 @@ const routeList=[
                 },
                 component:()=>import('../views/monitor/in_school.vue')
             },
+            //个人中心模块
+            {
+                path : '/myspace/showinfo',
+                name : 'showinfo',
+                meta :{
+                    title :"基本信息"
+                },
+                component:()=>import('../views/myspace/showinfo.vue')
 
+            },
+            {
+                path : '/myspace/infoeditor',
+                name : 'infoeditor',
+                meta :{
+                    title :"信息修改"
+                },
+                component:()=>import('../views/myspace/infoeditor.vue')
+
+            },
             // 登录页面
             {
                 path:'/login',
                 name: 'login',
+                meta:{
+                    title:"登录"
+                },
                 component:()=>import('../views/login/login.vue')
             },
+            //注册界面
             {
                 path:'/register',
                 name: 'register',
+                meta:{
+                    title:"注册"
+                },
                 component: ()=>import('../views/login/register.vue')
             }
         ]

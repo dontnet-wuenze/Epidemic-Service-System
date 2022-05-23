@@ -31,6 +31,9 @@
       <el-tab-pane label="健康打卡" name="fourth">
         <HealthIndex></HealthIndex>
       </el-tab-pane>
+      <el-tab-pane label="个人中心" name="fifth">
+        <MyspaceIndex></MyspaceIndex>
+      </el-tab-pane>
     </el-tabs>
 </template>
 
@@ -39,6 +42,7 @@
  import ApprovalIndex from '@/views/approval/index.vue';
  import MonitorIndex from '@/views/monitor/index.vue';
  import HealthIndex from '@/views/health/index.vue';
+ import MyspaceIndex from '@/views/myspace/index.vue';
 
 export default {
   name: 'Index',
@@ -56,7 +60,8 @@ export default {
     NucleicIndex,
     ApprovalIndex,
     MonitorIndex,
-    HealthIndex
+    HealthIndex,
+    MyspaceIndex
   }
 }
 </script>
