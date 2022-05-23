@@ -1,5 +1,8 @@
 <template>
   <el-scrollbar class="customScrollbar">
+    <div style="position: relative; z-index: 0">
+        <button @click="goOff()" style="margin-left:3%; margin-bottom: 10%;" class="button">返回</button>
+    </div>
     <div class="container">
       <div class="scroll-container-title">
         <div style="display: flex; justify-content: center; align-items: center"><h3>教职工离校报备</h3></div>
@@ -122,11 +125,11 @@
           </el-row>
           <el-divider></el-divider>
           <div style="display: flex;"><h4>离校报备情况</h4></div>
-            <el-form-item prop="promise">
-              <el-checkbox v-model="form.promise" label="true">
-                本人承诺：以上情况信息属实。离校后按照疫情防控要求做好个人健康管理，如实报告相关信息
-              </el-checkbox>
-            </el-form-item>
+          <el-form-item prop="promise">
+            <el-checkbox v-model="form.promise" label="true">
+              本人承诺：以上情况信息属实。离校后按照疫情防控要求做好个人健康管理，如实报告相关信息
+            </el-checkbox>
+          </el-form-item>
           <div class="submit-btn">
             <el-form-item>
               <el-button type="primary" @click="submitForm('StaffLeaveForm')">提交表单</el-button>
@@ -249,6 +252,9 @@ export default {
     }
   },
   methods: {
+    goOff(){
+      this.$router.go(-1);
+    },
     submitForm(form_name) {
       this.$refs[form_name].validate((valid) =>{
         if(valid) {
@@ -265,6 +271,26 @@ export default {
 </script>
 
 <style scoped>
+.button {
+  position: absolute;
+  z-index: 0;
+  left: 20px;
+  top: 10px;
+  background-color: #ffffff;
+  border:2px solid #008cba;
+  border-radius:8px;
+  font-size: 18px;
+  color:  #87cefa;
+  padding: 10px 20px;
+  margin: 4px 2px;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
 .container{
   height: 100%;
   margin: 10px auto;
@@ -309,9 +335,5 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.cascade_box {
-
 }
 </style>
