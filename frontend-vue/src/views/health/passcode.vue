@@ -38,7 +38,7 @@
 </template>
 
 <script>
-const dayjs = require('dayjs');
+  const dqqjs = require('dayjs');
 import {userCode} from '@/api/user.js';
 
 export default {
