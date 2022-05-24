@@ -56,7 +56,7 @@ export default {
     NucleicIndex,
     ApprovalIndex,
     MonitorIndex,
-    HealthIndex
+    HealthIndex,
   }
 }
 </script>
