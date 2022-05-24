@@ -70,8 +70,8 @@
           </el-form-item>
           <el-form-item label="预约监测点" prop="appAddress">
             <el-select v-model="form.appAddress" filterable clearable placeholder="请选择监测点">
-              <el-option label="紫金港操场" value="zjg"></el-option>
-              <el-option label="玉泉邵体馆" value="yuquan"></el-option>
+              <el-option label="紫金港操场" value="Zijingang"></el-option>
+              <el-option label="玉泉邵体馆" value="Yuquan"></el-option>
               <el-option label="西溪校医院" value="xixi"></el-option>
               <el-option label="海宁监测点" value="Haining"></el-option>
             </el-select>
