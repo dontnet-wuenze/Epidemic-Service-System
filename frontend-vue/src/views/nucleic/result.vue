@@ -27,8 +27,8 @@ export default{
     return {
       name:'李田所',
       staff_id:'3190101919',
-      user_result: 1,
-      result_addr: ['/img/health/nu-neg.png', '/img/health/nu-pos.png'],
+      user_result: 2,
+      result_addr: ['/img/health/nu-neg.png', '/img/health/nu-pos.png', '/img/health/nu-ukn.png'],
       result_time: "2022-5-19 14:36:00"
     }
   }

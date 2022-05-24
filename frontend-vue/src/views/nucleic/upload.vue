@@ -1,96 +1,102 @@
 <template>
-  <!-- <div>
-    <div>
-      <span>学工号(被检测者)</span>
-      <span>*</span>
-      <input type="sID" v-model="studentNo" name = "studentNo" required
-        maxlength="10" pattern="[0-9]">
-    </div>
-    <div>
-      <span>检测日期</span>
-      <span>*</span>
-      <input type="date" v-model="detectionDate" name="detectionDate">
-    </div>
-    <div>
-      <span>检测结果</span>
-      <span>*</span>
-      <select name="decResult" v-model="dtcResult">
-          <option v-for="item in availableResult" :key="item"> {{item}}</option>
-      </select>
-    </div>
-    <div>
-      <button @click="submitResult">提交结果</button>
-    </div>
-  </div> -->
   <div>
-    <div>
-      <span></span>
+    <div class="content-box-title">
+      <el-row :gutter="20" type="flex" justify="space-around"><h2>检测结果上传</h2></el-row>
     </div>
-    <el-upload
-    class="upload-demo"
-    action=""
-    :on-change="handleChange"
-    :show-file-list="false"
-    :auto-upload="false">
-    <el-button size="small" type="primary" style="margin-bottom:15px;">读取excel文件</el-button>
-    </el-upload>
-    <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="id" label="学工号" width="180"></el-table-column>
-      <el-table-column prop="date" label="日期" width="180"></el-table-column>
-      <el-table-column prop="result" label="结果" width="180"></el-table-column>
-    </el-table>
-    <el-button-group>
-      <el-button type="primary" @click="deleteAll">清空</el-button>
-      <el-button type="primary" @click="submitAll">提交</el-button>
-    </el-button-group> 
+    <div class="content-box-nucleic">
+      <div>
+        <span></span>
+      </div>
+      <el-upload
+      class="upload-demo"
+      action=""
+      :on-change="handleChange"
+      :show-file-list="false"
+      :auto-upload="false">
+      <el-button size="small" type="primary" style="margin-bottom:15px;">读取excel文件</el-button>
+      </el-upload>
+      <el-table 
+        :data="tableData" 
+        max-height="400"
+        border
+        style="width: 100%">
+        <el-table-column prop="id" label="学工号" width="180"></el-table-column>
+        <el-table-column prop="date" label="日期" width="180"></el-table-column>
+        <el-table-column prop="result" label="结果" width="180"></el-table-column>
+        <el-table-column
+          fixed="right"
+          label="操作">
+          <template slot-scope="scope">
+            <el-button
+              @click.native.prevent = "deleteRow(scope.$index, tableData)"
+              type="text">
+              移除
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <el-divider></el-divider>
+      <div style="display:flex;"><h4>添加条目</h4></div>
+      <el-row>
+        <el-col :span="6" :offset="1">
+          <el-input v-model="input_id" placeholder="请输入学工号"></el-input>
+        </el-col>
+        <el-col :span="5" :offset="1">
+          <el-date-picker type="date" v-model="input_date" placeholder="选择检测日期"></el-date-picker>
+        </el-col>
+        <el-col :span="6" >
+          <el-select v-model="input_result" filterable clearable placeholder="请选择检测结果" >
+            <el-option label = "阳性" value="阳性"></el-option>
+            <el-option label = "阴性" value="阴性"></el-option>
+          </el-select>          
+        </el-col>
+
+        <el-button @click="addlist()">
+        提交
+        </el-button>
+      </el-row>
+      <el-divider></el-divider>
+      <el-button-group>
+        <el-button type="primary" @click="deleteAll">清空</el-button>
+        <el-button type="primary" @click="submitAll">提交</el-button>
+      </el-button-group> 
+    </div>
   </div>
 </template>
 
 <script>
-// export default {
-//     name:"upload",
-//     data(){
-//       return{
-//         doctorNo:"",
-//         studentNo:"",
-//         detectionDate:"",
-//         //DetectionTime:"",
-//         dtcResult:"",
-//         availableResult:[
-//           "阴性",
-//           "阳性"
-//         ],
-//         stuArray: [],
-//         dateArray: [],
-//         resultArray: []
-//       };
-//     },
-//     methods:{
-//       submitResult: function(){
-//         if(this.studentNo != "" && this.detectionDate != "" && this.dtcResult != "")
-//         {
-//           this.stuArray.push(this.studentNo);
-//           this.dateArray.push(this.detectionDate);
-//           this.resultArray.push(this.dtcResult);
-//           alert("提交成功");
-//         }
-//         else
-//         {
-//           alert("提交失败");
-//         }
-//       }
-//     }
-//}
   export default{
     data() {
       return {
         tableData: [],
         fileContent: '',
         file: '',
-        data: ''
+        data: '',
+        input_id: '',
+        input_date: '',
+        input_result: ''
       };
     },
   methods: {
+    deleteRow(index, rows) {
+      rows.splice(index, 1);
+    },
+    addlist(){
+      const obj = {};
+      const _this = this;
+      if(_this.input_id == '' || _this.input_date == '' || _this.input_result == ''){
+        this.$message.error('请完善全部项后提交');
+      }
+      else{
+        obj.id = _this.input_id;
+        obj.date = _this.input_date.getFullYear() + '/' + (_this.input_date.getMonth() + 1) + '/' + _this.input_date.getDate();
+        obj.result = _this.input_result;
+        _this.tableData.push(obj);
+        _this.input_id = '';
+        _this.input_date = '';
+        _this.input_result = '';
+      }
+    },
     handleDelete (item) {
       console.log('handleDelete', item)
     },
@@ -170,3 +176,32 @@
   }
 }
 </script> 
+
+<style scoped>
+.content-box-title h3{
+  font-size: 1.3rem;
+  color: #333;
+  width: 70%;
+  float: left;
+}
+
+.content-box-nucleic {
+  width: 70%;
+  height: 500px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgb(0 0 0 / 40%);
+  background: #fff;
+  margin: 0 auto;
+  position: relative;
+}
+
+.content-box-nucleic-header {
+  text-align: center;
+  color: #666;
+}
+
+.textGray {
+  color: #666;
+}
+
+</style>
