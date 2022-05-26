@@ -35,7 +35,7 @@ public class UserController {
 
   @PostMapping("/register")
   public Result register(@Validated @RequestBody User user) {
-//    return Result.success();
+//    return Result.success(123);
     return new Result();
   }
 

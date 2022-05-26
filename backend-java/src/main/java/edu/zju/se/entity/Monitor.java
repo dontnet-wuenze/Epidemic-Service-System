@@ -1,21 +1,13 @@
 package edu.zju.se.entity;
 
-import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author Boris Li
- * @since 2022-05-22
- */
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class User implements Serializable {
-
+public class Monitor implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -44,21 +36,19 @@ public class User implements Serializable {
     private String phonenumber;
 
     /**
-     * 邮箱
-     */
-    private String email;
-
-    /**
      * 权限身份
      */
-    private String authorization="User";
-
-    /**
-     * 健康码
-     */
-    private String healthycode;
+    private String authorization="Monitor";
 
     public void setAuthorization(String authorization) {
         this.authorization = authorization;
     }
+
+//    public void register(){
+//
+//    }
+
+//    public void changeUserInfo(){
+//
+//    }
 }
