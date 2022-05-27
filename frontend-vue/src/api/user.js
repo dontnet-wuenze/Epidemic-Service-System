@@ -12,9 +12,6 @@ export function userCode(id) {
   return request({
     url: '/user/code',
     method: 'get',
-    data: {
-      id: id
-    }
   })
 }
 

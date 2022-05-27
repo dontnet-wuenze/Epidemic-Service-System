@@ -14,7 +14,7 @@
               <img src="/favicon.ico" height="50" width="50">
             </div>
             <div class="header-head">
-              <span>浙江大学疫情服务与管理系统</span>
+              <span class="rainbow-font">浙江大学疫情服务与管理系统</span>
             </div>
           </div>
         </el-col>
@@ -267,6 +267,21 @@ export default {
 </script>
 
 <style>
+.rainbow-font {
+  background: linear-gradient(to right, red, orange, yellow, green, cyan, purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation:  hue 1s linear infinite;
+}
+@keyframes hue {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
 .blue-bg{
   background: url('../../../public/img/health/blue-bg.png') no-repeat left top;
   background-size: 100% auto;
