@@ -1,2 +1,4 @@
-package edu.zju.se.controller;public class PeopleController {
+package edu.zju.se.controller;
+
+public class PeopleController {
 }
