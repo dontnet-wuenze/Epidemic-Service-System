@@ -17,7 +17,7 @@
       </el-upload>
       <el-table 
         :data="tableData" 
-        max-height="400"
+        max-height="250"
         border
         style="width: 100%">
         <el-table-column prop="id" label="学工号" width="180"></el-table-column>
@@ -65,6 +65,8 @@
 </template>
 
 <script>
+
+import {nucleicUpload} from '@/api/nucleic.js';
   export default{
     data() {
       return {
@@ -172,6 +174,7 @@
     },
     submitAll: function(){
       console.log(this.tableData)
+      nucleicUpload(this.tableData)
     },
   }
 }
@@ -187,7 +190,7 @@
 
 .content-box-nucleic {
   width: 70%;
-  height: 500px;
+  height: 600px;
   border-radius: 10px;
   box-shadow: 0 0 8px rgb(0 0 0 / 40%);
   background: #fff;
