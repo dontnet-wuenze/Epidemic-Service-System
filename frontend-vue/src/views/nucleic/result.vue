@@ -21,17 +21,30 @@
 </template>
 
 <script>
+
+import {nucleicResult} from '@/api/nucleic.js';
+
 export default{
   name: "nucleicResult",
+  async mounted(){
+      let _this = this;
+      nucleicResult().then(res=>{
+        _this.name = res.data.name
+        _this.staff_id = res.data.staff_id
+        _this.user_result = res.data.user_result
+        _this.result_time = res.data.result_time
+      })
+  },
   data(){
     return {
-      name:'李田所',
-      staff_id:'3190101919',
-      user_result: 2,
+      name:'',
+      staff_id:'',
+      user_result: '',
       result_addr: ['/img/health/nu-neg.png', '/img/health/nu-pos.png', '/img/health/nu-ukn.png'],
-      result_time: "2022-5-19 14:36:00"
+      result_time: ''
     }
   }
+
 }
 </script>
 
