@@ -98,6 +98,8 @@
 
 <script>
 
+import {nucleicAppointment} from '@/api/nucleic.js';
+
 export default {
   name: "appointment",
   data() {
@@ -141,7 +143,7 @@ export default {
     submitForm(form_name) {
       this.$refs[form_name].validate((valid) =>{
         if(valid) {
-          this.$message.success('提交成功!');
+          nucleicAppointment(this.form);
         }
         else {
           this.$message.error('表单填写有误，请检查后重新提交!');
