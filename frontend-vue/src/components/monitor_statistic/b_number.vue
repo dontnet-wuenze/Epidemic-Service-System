@@ -1,5 +1,11 @@
 <template>
     <div>
+        <div class="people-list-title">
+            <h2>本科生一周内核酸检测统计</h2>
+        </div>
+        <br>
+        <br>
+        <br>
        <div id="myChart" :style="{width: '1000px', height: '500px'}"></div>
     </div>
 </template>
@@ -144,7 +150,14 @@ import * as echarts from "echarts";
     opacity: 0;
     transition: all 0.8s
 }
- 
+.people-list-title {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+}
 .button:active:after {
     padding: 0;
     margin: 0;
