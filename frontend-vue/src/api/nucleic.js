@@ -22,3 +22,17 @@ export function nucleicUpload(data){
         data: 'data'
     })
 }
+
+export function nucleicGetAppointment(){
+    return request({
+        url: '/nucleic/appointment',
+        method: 'get',
+    })
+}
+
+export function nucleicResult(){
+    return request({
+        url: '/nucleic/result',
+        method: 'get',
+    })
+}
