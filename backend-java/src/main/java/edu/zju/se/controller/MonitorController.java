@@ -2,8 +2,10 @@ package edu.zju.se.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import edu.zju.se.common.Result;
+import edu.zju.se.entity.People;
 import edu.zju.se.entity.User;
 import edu.zju.se.service.IMonitorService;
+import edu.zju.se.service.IPeopleService;
 import edu.zju.se.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -21,12 +23,19 @@ import javax.servlet.http.HttpServletResponse;
 public class MonitorController {
     @Autowired
     IMonitorService monitorService;
+    @Autowired
+    IPeopleService peopleService;
     //全校核酸已完成、未完成
     @GetMapping("/w_number")
     public Result getNucleic_All(){
-        String s="[{ value: 1048, name: '已完成核酸检测'},{ value: 100, name: '未完成核酸检测'}]";
+//        String s="[{ value: 1048, name: '已完成核酸检测'},{ value: 100, name: '未完成核酸检测'}]";
+//        return Result.success(s);
+        QueryWrapper<People> queryWrapper1 = new QueryWrapper<>();
+        QueryWrapper<People> queryWrapper2 = new QueryWrapper<>();
+        queryWrapper1.eq("nucleic", "已检测");
+        queryWrapper2.eq("nucleic", "未检测");
+        String s="[{ value: "+String.valueOf(peopleService.count(queryWrapper1))+", name: '已完成核酸检测'},{ value: "+String.valueOf(peopleService.count(queryWrapper2))+", name: '未完成核酸检测'}]";
         return Result.success(s);
-//        return Result.success(peopleService.count(...));
     }
 
     //全校人员核酸校区统计
@@ -46,7 +55,6 @@ public class MonitorController {
                 "            { value: 10, name:'其他' }\n" +
                 "    ]";
         return Result.success(s);
-//        return Result.success(peopleService.count(...));
     }
 
     //全校未做核酸人员名单
