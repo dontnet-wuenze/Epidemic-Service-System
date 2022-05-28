@@ -1,6 +1,8 @@
 package edu.zju.se.entity;
 
 import java.io.Serializable;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,10 +12,11 @@ import lombok.Setter;
  * </p>
  *
  * @author Boris Li
- * @since 2022-05-22
+ * @since 2022-05-28
  */
 @Getter
 @Setter
+@Builder
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -21,7 +24,7 @@ public class User implements Serializable {
     /**
      * 主键ID-学工号
      */
-    private Long id;
+    private String id;
 
     /**
      * 姓名
@@ -34,31 +37,29 @@ public class User implements Serializable {
     private String password;
 
     /**
+     * 权限身份
+     */
+    private String permission;
+
+    /**
      * 学院
      */
     private String department;
 
     /**
+     * 专业
+     */
+    private String major;
+
+    /**
+     * 班级
+     */
+    private String administrativeclass;
+
+    /**
      * 电话号码
      */
-    private String phonenumber;
+    private String phone;
 
-    /**
-     * 邮箱
-     */
-    private String email;
 
-    /**
-     * 权限身份
-     */
-    private String authorization="User";
-
-    /**
-     * 健康码
-     */
-    private String healthycode;
-
-    public void setAuthorization(String authorization) {
-        this.authorization = authorization;
-    }
 }
