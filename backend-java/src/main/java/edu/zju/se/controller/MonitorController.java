@@ -7,13 +7,23 @@ import edu.zju.se.entity.User;
 import edu.zju.se.service.IMonitorService;
 import edu.zju.se.service.IPeopleService;
 import edu.zju.se.service.IUserService;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+@Data
+@Builder
+class Returned_w{
+    private long value;
+    private String name;
+}
 
 @RestController
 @RequestMapping("/monitor")
@@ -29,9 +39,19 @@ public class MonitorController {
         QueryWrapper<People> queryWrapper2 = new QueryWrapper<>();
         queryWrapper1.eq("nucleic", "已检测");
         queryWrapper2.eq("nucleic", "未检测");
-        String s = "[{ value: "+String.valueOf(peopleService.count(queryWrapper1))+", name: '已完成核酸检测'},{ value: "+
-                String.valueOf(peopleService.count(queryWrapper2))+", name: '未完成核酸检测'}]";
-        return Result.success(s);
+        List<Returned_w> myList = new ArrayList<Returned_w>(){
+            {
+                add(Returned_w.builder()
+                        .value(peopleService.count(queryWrapper1))
+                        .name("已完成核酸检测")
+                        .build());
+                add(Returned_w.builder()
+                        .value(peopleService.count(queryWrapper2))
+                        .name("未完成核酸检测")
+                        .build());
+            }
+        };
+        return Result.success(myList);
     }
 
     //全校人员核酸校区统计
@@ -59,18 +79,55 @@ public class MonitorController {
         queryWrapper9.eq("campus", "工程师学院");
         queryWrapper10.eq("campus", "杭州国际科创中心");
         queryWrapper11.eq("campus", "其他");
-        String s = "[{ value: " + peopleService.count(queryWrapper1) + ", name: '紫金港校区' }," +
-                "{ value: " + peopleService.count(queryWrapper2) + ", name: '玉泉校区' }," +
-                "{ value: " + peopleService.count(queryWrapper3) + ", name: '西溪校区' }," +
-                "{ value: " + peopleService.count(queryWrapper4) + ", name: '华家池校区' }," +
-                "{ value: " + peopleService.count(queryWrapper5) + ", name: '之江校区' }," +
-                "{ value: " + peopleService.count(queryWrapper6) + ", name: '海宁校区' }," +
-                "{ value: " + peopleService.count(queryWrapper7) + ", name: '舟山校区' }," +
-                "{ value: " + peopleService.count(queryWrapper8) + ", name: '宁波校区' }," +
-                "{ value: " + peopleService.count(queryWrapper9) + ", name: '工程师学院' }," +
-                "{ value: " + peopleService.count(queryWrapper10) + ", name: '杭州国际科创中心' }," +
-                "{ value: " + peopleService.count(queryWrapper11) + ", name: '其他' }]";
-        return Result.success(s);
+        List<Returned_w> myList = new ArrayList<Returned_w>(){
+            {
+                add(Returned_w.builder()
+                        .value(peopleService.count(queryWrapper1))
+                        .name("紫金港校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(peopleService.count(queryWrapper2))
+                        .name("玉泉校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(peopleService.count(queryWrapper3))
+                        .name("西溪校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(peopleService.count(queryWrapper4))
+                        .name("华家池校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(peopleService.count(queryWrapper5))
+                        .name("之江校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(peopleService.count(queryWrapper6))
+                        .name("海宁校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(peopleService.count(queryWrapper7))
+                        .name("舟山校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(peopleService.count(queryWrapper8))
+                        .name("宁波校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(peopleService.count(queryWrapper9))
+                        .name("工程师学院")
+                        .build());
+                add(Returned_w.builder()
+                        .value(peopleService.count(queryWrapper10))
+                        .name("杭州国际科创中心")
+                        .build());
+                add(Returned_w.builder()
+                        .value(peopleService.count(queryWrapper11))
+                        .name("其他")
+                        .build());
+            }
+        };
+        return Result.success(myList);
     }
 
     //全校未做核酸人员名单
