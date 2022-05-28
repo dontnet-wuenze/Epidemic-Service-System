@@ -25,9 +25,10 @@ public class UserMapperTest {
   @Test
   public void testInsert() {
     System.out.println(("----- Insert method test ------"));
-    User user = new User();
-    user.setId("testId");
-    user.setPassword("123456");
+    User user = User.builder()
+                    .id("testId")
+                    .password("123456")
+                    .build();
     userMapper.insert(user);
     List<User> userList = userMapper.selectList(null);
     Assertions.assertEquals(2, userList.size());
