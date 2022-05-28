@@ -1,5 +1,8 @@
 <template>
 <div>
+  <div class="people-list-title">
+      <h2>在校人数统计</h2>
+    </div>
   <div style="width:100%;height:30px;text-align: center;">
     <div style="height:30px;width:100%;"></div>
   </div>
@@ -164,7 +167,14 @@ export default {
     opacity: 0;
     transition: all 0.8s
 }
- 
+.people-list-title {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+}
 .button:active:after {
     padding: 0;
     margin: 0;

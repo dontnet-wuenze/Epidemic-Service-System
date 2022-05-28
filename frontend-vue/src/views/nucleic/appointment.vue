@@ -10,7 +10,7 @@
          <el-row>
            <el-col :span="6">
              <el-form-item label="申请编号">
-               <el-input v-model="form.id" readonly="true"></el-input>
+               {{form.id}}
              </el-form-item>
            </el-col>
            <el-col :span="7" :offset="3">
@@ -22,14 +22,14 @@
          <el-divider></el-divider>
          <div style="display:flex;"><h4>基础信息</h4></div>
          <el-row>
-           <el-col :span="5">
-             <el-form-item label="姓名">
-               <el-input v-model="form.name" readonly="true"></el-input>
+           <el-col :span="6">
+             <el-form-item label="姓名" prop="name">
+               <el-input v-model="form.name"></el-input>
              </el-form-item>
            </el-col>
-           <el-col :span="5" :offset="2">
-             <el-form-item label="工号">
-               <el-input v-model="form.staff_id" readonly="true"></el-input>
+           <el-col :span="6" :offset="1">
+             <el-form-item label="工号" prop="staff_id">
+               <el-input v-model="form.staff_id"></el-input>
              </el-form-item>
            </el-col>
          </el-row>
@@ -70,8 +70,8 @@
           </el-form-item>
           <el-form-item label="预约监测点" prop="appAddress">
             <el-select v-model="form.appAddress" filterable clearable placeholder="请选择监测点">
-              <el-option label="紫金港操场" value="zjg"></el-option>
-              <el-option label="玉泉邵体馆" value="yuquan"></el-option>
+              <el-option label="紫金港操场" value="Zijingang"></el-option>
+              <el-option label="玉泉邵体馆" value="Yuquan"></el-option>
               <el-option label="西溪校医院" value="xixi"></el-option>
               <el-option label="海宁监测点" value="Haining"></el-option>
             </el-select>
@@ -98,14 +98,17 @@
 
 <script>
 
+import {nucleicAppointment} from '@/api/nucleic.js';
+import {nucleicGetAppointment} from '@/api/nucleic.js';
+
 export default {
   name: "appointment",
   data() {
     return {
       form:{
-        id: '123456',
-        name: '全斗焕',
-        staff_id: '3190101234',
+        id: '',
+        name: '',
+        staff_id: '',
         date: Date.now(),
         appDate: "",
         appTime: "",
@@ -115,6 +118,12 @@ export default {
         campus: ""
       },
       rules:{
+        name: [
+          { required: true, message: "该栏不能为空", trigger: "blur" }
+        ],
+        staff_id: [
+          { required: true, message: "该栏不能为空", trigger: "blur" }
+        ],
         telenum: [
           { required: true, message: "该栏不能为空", trigger: "blur" }
         ],
@@ -137,18 +146,24 @@ export default {
       }
     };
   },
+  async mounted(){
+      let _this = this;
+      nucleicGetAppointment().then(res=>{
+        _this.form.id = res.data.form_id;
+      })
+  },
   methods: {
     submitForm(form_name) {
       this.$refs[form_name].validate((valid) =>{
         if(valid) {
-          this.$message.success('提交成功!');
+          nucleicAppointment(this.form);
         }
         else {
           this.$message.error('表单填写有误，请检查后重新提交!');
           return false;
         }
       });
-    }
+    },
   }
 }
 </script>

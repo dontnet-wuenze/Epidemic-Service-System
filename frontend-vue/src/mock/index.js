@@ -91,3 +91,32 @@ Mock.mock('http://localhost:8080/api/statistic/unattendlist', 'get', (req, res) 
         ]
     }
 })
+
+Mock.mock('http://localhost:8080/api/nucleic/appointment', 'post', (req, res) => {
+    var data = req.body;
+    return {
+        data: data
+    }
+})
+
+Mock.mock('http://localhost:8080/api/nucleic/appointment', 'get', (req, res) => {
+    return {
+        form_id: 1234567
+    }
+})
+
+Mock.mock('http://localhost:8080/api/nucleic/upload', 'post', (req, res) => {
+    var data = req.body;
+    return {
+        data: data
+    }
+})
+
+Mock.mock('http://localhost:8080/api/nucleic/result', 'get', (req, res) => {
+    return {
+        staff_id: '3190101234',
+        name: 'ABC',
+        user_result: 0,
+        result_time: '2022-5-19 14:36:00'     
+    }
+})

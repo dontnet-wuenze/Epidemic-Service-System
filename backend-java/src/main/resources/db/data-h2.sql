@@ -14,6 +14,8 @@ CREATE TABLE user
 );
 
 DELETE FROM user;
+DELETE FROM people;
+DELETE FROM monitor;
 
 INSERT INTO user (id, name, password, permission, department, major, administrativeClass, phone) VALUES
 (3190102303, 'Boris', '123456', 'user', '计算机科学与技术学院', '计算机科学与技术', '计科1901', '13333333333');
