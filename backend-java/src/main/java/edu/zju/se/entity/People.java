@@ -30,7 +30,7 @@ public class People implements Serializable {
 
     private String campus;
 
-    private String most_recent_date;
+    private String date;
 
 }
 
