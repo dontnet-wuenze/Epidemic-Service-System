@@ -39,6 +39,7 @@ CREATE TABLE people
     date VARCHAR(100) NULL DEFAULT NULL COMMENT '最近检测日期',
     PRIMARY KEY (id)
 )
+
 -- CREATE TABLE student
 -- (
 --
