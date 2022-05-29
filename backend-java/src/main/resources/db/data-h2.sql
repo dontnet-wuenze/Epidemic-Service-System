@@ -20,11 +20,14 @@ DELETE FROM monitor;
 INSERT INTO user (id, name, password, permission, department, major, administrativeClass, phone) VALUES
 (3190102303, 'Boris', '123456', 'user', '计算机科学与技术学院', '计算机科学与技术', '计科1901', '13333333333');
 
-INSERT INTO people (id, name, grade, department, major, _class, phoneNumber, nucleic, healthyCode, campus, date) VALUES
-(3190102475, 'Lwb', 3, '计算机科学与技术学院', '计算机科学与技术', '计科1902', '13949296182', '未检测', 'green', '玉泉校区', '20220527');
+INSERT INTO people (id, name, identity, grade, department, major, _class, phoneNumber, nucleic, healthyCode, campus, date) VALUES
+(3190102475, 'Lwb', 'undergraduate', '大三', '计算机科学与技术学院', '计算机科学与技术', '计科1902', '13949296182', '已检测', 'green', '玉泉校区', '20220529');
 
-INSERT INTO people (id, name, grade, department, major, _class, phoneNumber, nucleic, healthyCode, campus, date) VALUES
-(3190102303, 'Boris', 3, '计算机科学与技术学院', '计算机科学与技术', '计科1901', '13333333333', '未检测', 'red', '玉泉校区', '20220526');
+INSERT INTO people (id, name, identity, grade, department, major, _class, phoneNumber, nucleic, healthyCode, campus, date) VALUES
+(3190102303, 'Boris', 'undergraduate', '大三', '计算机科学与技术学院', '计算机科学与技术', '计科1901', '13333333333', '未检测', 'red', '玉泉校区', '20220528');
 
-INSERT INTO people (id, name, grade, department, major, _class, phoneNumber, nucleic, healthyCode, campus, date) VALUES
-(3190103355, 'Zzy', 3, '建筑工程学院', '建筑学', '建筑1902', '13999999999', '已检测', 'green', '紫金港校区', '20220527');
+INSERT INTO people (id, name, identity, grade, department, major, _class, phoneNumber, nucleic, healthyCode, campus, date) VALUES
+(3190103355, 'Zzy', 'undergraduate', '大三', '建筑工程学院', '建筑学', '建筑1902', '13999999999', '已检测', 'green', '紫金港校区', '20220529');
+
+INSERT INTO people (id, name, identity, grade, department, major, _class, phoneNumber, nucleic, healthyCode, campus, date) VALUES
+(123456, 'Yjw', 'fucking teacher', null, '摆烂学院', '摆烂学', null, '11111111111', '未检测', 'red', '玉泉校区', '20220522');
