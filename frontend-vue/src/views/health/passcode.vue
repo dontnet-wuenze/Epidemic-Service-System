@@ -19,7 +19,7 @@
           <img style="height: 250px; width: 250px" :src="code_addr[user_code]">
         </div>
         <div class="content-box-status">
-          <div v-bind:class="{'blue-font': user_code===0, 'yellow-font': user_code===1, 'red-font': user_code===2}">健康码为: {{code_satatus[user_code]}}</div>
+          <div v-bind:class="{'blue-font': user_code===0, 'yellow-font': user_code===1, 'red-font': user_code===2}">通行码为: {{code_satatus[user_code]}}</div>
         </div>
         <div class="content-box-label">
           <div class="label-font">
