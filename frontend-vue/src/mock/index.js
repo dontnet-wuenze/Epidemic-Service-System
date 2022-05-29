@@ -28,7 +28,6 @@ Mock.mock('http://localhost:8080/api/user/attend', 'post', (req) => {
 
 Mock.mock('http://localhost:8080/api/user/attend', 'get', (req, res) => {
     return {
-        code: 404,
         status: true,
         id: '3190103333',
         name: '李白',
