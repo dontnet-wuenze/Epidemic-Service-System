@@ -52,7 +52,7 @@
         </el-col>
 
         <el-button @click="addlist()">
-        提交
+        添加
         </el-button>
       </el-row>
       <el-divider></el-divider>
