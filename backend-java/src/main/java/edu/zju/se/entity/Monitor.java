@@ -15,7 +15,7 @@ public class Monitor implements Serializable {
     /**
      * 主键ID-学工号
      */
-    private Long id;
+    private String id;
 
     /**
      * 姓名
