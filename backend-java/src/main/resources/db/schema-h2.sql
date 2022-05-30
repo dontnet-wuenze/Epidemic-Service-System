@@ -39,7 +39,7 @@ CREATE TABLE people
     campus VARCHAR(100) NULL DEFAULT NULL COMMENT '校区',
     date VARCHAR(15) NULL DEFAULT NULL COMMENT '最近检测日期',
     PRIMARY KEY (id)
-)
+);
 
 CREATE TABLE message
 (
@@ -49,4 +49,4 @@ CREATE TABLE message
     date VARCHAR(30) NULL DEFAULT NULL COMMENT '消息时间',
     detail VARCHAR(100) NULL DEFAULT NULL COMMENT '消息内容',
     read VARCHAR(5) not NULL DEFAULT 'false' COMMENT '是否已读'
-)
+);
