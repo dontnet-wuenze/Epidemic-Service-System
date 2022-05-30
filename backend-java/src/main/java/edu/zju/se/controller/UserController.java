@@ -2,16 +2,13 @@ package edu.zju.se.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import edu.zju.se.common.Result;
+import edu.zju.se.entity.Message;
 import edu.zju.se.entity.User;
+import edu.zju.se.service.IMessageService;
 import edu.zju.se.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -28,6 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 public class UserController {
   @Autowired
   IUserService userService;
+  @Autowired
+  IMessageService msgService;
   @GetMapping("/userlist")
   public Result getInfoById(@RequestHeader("token") String id) {
     User user = userService.getUserInfoById(id);
@@ -35,6 +34,13 @@ public class UserController {
       return Result.fail("NoSuchID");
     }
     return Result.success(user);
+  }
+
+  @GetMapping("/notice")
+  public Result getMsgList(@RequestHeader("token") String userid){
+    QueryWrapper<Message> queryWrapper = new QueryWrapper<>();
+    queryWrapper.eq("userid", userid);
+    return Result.success(msgService.list(queryWrapper));
   }
 
   @PostMapping("/signup")

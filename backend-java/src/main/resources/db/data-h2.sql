@@ -31,3 +31,12 @@ INSERT INTO people (id, name, identity, grade, department, major, _class, phoneN
 
 INSERT INTO people (id, name, identity, grade, department, major, _class, phoneNumber, nucleic, healthyCode, campus, date) VALUES
 (123456, 'Yjw', 'fucking teacher', null, '摆烂学院', '摆烂学', null, '11111111111', '未检测', 'red', '玉泉校区', '20220522');
+
+INSERT INTO message (userid, msgid, title, date, detail, read) VALUES
+(3190102475, '1', '今日未打卡', '2022-05-30 22:33:07', '请及时打卡', 'false');
+
+INSERT INTO message (userid, msgid, title, date, detail, read) VALUES
+(3190102475, '2', '今日未打卡', '2022-05-29 22:33:07', '请及时打卡', 'true');
+
+INSERT INTO message (userid, msgid, title, date, detail, read) VALUES
+(3190102303, '1', '今日未打卡', '2022-05-30 22:33:08', '请及时打卡', 'true');
