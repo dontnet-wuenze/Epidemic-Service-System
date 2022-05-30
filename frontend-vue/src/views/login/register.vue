@@ -30,9 +30,13 @@
         <el-table-column type="index"
                          label="序号"></el-table-column>
         <el-table-column prop="id"
-                         label="学号"></el-table-column>
+                         label="学工号"></el-table-column>
         <el-table-column prop="name"
                          label="姓名"></el-table-column>
+        <el-table-column prop="password"
+                         label="密码"></el-table-column>
+        <el-table-column prop="permission"
+                         label="权限"></el-table-column>
         <el-table-column prop="department"
                          label="学院"></el-table-column>
         <el-table-column prop="major"
@@ -75,13 +79,21 @@
                ref="addUserFormRef"
                :rules="addUserFormRules"
                label-width="100px">
-        <el-form-item label="学号"
+        <el-form-item label="学工号"
                       prop="id">
           <el-input v-model="addUserForm.id"></el-input>
         </el-form-item>
          <el-form-item label="姓名"
                       prop="name">
           <el-input v-model="addUserForm.name"></el-input>
+        </el-form-item>
+        <el-form-item label="密码"
+                      prop="password">
+          <el-input v-model="addUserForm.password"></el-input>
+        </el-form-item>
+        <el-form-item label="权限"
+                      prop="permission">permission
+          <el-input v-model="addUserForm.permission"></el-input>
         </el-form-item>
         <el-form-item label="学院"
                       prop="department">
@@ -118,13 +130,21 @@
                ref="editUserFormRef"
                :rules="editUserFormRules"
                label-width="70px">
-        <el-form-item label="学号">id
+        <el-form-item label="学工号">id
           <el-input v-model="editUserForm.id"
                     disabled></el-input>
         </el-form-item>
         <el-form-item label="姓名"
                       prop="name">
           <el-input v-model="editUserForm.name"></el-input>
+        </el-form-item>
+        <el-form-item label="密码"
+                      prop="password">
+          <el-input v-model="editUserForm.password"></el-input>
+        </el-form-item>
+        <el-form-item label="权限"
+                      prop="permission">permission
+          <el-input v-model="editUserForm.permission"></el-input>
         </el-form-item>
          <el-form-item label="学院"
                       prop="department">
@@ -174,16 +194,20 @@ export default {
         {
           id: '3190102222',
           name: '王小虎',
+          password :'liebe011128',
+          permission :'用户',
           department: '计算机科学与技术学院',
           major: '计算机科学与技术',
-          class: '计科1901',
+          class: '1901',
           phone: '13888888888'
         }, {
           id: '3190102222',
           name: '王小虎',
+          password :'liebe011128',
+          permission :'用户',
           department: '计算机科学与技术学院',
           major: '计算机科学与技术',
-          class: '计科1901',
+          class: '1901',
           phone: '13888888888'
         }, 
       ],
@@ -191,42 +215,54 @@ export default {
        addDialogVisible: false,
       // 用户添加
       addUserForm: {
-        username: "",
+        id :"",
+        name: "",
         password: "",
-        email: "",
-        mobile: "",
+        permission:"",
+        department: "",
+        major: "",
+        class:"",
+        phone: ""
       },
       addUserFormRules: {
         id: [
           { required: true, message: "请输入学号", trigger: "blur" },
           {
-            min: 2,
+            min: 5,
             max: 10,
             trigger: "blur",
           },
         ],
-        name: [
-          { required: true, message: "请输入用户姓名", trigger: "blur" }],
+        name: [{ required: true, message: "请输入用户姓名", trigger: "blur" }],
+        password: [{ required: true, message: "请输入用户密码", trigger: "blur" }],
+        permission: [{ required: true, message: "请输入用户权限", trigger: "blur" }],
         department: [{ required: true, message: "请输入学院", trigger: "blur" }],
         major: [{ required: true, message: "请输入专业", trigger: "blur" }],
         class: [{ required: true, message: "请输入班级", trigger: "blur" }],
-        phone: [
-          { required: true, message: "请输入手机号码", trigger: "blur" },
-        ],
+        phone: [{ required: true, message: "请输入手机号码", trigger: "blur" },],
       },
       // 修改用户
       editDialogVisible: false,
-      editUserForm: {},
+      editUserForm: {
+        id:"",
+        name: "",
+        password: "",
+        permission:"",
+        department: "",
+        major: "",
+        class:"",
+        phone: ""
+      },
       // 编辑用户表单验证
       editUserFormRules: {
-         name: [
-          { required: true, message: "请输入用户姓名", trigger: "blur" }],
+         id: [{ required: true, message: "请输入用户学工号", trigger: "blur" }],
+         name: [{ required: true, message: "请输入用户姓名", trigger: "blur" }],
+        password: [{ required: true, message: "请输入用户密码", trigger: "blur" }],
+        permission: [{ required: true, message: "请输入用户权限", trigger: "blur" }],
         department: [{ required: true, message: "请输入学院", trigger: "blur" }],
         major: [{ required: true, message: "请输入专业", trigger: "blur" }],
         class: [{ required: true, message: "请输入班级", trigger: "blur" }],
-        phone: [
-          { required: true, message: "请输入手机号码", trigger: "blur" },
-        ],
+        phone: [{ required: true, message: "请输入手机号码", trigger: "blur" },],
       },
       // 分配角色对话框
       setRoleDialogVisible: false,
@@ -238,9 +274,12 @@ export default {
       selectRoleId: "",
     }
   },
+  created() {
+    this.getUserList();
+  },
   methods: {
     async getUserList() {
-      const { data: res } = await this.$http.get("user/list", {
+      const { data: res } = await this.$http.get("user/userlist", {
         params: this.queryInfo,
       });
       if (res.code !== 200) {
