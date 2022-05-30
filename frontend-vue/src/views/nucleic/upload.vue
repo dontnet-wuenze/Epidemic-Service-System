@@ -174,7 +174,12 @@ import {nucleicUpload} from '@/api/nucleic.js';
     },
     submitAll: function(){
       console.log(this.tableData)
-      nucleicUpload(this.tableData)
+      nucleicUpload(this.tableData).then(res=>{
+        if(res.data.success == 0)
+          this.$message.error('传输失败');
+        else
+          this.$message.success('传输成功');
+        });
     },
   }
 }

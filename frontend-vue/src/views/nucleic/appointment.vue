@@ -156,7 +156,12 @@ export default {
     submitForm(form_name) {
       this.$refs[form_name].validate((valid) =>{
         if(valid) {
-          nucleicAppointment(this.form);
+          nucleicAppointment(this.form).then(res=>{
+            if(res.data.success == 0)
+              this.$message.error('传输失败');
+            else
+              this.$message.success('传输成功');
+          });
         }
         else {
           this.$message.error('表单填写有误，请检查后重新提交!');
