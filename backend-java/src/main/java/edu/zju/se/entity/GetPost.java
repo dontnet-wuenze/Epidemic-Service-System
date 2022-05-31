@@ -14,9 +14,10 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class GetPost implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class GetPost {
 
-    private List<String> readlist=new ArrayList<>();
+    private List<String> readlist;
+
+//    public GetPost(){}
 
 }
