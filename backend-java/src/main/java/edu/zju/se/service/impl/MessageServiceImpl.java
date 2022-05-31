@@ -16,8 +16,8 @@ import java.util.List;
 @Service
 public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> implements IMessageService {
 
-    public Result MsgRead(String userid, GetPost getPost){
-        System.out.println(getPost.getReadlist().size());
+//    public Result MsgRead(String userid, GetPost getPost){
+    public Result MsgRead(String userid, List readList){
         QueryWrapper<Message> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("userid", userid);
         java.util.List<Message> userMsg = list(queryWrapper);
@@ -25,8 +25,10 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> impl
             return Result.fail("No such message!");
         }else{
             UpdateWrapper<Message> messageUpdateWrapper = new UpdateWrapper<>();
-            for(int i=0;i<getPost.getReadlist().size();i++){
-                messageUpdateWrapper.eq("userid", userid).eq("msgid", getPost.getReadlist().get(i)).setSql("read='true'");
+//            for(int i=0;i<getPost.getReadlist().size();i++){
+            for(int i=0;i<readList.size();i++){
+                messageUpdateWrapper.eq("userid", userid).eq("msgid", readList.get(i)).setSql("read='true'");
+//                messageUpdateWrapper.eq("userid", userid).eq("msgid", getPost.getReadlist().get(i)).setSql("read='true'");
                 update(messageUpdateWrapper);
                 messageUpdateWrapper.clear();
             }

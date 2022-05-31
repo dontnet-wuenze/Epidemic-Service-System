@@ -9,5 +9,6 @@ import java.util.List;
 
 
 public interface IMessageService extends IService<Message> {
-    Result MsgRead(String userid, GetPost getPost);
+//    Result MsgRead(String userid, GetPost getPost);
+    Result MsgRead(String userid, List readList);
 }
