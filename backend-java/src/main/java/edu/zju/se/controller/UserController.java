@@ -1,7 +1,9 @@
 package edu.zju.se.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import edu.zju.se.common.Result;
+import edu.zju.se.entity.GetPost;
 import edu.zju.se.entity.Message;
 import edu.zju.se.entity.User;
 import edu.zju.se.service.IMessageService;
@@ -10,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * <p>
@@ -40,13 +42,17 @@ public class UserController {
   public Result getMsgList(@RequestHeader("token") String userid){
     QueryWrapper<Message> queryWrapper = new QueryWrapper<>();
     queryWrapper.eq("userid", userid);
-    return Result.success(msgService.list(queryWrapper));
+    List<Message> result = msgService.list(queryWrapper);
+    if(result.isEmpty()){
+      return Result.fail("This user has no message.");
+    }else{
+      return Result.success(result);
+    }
   }
 
   @PostMapping("/signup")
   public Result register(@Validated @RequestBody User user) {
     boolean isSignUpSuccess = userService.signUp(user);
-
     if (isSignUpSuccess) {
       return Result.success();
     } else {
@@ -63,5 +69,10 @@ public class UserController {
     } else {
       return Result.fail();
     }
+  }
+
+  @PostMapping("/noticeread")
+  public Result noticeRead(@RequestHeader("token") String userid, @Validated @RequestBody GetPost getPost){
+    return msgService.MsgRead(userid, getPost);
   }
 }
