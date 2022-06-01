@@ -17,8 +17,11 @@ DELETE FROM user;
 DELETE FROM people;
 DELETE FROM monitor;
 
-INSERT INTO user (id, name, password, permission, department, major, administrativeClass, phone) VALUES
-(3190102303, 'Boris', '123456', 'user', '计算机科学与技术学院', '计算机科学与技术', '计科1901', '13333333333');
+INSERT INTO user (id, name, password, permission, department, major, administrativeClass, campus, phone, code, attend) VALUES
+(3190102303, 'Boris', '123456', 'user', '计算机科学与技术学院', '计算机科学与技术', '计科1901', '玉泉校区', '13333333333', '1', 'false');
+
+INSERT INTO user (id, name, password, permission, department, major, administrativeClass, campus, phone, code, attend) VALUES
+(3190102475, 'Lwb', '123456', 'user', '计算机科学与技术学院', '计算机科学与技术', '计科1902', '玉泉校区', '13949296182', '1', 'true');
 
 INSERT INTO people (id, name, identity, grade, department, major, _class, phoneNumber, nucleic, healthyCode, campus, date) VALUES
 (3190102475, 'Lwb', 'undergraduate', '大三', '计算机科学与技术学院', '计算机科学与技术', '计科1902', '13949296182', '已检测', 'green', '玉泉校区', '20220529');
@@ -32,11 +35,17 @@ INSERT INTO people (id, name, identity, grade, department, major, _class, phoneN
 INSERT INTO people (id, name, identity, grade, department, major, _class, phoneNumber, nucleic, healthyCode, campus, date) VALUES
 (123456, 'Yjw', 'fucking teacher', null, '摆烂学院', '摆烂学', null, '11111111111', '未检测', 'red', '玉泉校区', '20220522');
 
-INSERT INTO message (userid, msgid, title, date, detail, read) VALUES
-(3190102475, '1', '今日未打卡', '2022-05-30 22:33:07', '请及时打卡', 'false');
+INSERT INTO message (userid, id, title, date, detail, read) VALUES
+(3190102475, 1, '今日未打卡', '2022-05-30 22:33:07', '请及时打卡', 'false');
 
-INSERT INTO message (userid, msgid, title, date, detail, read) VALUES
-(3190102475, '2', '今日未打卡', '2022-05-29 22:33:07', '请及时打卡', 'true');
+INSERT INTO message (userid, id, title, date, detail, read) VALUES
+(3190102475, 2, '今日未打卡', '2022-05-29 22:33:07', '请及时打卡', 'true');
 
-INSERT INTO message (userid, msgid, title, date, detail, read) VALUES
-(3190102303, '1', '今日未打卡', '2022-05-30 22:33:08', '请及时打卡', 'true');
+INSERT INTO message (userid, id, title, date, detail, read) VALUES
+(3190102303, 3, '今日未打卡', '2022-05-30 22:33:08', '请及时打卡', 'true');
+
+INSERT INTO punch (id, name, date, campus, region, oncampus, Codestatus, fever, control, contact, status) VALUES
+(3190102475, 'Lwb', '2022-06-01', '玉泉校区', '天津市，市辖区，南开区', 'false', '0', 'false', 'false', 'false', 'true');
+
+INSERT INTO punch (id, name, date, campus, region, oncampus, Codestatus, fever, control, contact, status) VALUES
+(3190102303, 'Boris', '2022-06-01', '玉泉校区', '天津市，市辖区，和平区', 'false', '0', 'false', 'false', 'false', 'false');

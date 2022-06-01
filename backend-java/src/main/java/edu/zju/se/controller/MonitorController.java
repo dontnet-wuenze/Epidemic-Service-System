@@ -423,4 +423,110 @@ public class MonitorController {
         };
         return Result.success(myList);
     }
+
+    @Autowired
+    IUserService userService;
+    @GetMapping("/unattendlist")
+    public Result unattendList(){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("attend", "false");
+        return Result.success(userService.list(queryWrapper));
+    }
+
+    @GetMapping("/campusnum")
+    public Result campusnum(){
+        QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper3 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper4 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper5 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper6 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper7 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper8 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper9 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper10 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper11 = new QueryWrapper<>();
+        queryWrapper1.eq("campus", "紫金港校区").eq("attend", "false");
+        queryWrapper2.eq("campus", "玉泉校区").eq("attend", "false");
+        queryWrapper3.eq("campus", "西溪校区").eq("attend", "false");
+        queryWrapper4.eq("campus", "华家池校区").eq("attend", "false");
+        queryWrapper5.eq("campus", "之江校区").eq("attend", "false");
+        queryWrapper6.eq("campus", "海宁校区").eq("attend", "false");
+        queryWrapper7.eq("campus", "舟山校区").eq("attend", "false");
+        queryWrapper8.eq("campus", "宁波校区").eq("attend", "false");
+        queryWrapper9.eq("campus", "工程师学院").eq("attend", "false");
+        queryWrapper10.eq("campus", "杭州国际科创中心").eq("attend", "false");
+        queryWrapper11.eq("campus", "其他").eq("attend", "false");
+        List<Returned_w> myList = new ArrayList<Returned_w>(){
+            {
+                add(Returned_w.builder()
+                        .value(userService.count(queryWrapper1))
+                        .name("紫金港校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(userService.count(queryWrapper2))
+                        .name("玉泉校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(userService.count(queryWrapper3))
+                        .name("西溪校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(userService.count(queryWrapper4))
+                        .name("华家池校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(userService.count(queryWrapper5))
+                        .name("之江校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(userService.count(queryWrapper6))
+                        .name("海宁校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(userService.count(queryWrapper7))
+                        .name("舟山校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(userService.count(queryWrapper8))
+                        .name("宁波校区")
+                        .build());
+                add(Returned_w.builder()
+                        .value(userService.count(queryWrapper9))
+                        .name("工程师学院")
+                        .build());
+                add(Returned_w.builder()
+                        .value(userService.count(queryWrapper10))
+                        .name("杭州国际科创中心")
+                        .build());
+                add(Returned_w.builder()
+                        .value(userService.count(queryWrapper11))
+                        .name("其他")
+                        .build());
+            }
+        };
+        return Result.success(myList);
+    }
+
+    @GetMapping("/attendnum")
+    public Result attendnum(){
+        QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper2 = new QueryWrapper<>();
+        queryWrapper1.eq("attend", "true");
+        queryWrapper2.eq("attend", "false");
+        List<Returned_w> myList = new ArrayList<Returned_w>(){
+            {
+                add(Returned_w.builder()
+                        .value(userService.count(queryWrapper1))
+                        .name("已打卡")
+                        .build());
+                add(Returned_w.builder()
+                        .value(userService.count(queryWrapper2))
+                        .name("未打卡")
+                        .build());
+            }
+        };
+        return Result.success(myList);
+    }
+
 }

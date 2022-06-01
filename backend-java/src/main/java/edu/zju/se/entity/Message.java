@@ -14,7 +14,7 @@ public class Message implements Serializable {
 
     private String userid; /*用户id*/
 
-    private String msgid; /*消息id*/
+    private String id; /*消息id*/
 
     private String title; /*消息标题*/
 

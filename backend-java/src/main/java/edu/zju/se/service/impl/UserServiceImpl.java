@@ -1,9 +1,12 @@
 package edu.zju.se.service.impl;
 
+import edu.zju.se.entity.Punch;
 import edu.zju.se.entity.User;
 import edu.zju.se.mapper.UserMapper;
+import edu.zju.se.service.IPunchService;
 import edu.zju.se.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
+  @Autowired
+  IPunchService punchService;
   @Override
   @Nullable
   public User getUserInfoById(String id) {
@@ -41,6 +46,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
       return false;
     } else {
       save(user);
+      punchService.save(Punch.builder()
+              .id(user.getId())
+              .status("false")
+              .build());
       return true;
     }
   }
@@ -53,4 +62,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
       return false;
     }
   }
+
+  @Override
+  public User GetCode(String userid) {
+    User tmpUser=getById(userid);
+    return User.builder()
+            .name(tmpUser.getName())
+            .department(tmpUser.getDepartment())
+            .administrativeclass(tmpUser.getAdministrativeclass())
+            .code(tmpUser.getCode())
+            .build();
+  }
+
 }
