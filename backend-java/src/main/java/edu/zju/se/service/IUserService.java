@@ -1,5 +1,6 @@
 package edu.zju.se.service;
 
+import edu.zju.se.entity.Punch;
 import edu.zju.se.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -17,4 +18,7 @@ public interface IUserService extends IService<User> {
   boolean signUp(User user);
 
   boolean login(User user);
+
+  User GetCode(String userid);
+
 }

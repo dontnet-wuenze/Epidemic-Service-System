@@ -56,10 +56,17 @@ public class User implements Serializable {
      */
     private String administrativeclass;
 
+    private String campus;
+
     /**
      * 电话号码
      */
     private String phone;
 
+    /**
+     * 通行码
+     */
+    private String code; // 0: 蓝码, 1: 黄码, 2: 红码
 
+    private String attend; //是否已打卡
 }

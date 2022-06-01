@@ -5,10 +5,13 @@ import edu.zju.se.common.Result;
 import edu.zju.se.entity.GetPost;
 import edu.zju.se.entity.Message;
 
+import java.io.StringReader;
 import java.util.List;
 
 
 public interface IMessageService extends IService<Message> {
 //    Result MsgRead(String userid, GetPost getPost);
     Result MsgRead(String userid, List readList);
+
+    boolean SendMsg(Message msg);
 }
