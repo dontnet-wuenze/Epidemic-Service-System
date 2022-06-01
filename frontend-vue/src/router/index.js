@@ -81,7 +81,7 @@ const routeList=[
             },
             {
               path: '/approval/Staff_Passphrase_Application',
-              name: 'Student_Passphrase_Application',
+              name: 'Staff_Passphrase_Application',
               meta: {
                   title: "教职工通行码申请"
               },
@@ -97,7 +97,7 @@ const routeList=[
             },
             {
               path: '/approval/Form_Approval',
-              name: 'Application_Log',
+              name: 'Form_Log',
               meta: {
                   title: "表单审批"
               },

@@ -29,3 +29,20 @@ export function userAttendGet() {
     method: 'get'
   })
 }
+
+/**           用户注册             **/
+export function userSignUp(data) {
+  return request({
+    url: '/user/signup',
+    method: 'post',
+    data: data
+  })
+}
+
+export function userList() {
+  return request({
+    url: '/user/userlist',
+    method: 'get'
+  })
+}
+
