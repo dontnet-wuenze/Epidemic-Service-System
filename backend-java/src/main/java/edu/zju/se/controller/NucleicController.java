@@ -1,6 +1,5 @@
 package edu.zju.se.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import edu.zju.se.common.Result;
 import edu.zju.se.entity.Nucleic;
 import edu.zju.se.service.INucleicService;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * <p>
@@ -51,7 +51,13 @@ public class NucleicController {
 
   @GetMapping("/result")
   public Result getResult(@RequestHeader("token") String userId) {
-    return Result.success(nucleicService.list());
+    return Result.success(nucleicService.getResult(userId));
+  }
+
+  @PostMapping("/upload")
+  public Result uploadResult(@RequestBody List<Nucleic> resultList) {
+    nucleicService.postResult(resultList);
+    return Result.success();
   }
 
 }
