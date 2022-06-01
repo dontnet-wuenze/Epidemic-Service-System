@@ -18,6 +18,7 @@ package edu.zju.se;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.apache.ibatis.jdbc.ScriptRunner;
@@ -253,7 +254,8 @@ public final class FastAutoGenerator {
             .strategyConfig((scanner, builder) -> builder
                     .addInclude(getTables(scanner.apply("请输入表名，多个英文逗号分隔?")))
                     .controllerBuilder().enableRestStyle().enableHyphenStyle()
-                    .entityBuilder().enableLombok().fileOverride().build())
+                    .entityBuilder().enableTableFieldAnnotation().columnNaming(NamingStrategy.underline_to_camel)
+                    .enableLombok().fileOverride().build())
             /*
                 模板引擎配置，默认 Velocity 可选模板引擎 Beetl 或 Freemarker
                .templateEngine(new BeetlTemplateEngine())
