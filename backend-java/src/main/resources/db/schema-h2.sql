@@ -55,6 +55,21 @@ CREATE TABLE message
     PRIMARY KEY (id)
 );
 
+CREATE TABLE nucleic
+(
+    form_id BIGINT(20) NOT NULL COMMENT '主键ID-表单ID',
+    name VARCHAR(30) NULL DEFAULT NULL COMMENT '姓名',
+    staff_id VARCHAR(50) NOT NULL COMMENT '学工号',
+    app_date VARCHAR(50) NULL DEFAULT NULL COMMENT '预约日期',
+    app_time INT NULL DEFAULT NULL COMMENT '预约时间(1/2/3/4代表四个时间段)',
+    app_address VARCHAR(50) NULL DEFAULT NULL COMMENT '预约检查点',
+    telenum VARCHAR(30) NULL DEFAULT NULL COMMENT '电话号码',
+    email VARCHAR(80) NULL DEFAULT NULL COMMENT '电子邮箱',
+    campus VARCHAR(30) NULL DEFAULT NULL COMMENT '所在校区',
+    result INT NULL DEFAULT NULL COMMENT '0阴性，1阳性，2未知',
+    PRIMARY KEY (form_id)
+);
+
 -- 打卡表单
 CREATE TABLE punch
 (

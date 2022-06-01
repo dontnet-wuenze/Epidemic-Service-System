@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -34,13 +35,23 @@ public class UserController {
   IMessageService msgService;
   @Autowired
   IPunchService punchService;
-  @GetMapping("/userlist")
+
+  @GetMapping("/userinfo")
   public Result getInfoById(@RequestHeader("token") String id) {
     User user = userService.getUserInfoById(id);
     if (user == null) {
       return Result.fail("NoSuchID");
     }
     return Result.success(user);
+  }
+
+  @GetMapping("/userlist")
+  public Result getAllUsers() {
+    List<User> userList = userService.list();
+    if (userList == null) {
+      return Result.fail(500, "Internal Error", null);
+    }
+    return Result.success(userList);
   }
 
   @GetMapping("/notice")
