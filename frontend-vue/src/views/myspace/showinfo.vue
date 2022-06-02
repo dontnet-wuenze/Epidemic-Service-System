@@ -1,50 +1,78 @@
 <template>
-<div>
-    <div  style="width:14%;height: 130px;border-radius: 100px;display:inline-block;">
-      <img
-        style="width:100%;height: 100%;border-radius: 100px"
-        src="/img/fly.jpg"
-        class="image"
-      >
-    </div>
+<div class="info-box">
+  <el-row>
+    <el-col :span="6">
+      <img src="/favicon.ico">
+    </el-col>
+    <el-col :offset="3" :span="15">
+      <el-descriptions title="个人信息" :column="2">
 
-  <br>
-  <br>
-  <el-descriptions :column="1" border>
+        <el-descriptions-item label="学号">{{id}}</el-descriptions-item>
+        <el-descriptions-item label="姓名">{{username}}</el-descriptions-item>
+        <el-descriptions-item label="学院">{{department}}</el-descriptions-item>
+        <el-descriptions-item label="专业">{{major}}</el-descriptions-item>
+        <el-descriptions-item label="班级">{{cclass}}</el-descriptions-item>
+        <el-descriptions-item label="手机号">{{phone}}</el-descriptions-item>
 
-    <el-descriptions-item label="用户名" v-model="username" ><p class="message">{{username}}</p></el-descriptions-item>
-    <el-descriptions-item label="邮箱号" v-model="email" class="message"><p class="message">{{email}}</p></el-descriptions-item>
-    <el-descriptions-item label="性别" v-model="sex" class="message"><p class="message">{{sex}}</p></el-descriptions-item>
-    <el-descriptions-item label="座右铭" v-model="motto" class="message" ><p class="message">{{motto}}</p></el-descriptions-item>
-    <el-descriptions-item label="家乡" v-model="hometown" class="message"><p class="message">{{hometown}}</p></el-descriptions-item>
 
-  </el-descriptions>
+      </el-descriptions>
+    </el-col>
+
+  </el-row>
 </div>
 </template>
 
 <script>
+import  {userInfo} from "@/api/user";
+
 export default {
   name: "showinfo",
   data(){
     return{
+      id: '3190100000',
       username: "cs_liu",
-      email: "cs_liu@zju.edu.cn",
-      motto: "一生温暖纯良，不负爱与自由",
-      hometown: "湖北鄂州",
-      sex: "男"
-
-
+      department: "计算机科学与技术学院",
+      major: "计算机科学与技术",
+      cclass: "1904",
+      phone: '13991391032',
     }
+  },
+  async mounted() {
+    userInfo().then(res=> {
+      this.id = res.data.id
+      this.username = res.data.name
+      this.department = res.data.department
+      this.major = res.data.major
+      this.cclass = res.data.class
+      this.phone = res.data.phone
+    })
   }
 }
 </script>
 
-<style scoped>
-.message{
-  width: 20em;
-  overflow: hidden;
-  text-overflow:ellipsis;
-  white-space: nowrap;
+<style scoped lang="scss">
+
+::v-deep tbody {
+  height: 100px;
+  font-size: 18px;
 }
+
+::v-deep .el-descriptions__header{
+  margin-bottom: 40px;
+}
+
+::v-deep .el-descriptions__title {
+  font-size: 21px;
+}
+
+.info-box {
+  padding-top: 60px;
+  padding-left: 100px;
+}
+
+.d-item {
+  padding-top: 30px;
+}
+
 </style>
 

@@ -46,3 +46,10 @@ export function userList() {
   })
 }
 
+export function userInfo() {
+  return request({
+    url: '/user/userinfo',
+    method: 'get'
+  })
+}
+
