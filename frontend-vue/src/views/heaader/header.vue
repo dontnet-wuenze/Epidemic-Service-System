@@ -59,7 +59,7 @@
                       <div class="header-font">{{this.$store.state.username}}</div>
                   </div>
                   <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>个人信息</el-dropdown-item>
+                    <el-dropdown-item command="showinfo">个人信息</el-dropdown-item>
                     <el-dropdown-item command="logout">注销</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
@@ -221,6 +221,8 @@ export default {
   watch: {
     '$route' (to, from) {
       //this.$router.go(0);
+      console.log('router has change')
+      console.log(localStorage.getItem('token'))
       this.isLogin = !!localStorage.getItem('token');
     }
   },
@@ -232,9 +234,12 @@ export default {
       if (command === 'logout') {
         localStorage.removeItem('token');
         localStorage.removeItem('state');
-        this.$store.commit('logout');
-        this.$router.push('/index');
+        console.log(this.$route.path)
+        if(this.$route.path != '/index')
+          this.$router.push('/index');
         this.isLogin = !!localStorage.getItem('token');
+      } else if(command === 'showinfo') {
+        this.$router.push('/myspace/showinfo')
       }
     },
     handleNoticeMenu(command) {

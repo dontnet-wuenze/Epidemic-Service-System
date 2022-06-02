@@ -2,9 +2,10 @@ import Mock from 'mockjs'
 
 // 接口地址
 Mock.mock('http://localhost:8080/api/user/login', (req) => {
-    var token = req.header
     return {
-        token: token,
+        token: '3190102297',
+        username: '吴恩泽',
+        authorization: false
     }
 })
 
@@ -45,6 +46,17 @@ Mock.mock('http://localhost:8080/api/sendnotice', 'post', (req, res) => {
     var data = req.body;
     return {
         data: data
+    }
+})
+
+Mock.mock('http://localhost:8080/api/user/userinfo', 'get', res=> {
+    return {
+        id: '3190106086',
+        name: '刘昌盛',
+        department: '计算机科学与技术学院',
+        major: '计算机科学与技术',
+        class: '1903',
+        phone: '19883152043'
     }
 })
 
