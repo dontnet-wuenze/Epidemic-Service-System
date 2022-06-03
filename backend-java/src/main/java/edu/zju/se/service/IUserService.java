@@ -1,8 +1,11 @@
 package edu.zju.se.service;
 
+import edu.zju.se.entity.Nucleic;
 import edu.zju.se.entity.Punch;
 import edu.zju.se.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -20,5 +23,7 @@ public interface IUserService extends IService<User> {
   boolean login(User user);
 
   User GetCode(String userid);
+
+  void setNucleicTrue(List<Nucleic> resultList);
 
 }
