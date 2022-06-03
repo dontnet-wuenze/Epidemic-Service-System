@@ -68,5 +68,5 @@ public class User implements Serializable {
      */
     private String code; // 0: 蓝码, 1: 黄码, 2: 红码
 
-    private String attend; //是否已打卡
+    private Boolean attend; //是否已打卡
 }
