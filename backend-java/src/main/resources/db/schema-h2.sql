@@ -86,3 +86,10 @@ CREATE TABLE punch
     status VARCHAR(5) NULL DEFAULT NULL COMMENT '是否已打卡',
     PRIMARY KEY (id)
 );
+
+CREATE TABLE form
+(
+    form_id VARCHAR(30) NOT NULL COMMENT '表单 ID',
+    is_true BOOLEAN DEFAULT FALSE COMMENT 'test boolean',
+    PRIMARY KEY (form_id)
+);

@@ -59,5 +59,4 @@ public class NucleicController {
     nucleicService.postResult(resultList);
     return Result.success();
   }
-
 }
