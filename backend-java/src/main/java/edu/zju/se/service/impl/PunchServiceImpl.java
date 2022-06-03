@@ -14,7 +14,7 @@ public class PunchServiceImpl extends ServiceImpl<PunchMapper, Punch> implements
     @Override
     public Punch GetPunch(String id){
         Punch tmpPunch = getById(id);
-        if(tmpPunch.getStatus().equals("false")){ //未打卡
+        if(!tmpPunch.getStatus()){ //未打卡
             return Punch.builder()
                     .status(tmpPunch.getStatus())
                     .id(tmpPunch.getId())
@@ -30,7 +30,7 @@ public class PunchServiceImpl extends ServiceImpl<PunchMapper, Punch> implements
                     .campus(tmpPunch.getCampus())
                     .region(tmpPunch.getRegion())
                     .oncampus(tmpPunch.getOncampus())
-                    .Codestatus(tmpPunch.getCodestatus())
+                    .codestatus(tmpPunch.getCodestatus())
                     .fever(tmpPunch.getFever())
                     .control(tmpPunch.getControl())
                     .contact(tmpPunch.getContact())
@@ -50,12 +50,12 @@ public class PunchServiceImpl extends ServiceImpl<PunchMapper, Punch> implements
                     .set("date", punch.getDate())
                     .set("campus", punch.getCampus())
                     .set("region", punch.getRegion())
-                    .set("oncampus", punch.getOncampus())
-                    .set("codestatus", punch.getCodestatus())
+                    .set("onCampus", punch.getOncampus())
+                    .set("codeStatus", punch.getCodestatus())
                     .set("fever", punch.getFever())
                     .set("control", punch.getControl())
                     .set("contact", punch.getContact())
-                    .set("status","true");
+                    .set("status",true);
             update(punchUpdateWrapper);
             return true;
         }

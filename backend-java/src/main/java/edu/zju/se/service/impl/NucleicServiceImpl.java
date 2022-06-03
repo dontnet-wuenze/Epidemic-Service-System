@@ -53,7 +53,7 @@ public class NucleicServiceImpl extends ServiceImpl<NucleicMapper, Nucleic> impl
     for (Nucleic res : resultList) {
       updateWrapper.eq(Nucleic::getStaffId, res.getStaffId())
           .set(Nucleic::getResult, res.getResult())
-          .set(Nucleic::getAppDate, res.getResult())
+          .set(Nucleic::getAppDate, res.getAppDate())
           .update();
     }
   }
