@@ -22,5 +22,5 @@ public class Message implements Serializable {
 
     private String detail; /*消息内容*/
 
-    private String read; /*是否已读*/
+    private Boolean read; /*是否已读*/
 }

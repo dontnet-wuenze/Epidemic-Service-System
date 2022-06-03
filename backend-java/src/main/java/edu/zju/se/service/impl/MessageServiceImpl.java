@@ -47,7 +47,7 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> impl
                     .detail(msg.getDetail())
                     .id(msg.getId())
                     .title(msg.getTitle())
-                    .read("false")
+                    .read(false)
                     .build());
             return true;
         }

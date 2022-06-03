@@ -48,7 +48,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
       save(user);
       punchService.save(Punch.builder()
               .id(user.getId())
-              .status("false")
+              .status(false)
               .build());
       return true;
     }
