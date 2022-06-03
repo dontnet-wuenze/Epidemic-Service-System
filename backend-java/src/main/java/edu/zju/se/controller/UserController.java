@@ -93,10 +93,10 @@ public class UserController {
     if(punch1 == null){
       return Result.fail("No such ID");
     }else{
-//      UpdateWrapper<User> userUpdateWrapper = new UpdateWrapper<>();
-//      userUpdateWrapper.eq("id", punch.getId())
-//              .set("attend", "true");
-//      userService.update(userUpdateWrapper);
+      UpdateWrapper<User> userUpdateWrapper = new UpdateWrapper<>();
+      userUpdateWrapper.eq("id", punch.getId())
+              .set("attend", true);
+      userService.update(userUpdateWrapper);
       boolean isUpdateSuccess = punchService.AttendPunch(punch);
       if (isUpdateSuccess) {
         return Result.success();
@@ -129,7 +129,7 @@ public class UserController {
 
   @PostMapping("/noticeread")
 //  public Result noticeRead(@RequestHeader("token") String userid, @Validated @RequestBody GetPost getPost){
-  public Result noticeRead(@RequestHeader("token") String userid, @Validated @RequestParam("id") List readList){
+  public Result noticeRead(@RequestHeader("token") String userid, @Validated @RequestParam("msgid") List readList){
     return msgService.MsgRead(userid, readList);
 //    return msgService.MsgRead(userid, getPost);
   }

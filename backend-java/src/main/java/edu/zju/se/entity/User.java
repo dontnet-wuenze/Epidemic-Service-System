@@ -2,6 +2,7 @@ package edu.zju.se.entity;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+@TableName("user")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
