@@ -2,6 +2,7 @@ package edu.zju.se.entity;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+@TableName("user")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,6 +38,8 @@ public class User implements Serializable {
      */
     private String password;
 
+    private String identity; //身份
+
     /**
      * 权限身份
      */
@@ -50,6 +54,8 @@ public class User implements Serializable {
      * 专业
      */
     private String major;
+
+    private String grade;
 
     /**
      * 班级
@@ -68,5 +74,11 @@ public class User implements Serializable {
      */
     private String code; // 0: 蓝码, 1: 黄码, 2: 红码
 
-    private String attend; //是否已打卡
+    private String healthycode;
+
+    private Boolean attend; //是否已打卡
+
+    private String nucleic; //"已检测"/"未检测"
+
+    private String date; //最近检测日期yyyymmdd
 }

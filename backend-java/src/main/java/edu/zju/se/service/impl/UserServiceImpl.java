@@ -1,5 +1,7 @@
 package edu.zju.se.service.impl;
 
+import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
+import edu.zju.se.entity.Nucleic;
 import edu.zju.se.entity.Punch;
 import edu.zju.se.entity.User;
 import edu.zju.se.mapper.UserMapper;
@@ -9,6 +11,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -48,7 +52,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
       save(user);
       punchService.save(Punch.builder()
               .id(user.getId())
-              .status("false")
+              .status(false)
               .build());
       return true;
     }
@@ -72,6 +76,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             .administrativeclass(tmpUser.getAdministrativeclass())
             .code(tmpUser.getCode())
             .build();
+  }
+
+  @Override
+  public void setNucleicTrue(List<Nucleic> resultList){
+    LambdaUpdateChainWrapper<User> updateWrapper = new LambdaUpdateChainWrapper<>(getBaseMapper());
+    for (Nucleic res : resultList) {
+      updateWrapper.eq(User::getId, res.getStaffId())
+              .set(User::getNucleic, "已检测")
+              .set(User::getDate, res.getAppDate())
+              .update();
+    }
   }
 
 }

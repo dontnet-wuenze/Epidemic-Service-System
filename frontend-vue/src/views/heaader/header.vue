@@ -46,7 +46,7 @@
                   </div>
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="systemNotice">系统通知</el-dropdown-item>
-                    <el-dropdown-item>申请记录</el-dropdown-item>
+                    <el-dropdown-item command="applyRecord">申请记录</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
               </el-col>
@@ -245,6 +245,8 @@ export default {
     handleNoticeMenu(command) {
       if(command==='systemNotice') {
         this.drawer=true
+      } else if(command==='applyRecord') {
+        this.$router.push('/approval/Application_Log')
       }
     },
     handleClose(done) {
