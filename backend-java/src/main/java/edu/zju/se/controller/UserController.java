@@ -123,7 +123,7 @@ public class UserController {
     if (isLoginSuccess) {
       return Result.success();
     } else {
-      return Result.fail();
+      return Result.fail("Login Failed");
     }
   }
 
