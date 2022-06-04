@@ -108,6 +108,7 @@ public class FormController {
         .formId(form.getFormId())
         .formType(FormType.STU_PASSPHRASE_FORM.name())
         .staffId(userId)
+        .auditId(form.getAuditId())
         .content(rawJson)
         .build();
     try {
@@ -126,6 +127,7 @@ public class FormController {
         .formId(form.getFormId())
         .formType(FormType.STAFF_PASSPHRASE_FORM.name())
         .staffId(userId)
+        .auditId(form.getAuditId())
         .content(rawJson)
         .build();
     try {

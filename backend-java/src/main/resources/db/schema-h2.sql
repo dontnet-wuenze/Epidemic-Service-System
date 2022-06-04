@@ -97,7 +97,9 @@ CREATE TABLE form
 (
     form_id VARCHAR(30) NOT NULL COMMENT '表单 ID',
     staff_id VARCHAR(30) NOT NULL COMMENT '学工号',
+    audit_id VARCHAR(30) NULL DEFAULT NULL COMMENT '审批人 ID',
     form_type VARCHAR(30) NULL DEFAULT NULL COMMENT '表单类型',
+    status VARCHAR(30) DEFAULT '等待审核' COMMENT '表单状态',
     content VARCHAR(3000) NULL DEFAULT NULL COMMENT '表单内容',
     PRIMARY KEY (form_id)
 );

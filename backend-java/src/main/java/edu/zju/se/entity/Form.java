@@ -20,7 +20,7 @@ import lombok.Setter;
  * </p>
  *
  * @author Boris Li
- * @since 2022-06-03
+ * @since 2022-06-04
  */
 @Getter
 @Setter
@@ -50,10 +50,24 @@ public class Form implements Serializable {
     private String staffId;
 
     /**
+     * 审批人 ID
+     */
+    @TableField("audit_id")
+    @JsonProperty("audit_id")
+    private String auditId;
+
+    /**
      * 表单类型
      */
     @TableField("form_type")
     private String formType;
+
+    /**
+     * 表单状态
+     */
+    @TableField("status")
+    @JsonProperty("status")
+    private String status;
 
     /**
      * 表单内容

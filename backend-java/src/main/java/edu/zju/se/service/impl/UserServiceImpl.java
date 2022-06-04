@@ -41,6 +41,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                     .major(tempUser.getMajor())
                     .administrativeclass(tempUser.getAdministrativeclass())
                     .phone(tempUser.getPhone())
+                    .permission(tempUser.getPermission())
                     .build();
   }
 
