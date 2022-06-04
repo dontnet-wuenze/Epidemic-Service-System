@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface IFormService extends IService<Form> {
   public String getNewFormId(String userId);
-  public void postStudentLeaveForm(Form form);
-  public void postStudentPassPhraseForm(Form form);
-  public List<Form> getStaffPassPhraseForm(String userId);
+  public void postLeaveForm(Form form);
+  public void postPassPhraseForm(Form form);
+  public Form getForm(String userId);
 }

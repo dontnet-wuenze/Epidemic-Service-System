@@ -37,7 +37,8 @@ public class Form implements Serializable {
      * 表单 ID
      */
     @TableId("form_id")
-    @JsonProperty("id")
+    @JsonProperty("form_id")
+    @JsonAlias("id")
     private String formId;
 
     /**

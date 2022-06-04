@@ -75,7 +75,25 @@ public class FormController {
         .content(rawJson)
         .build();
     try {
-      formService.postStudentLeaveForm(form);
+      formService.postLeaveForm(form);
+      return Result.success();
+    } catch (RuntimeException e) {
+      return Result.fail(e.getMessage());
+    }
+  }
+
+  @PostMapping("/staff_leave_form")
+  public Result postStaffLeaveForm(@RequestHeader("token") String userId, @RequestBody String rawJson)
+      throws JsonProcessingException {
+    Form form = new ObjectMapper().readValue(rawJson, Form.class);
+    form = Form.builder()
+        .formId(form.getFormId())
+        .formType(FormType.STAFF_LEAVE_FORM.name())
+        .staffId(userId)
+        .content(rawJson)
+        .build();
+    try {
+      formService.postLeaveForm(form);
       return Result.success();
     } catch (RuntimeException e) {
       return Result.fail(e.getMessage());
@@ -93,16 +111,34 @@ public class FormController {
         .content(rawJson)
         .build();
     try {
-      formService.postStudentPassPhraseForm(form);
+      formService.postPassPhraseForm(form);
       return Result.success();
     } catch (RuntimeException e) {
       return Result.fail(e.getMessage());
     }
   }
 
-  @GetMapping("/get_staff_passphrase_form")
-  public Result getStaffPassPhraseForm(@RequestHeader("token") String userId) {
-    return Result.success(formService.getStaffPassPhraseForm(userId));
+  @PostMapping("/staff_passphrase_form")
+  public Result postStaffPassPhraseForm(@RequestHeader("token") String userId, @RequestBody String rawJson)
+      throws JsonProcessingException {
+    Form form = new ObjectMapper().readValue(rawJson, Form.class);
+    form = Form.builder()
+        .formId(form.getFormId())
+        .formType(FormType.STAFF_PASSPHRASE_FORM.name())
+        .staffId(userId)
+        .content(rawJson)
+        .build();
+    try {
+      formService.postPassPhraseForm(form);
+      return Result.success();
+    } catch (RuntimeException e) {
+      return Result.fail(e.getMessage());
+    }
+  }
+
+  @GetMapping({"/get_staff_passphrase_form", "get_stu_passphrase_form", "get_staff_leave_form", "get_stu_leave_form"})
+  public Result getForm(@RequestHeader("token") String userId, @RequestBody Form form) {
+    return Result.success(formService.getForm(form.getFormId()));
   }
 
 }
