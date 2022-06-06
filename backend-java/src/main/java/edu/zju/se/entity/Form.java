@@ -4,7 +4,14 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -13,10 +20,14 @@ import lombok.Setter;
  * </p>
  *
  * @author Boris Li
- * @since 2022-06-03
+ * @since 2022-06-04
  */
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 @TableName("form")
 public class Form implements Serializable {
 
@@ -26,13 +37,43 @@ public class Form implements Serializable {
      * 表单 ID
      */
     @TableId("form_id")
+    @JsonProperty("form_id")
+    @JsonAlias("id")
     private String formId;
 
     /**
-     * test boolean
+     * 学工号
      */
-    @TableField("is_true")
-    private Boolean isTrue;
+    @TableField("staff_id")
+    @JsonProperty("staff_id")
+    @JsonAlias("stu_id")
+    private String staffId;
+
+    /**
+     * 审批人 ID
+     */
+    @TableField("audit_id")
+    @JsonProperty("audit_id")
+    private String auditId;
+
+    /**
+     * 表单类型
+     */
+    @TableField("form_type")
+    private String formType;
+
+    /**
+     * 表单状态
+     */
+    @TableField("status")
+    @JsonProperty("status")
+    private String status;
+
+    /**
+     * 表单内容
+     */
+    @TableField("content")
+    private String content;
 
 
 }

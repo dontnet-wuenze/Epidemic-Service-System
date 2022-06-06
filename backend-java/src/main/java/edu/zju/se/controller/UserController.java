@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -117,13 +118,20 @@ public class UserController {
   }
 
   @PostMapping("/login")
-  public Result login(@Validated @RequestBody User user) {
-    boolean isLoginSuccess = userService.login(user);
+  public Result login(@Validated @RequestBody User tempUser) {
+    boolean isLoginSuccess = userService.login(tempUser);
 
     if (isLoginSuccess) {
-      return Result.success();
+      User user = userService.getUserInfoById(tempUser.getId());
+      return Result.success(
+          new HashMap<String, Object>() {{
+            put("token", user.getId());
+            put("name", user.getName());
+            put("authorization", "admin".equals(user.getPermission()));
+          }}
+      );
     } else {
-      return Result.fail();
+      return Result.fail("Login Failed");
     }
   }
 
