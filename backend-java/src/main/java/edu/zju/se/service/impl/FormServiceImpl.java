@@ -60,4 +60,14 @@ public class FormServiceImpl extends ServiceImpl<FormMapper, Form> implements IF
     }
   }
 
+  @Override public List<Form> getUserForm(String userId) {
+    LambdaQueryChainWrapper<Form> queryWrapper = new LambdaQueryChainWrapper<>(getBaseMapper());
+    return queryWrapper.eq(Form::getStaffId, userId).list();
+  }
+
+  @Override public List<Form> getApprovalForm(String userId) {
+    LambdaQueryChainWrapper<Form> queryWrapper = new LambdaQueryChainWrapper<>(getBaseMapper());
+    return queryWrapper.eq(Form::getAuditId, userId).list();
+  }
+
 }

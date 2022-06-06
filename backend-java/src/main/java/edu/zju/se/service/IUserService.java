@@ -26,4 +26,6 @@ public interface IUserService extends IService<User> {
 
   void setNucleicTrue(List<Nucleic> resultList);
 
+  User getAdminOfStudent(String stu_id);
+
 }

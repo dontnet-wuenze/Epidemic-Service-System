@@ -1,5 +1,6 @@
 package edu.zju.se.service.impl;
 
+import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import edu.zju.se.entity.Nucleic;
 import edu.zju.se.entity.Punch;
@@ -87,6 +88,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
               .set(User::getNucleic, "已检测")
               .set(User::getDate, res.getAppDate())
               .update();
+    }
+  }
+
+  @Override public User getAdminOfStudent(String stu_id) {
+    try {
+      User student = getById(stu_id);
+      LambdaQueryChainWrapper<User> queryWrapper = new LambdaQueryChainWrapper<>(getBaseMapper());
+      return queryWrapper.eq(User::getDepartment, student.getDepartment())
+          .eq(User::getPermission, "admin").list().get(0);
+    } catch (Exception e) {
+      throw new RuntimeException("No Result!");
     }
   }
 

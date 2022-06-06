@@ -17,5 +17,7 @@ public interface IFormService extends IService<Form> {
   public String getNewFormId(String userId);
   public void postLeaveForm(Form form);
   public void postPassPhraseForm(Form form);
-  public Form getForm(String userId);
+  public Form getForm(String formId);
+  public List<Form> getUserForm(String userId);
+  public List<Form> getApprovalForm(String userId);
 }
