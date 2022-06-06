@@ -20,7 +20,7 @@ import lombok.Setter;
  * </p>
  *
  * @author Boris Li
- * @since 2022-06-04
+ * @since 2022-06-06
  */
 @Getter
 @Setter
@@ -74,6 +74,12 @@ public class Form implements Serializable {
      */
     @TableField("content")
     private String content;
+
+    /**
+     * 申请时间
+     */
+    @TableField("application_time")
+    private String applicationTime;
 
 
 }

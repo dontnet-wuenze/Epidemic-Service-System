@@ -101,5 +101,6 @@ CREATE TABLE form
     form_type VARCHAR(30) NULL DEFAULT NULL COMMENT '表单类型',
     status VARCHAR(30) DEFAULT '等待审核' COMMENT '表单状态',
     content VARCHAR(3000) NULL DEFAULT NULL COMMENT '表单内容',
+    application_time VARCHAR(50) NOT NULL COMMENT '申请时间',
     PRIMARY KEY (form_id)
 );

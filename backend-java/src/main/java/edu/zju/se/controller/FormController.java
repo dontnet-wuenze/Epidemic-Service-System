@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 enum FormType {
@@ -73,6 +76,7 @@ public class FormController {
         .formType(FormType.STU_LEAVE_FORM.name())
         .staffId(userId)
         .content(rawJson)
+        .applicationTime(new Date().toString())
         .build();
     try {
       formService.postLeaveForm(form);
@@ -91,6 +95,7 @@ public class FormController {
         .formType(FormType.STAFF_LEAVE_FORM.name())
         .staffId(userId)
         .content(rawJson)
+        .applicationTime(new Date().toString())
         .build();
     try {
       formService.postLeaveForm(form);
@@ -110,6 +115,8 @@ public class FormController {
         .staffId(userId)
         .auditId(form.getAuditId())
         .content(rawJson)
+        .applicationTime(new Date().toString())
+        .auditId(userService.getAdminOfStudent(userId).getId())
         .build();
     try {
       formService.postPassPhraseForm(form);
@@ -129,6 +136,8 @@ public class FormController {
         .staffId(userId)
         .auditId(form.getAuditId())
         .content(rawJson)
+        .applicationTime(new Date().toString())
+        .auditId(userService.getAdminOfStudent(userId).getId())
         .build();
     try {
       formService.postPassPhraseForm(form);
@@ -138,9 +147,43 @@ public class FormController {
     }
   }
 
-  @GetMapping({"/get_staff_passphrase_form", "get_stu_passphrase_form", "get_staff_leave_form", "get_stu_leave_form"})
+  @GetMapping({"/get_staff_passphrase_form", "/get_stu_passphrase_form", "/get_staff_leave_form", "/get_stu_leave_form"})
   public Result getForm(@RequestHeader("token") String userId, @RequestBody Form form) {
     return Result.success(formService.getForm(form.getFormId()));
   }
+
+  @GetMapping("/get_application_log")
+  public Result getUserFormList(@RequestHeader("token") String userId) {
+    List<Form> formList = formService.getUserForm(userId);
+    List<Map<String, String>> resultList = new ArrayList<>();
+    User user = userService.getUserInfoById(userId);
+    for (Form form : formList) {
+      resultList.add(new HashMap<String, String>(){{
+        put("applicant", user.getName());
+        put("application_time", form.getApplicationTime());
+        put("application_type", form.getFormType());
+        put("audit_status", form.getStatus());
+      }});
+    }
+    return Result.success(resultList);
+  }
+
+@GetMapping("/get_form_approval_list")
+  public Result getApprovalFormList(@RequestHeader("token") String userId) {
+    List<Form> formList = formService.getApprovalForm(userId);
+    List<Map<String, String>> resultList = new ArrayList<>();
+    for (Form form : formList) {
+      User user = userService.getUserInfoById(form.getStaffId());
+      resultList.add(new HashMap<String, String>(){{
+        put("id", form.getFormId());
+        put("applicant", user.getName());
+        put("application_time", form.getApplicationTime());
+        put("application_type", form.getFormType());
+        put("approval_status", form.getStatus());
+      }});
+    }
+    return Result.success(resultList);
+  }
+
 
 }
