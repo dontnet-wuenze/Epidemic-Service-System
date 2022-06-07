@@ -5,7 +5,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 //也可以在所用的页面引入，若是没有引入，就是报404
-import "./mock/index.js";
+//import "./mock/index.js";
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)

@@ -121,16 +121,21 @@ public class UserController {
   public Result login(@Validated @RequestBody User tempUser) {
     boolean isLoginSuccess = userService.login(tempUser);
 
-    if (isLoginSuccess) {
-      User user = userService.getUserInfoById(tempUser.getId());
-      return Result.success(
-          new HashMap<String, Object>() {{
-            put("token", user.getId());
-            put("name", user.getName());
-            put("authorization", "admin".equals(user.getPermission()));
-          }}
-      );
-    } else {
+    try {
+      if (isLoginSuccess) {
+        User user = userService.getUserInfoById(tempUser.getId());
+        return Result.success(
+            new HashMap<String, Object>() {{
+              put("token", user.getId());
+              put("name", user.getName());
+              put("authorization", "admin".equals(user.getPermission()));
+            }}
+        );
+      } else {
+        return Result.fail("Login Failed");
+      }
+    } catch (Exception e) {
+      System.out.println("in error");
       return Result.fail("Login Failed");
     }
   }

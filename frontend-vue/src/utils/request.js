@@ -57,6 +57,8 @@ service.interceptors.response.use(
         // 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据
         // 否则的话抛出错误
         if (response.status === 200) {
+            response = response.data;
+            console.log(response);
             return Promise.resolve(response);
         } else {
             return Promise.reject(response);
@@ -67,6 +69,7 @@ service.interceptors.response.use(
     // 然后根据返回的状态码进行一些操作，例如登录过期提示，错误提示等等
     // 下面列举几个常见的操作，其他需求可自行扩展
     error => {
+        console.log(error)
         if (error.response.status) {
             switch (error.response.status) {
                 // 401: 未登录
@@ -116,7 +119,7 @@ service.interceptors.response.use(
                 // 其他错误，直接抛出错误提示
                 default:
                     Message({
-                        message: error.response.data.message,
+                        message: error.response.data.data.msg,
                         duration: 1500,
                         forbidClick: true
                     });

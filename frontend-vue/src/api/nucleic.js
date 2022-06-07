@@ -11,7 +11,7 @@ export function nucleicAppointment(data){
     return request({
         url: '/nucleic/appointment',
         method: 'post',
-        data: 'data'
+        data: data
     })
 }
 
@@ -19,7 +19,7 @@ export function nucleicUpload(data){
     return request({
         url: '/nucleic/upload',
         method: 'post',
-        data: 'data'
+        data: data
     })
 }
 
