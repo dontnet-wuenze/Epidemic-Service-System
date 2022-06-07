@@ -158,6 +158,7 @@ export default {
         if(valid) {
           console.log(this.form)
           nucleicAppointment(this.form);
+
         }
         else {
           this.$message.error('表单填写有误，请检查后重新提交!');

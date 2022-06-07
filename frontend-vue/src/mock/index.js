@@ -106,7 +106,7 @@ Mock.mock('http://localhost:8080/api/statistic/unattendlist', 'get', (req, res) 
 Mock.mock('http://localhost:8080/api/nucleic/appointment', 'post', (req, res) => {
     var data = req.body;
     return {
-        data: data
+        success: 1
     }
 })
 
@@ -119,7 +119,7 @@ Mock.mock('http://localhost:8080/api/nucleic/appointment', 'get', (req, res) => 
 Mock.mock('http://localhost:8080/api/nucleic/upload', 'post', (req, res) => {
     var data = req.body;
     return {
-        data: data
+        success: 1
     }
 })
 
