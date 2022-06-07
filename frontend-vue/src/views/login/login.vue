@@ -1,15 +1,15 @@
 <template>
   <div class="login-section">
     <!-- :rules="rules" -->
-    <el-form 
-      label-position="top" label-width="100px" class="demo-ruleForm"
+    <el-form
+      label-position="left" label-width="100px" class="login-form"
        :rules="rules"
       :model="rulesForm"
       status-icon
       ref="ruleForm"
     >
-      <el-form-item label="用户名" prop="name">
-        <el-input type="text" v-model="rulesForm.name"></el-input>
+      <el-form-item label="学号" prop="id">
+        <el-input type="text" v-model="rulesForm.id"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input type="password" v-model="rulesForm.password"></el-input>
@@ -20,10 +20,10 @@
       </el-form-item>
     </el-form>
   </div>
- 
- 
- 
- 
+
+
+
+
 </template>
 <script>
 
@@ -34,17 +34,17 @@ export default {
      return {
       //存储数据的对象
       rulesForm:{
-        name:'',
+        id:'',
         password:''
       },
       rules:{
-        name:[
-          {required:true,message:'名字',trigger:'blur'},
-          {min:1,max:5,message:'长度在3到5',trigger:'blur'}
+        id:[
+          {required:true,message:'学号',trigger:'blur'},
+          {min:1,max:10,message:'长度在1到10',trigger:'blur'}
         ],
         password:[
           {required:true,message:'密码',trigger:'blur'},
-          {min:3,max:5,message:'长度在3到5',trigger:'blur'}
+          {min:4,message:'长度大于4',trigger:'blur'}
         ]
       }
     };
@@ -53,19 +53,17 @@ export default {
 submitForm(formName){
       this.$refs[formName].validate( (valid) =>{
         if(valid){
-          var user_data = {
-            id: this.$refs[formName].name,
-            password: this.$refs[formName].password
-          }
+          var user_data = this.rulesForm
+          console.log(user_data)
           //如果校检通过，在这里向后端发送用户名和密码
-          this.$store.dispatch('login', this.rulesForm.name).then(() => {
+          this.$store.dispatch('login', user_data).then(() => {
             // 登陆成功之后，路由跳转至用户账户页或者进行你需要的操作
             this.$router.push({
               path: '/index',
             })
           });
         }else{
-          console.log('error submit!!');
+          console.log('登录失败!!');
           return false
         }
       });
@@ -73,16 +71,26 @@ submitForm(formName){
   }
 }
 </script>
- 
- 
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
+
+
 <style lang="scss">
 .login-section{
-  padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
+
+.login-form {
+  padding-top: 100px;
+  width: 300px;
+  height: 300px;
+}
+
 </style>

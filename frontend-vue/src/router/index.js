@@ -2,6 +2,7 @@ import vueRouter from 'vue-router'
 import Vue from 'vue';
 import {Message} from "element-ui";
 import store from '@/store'
+import message from "element-ui/packages/message";
 
 Vue.use(vueRouter)
 
@@ -81,7 +82,7 @@ const routeList=[
             },
             {
               path: '/approval/Staff_Passphrase_Application',
-              name: 'Student_Passphrase_Application',
+              name: 'Staff_Passphrase_Application',
               meta: {
                   title: "教职工通行码申请"
               },
@@ -97,7 +98,7 @@ const routeList=[
             },
             {
               path: '/approval/Form_Approval',
-              name: 'Application_Log',
+              name: 'Form_Log',
               meta: {
                   title: "表单审批"
               },
@@ -202,6 +203,9 @@ const route = new vueRouter({
 // 无需登录可以跳转的页面
 const whiteList = ['/', '/index', '/login', '/404', '/401', '/403', '/500', '/register', '/reset', '/reset/:token', '/reset/:token/:email'];
 
+// 只有管理员能访问的页面
+const adminList = ['/monitor/whole_school', '/monitor/Undergraduate','/monitor/in_school', '/health/statistic', '/approval/Form_Approval']
+
 route.beforeEach((to,from,next)=>{
     let localToken = localStorage.getItem('token')
     console.log('localtoken before router', localToken)
@@ -214,7 +218,15 @@ route.beforeEach((to,from,next)=>{
             next()
         }
     } else if(localToken) {
-        next()
+        if(adminList.indexOf(to.path) > -1 && store.state.authorization === false) {
+            Message( {
+                showClose: true,
+                message: '无管理员权限',
+                type: "warning"
+            });
+            next('/index')
+        } else
+            next()
     } else {
         Message({
             showClose: true,

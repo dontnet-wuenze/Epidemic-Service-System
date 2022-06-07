@@ -1,4 +1,4 @@
 package edu.zju.se.controller;
 
-public class PeopleController {
+public class PunchController {
 }

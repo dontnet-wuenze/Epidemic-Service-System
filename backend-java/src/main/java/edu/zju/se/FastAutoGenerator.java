@@ -18,6 +18,10 @@ package edu.zju.se;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.converts.DB2TypeConvert;
+import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
+import com.baomidou.mybatisplus.generator.config.converts.SqliteTypeConvert;
+import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.apache.ibatis.jdbc.ScriptRunner;
@@ -234,7 +238,8 @@ public final class FastAutoGenerator {
   }
 
   private static final DataSourceConfig.Builder DATA_SOURCE_CONFIG = new DataSourceConfig
-          .Builder("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL", "root", "admin");
+      .Builder("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL", "root", "admin")
+      .typeConvert(new SqliteTypeConvert());
 
   // 处理 all 情况
   protected static List<String> getTables(String tables) {
@@ -246,14 +251,15 @@ public final class FastAutoGenerator {
     FastAutoGenerator.create(DATA_SOURCE_CONFIG)
             // 全局配置
             .globalConfig(builder -> builder.author("Boris Li").disableOpenDir()
-                    .outputDir(System.getProperty("user.dir") + "/src/main/java/"))
+            .outputDir(System.getProperty("user.dir") + "/src/main/java/"))
             // 包配置
             .packageConfig(builder -> builder.parent("edu.zju.se"))
             // 策略配置
             .strategyConfig((scanner, builder) -> builder
                     .addInclude(getTables(scanner.apply("请输入表名，多个英文逗号分隔?")))
                     .controllerBuilder().enableRestStyle().enableHyphenStyle()
-                    .entityBuilder().enableLombok().fileOverride().build())
+                    .entityBuilder().enableTableFieldAnnotation().columnNaming(NamingStrategy.underline_to_camel)
+                    .enableLombok().fileOverride().build())
             /*
                 模板引擎配置，默认 Velocity 可选模板引擎 Beetl 或 Freemarker
                .templateEngine(new BeetlTemplateEngine())

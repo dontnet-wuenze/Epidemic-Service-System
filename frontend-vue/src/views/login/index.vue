@@ -22,10 +22,6 @@ export default {
       // 从而将用户登陆之后的状态保存至vuex中
 
       this.$store.dispatch('login', this.username).then(() => {
-        // 登陆成功之后，路由跳转至用户账户页或者进行你需要的操作
-        this.$router.push({
-          path: '/index',
-        })
       });
 
     }

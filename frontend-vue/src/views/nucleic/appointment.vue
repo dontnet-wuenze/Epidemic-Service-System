@@ -83,13 +83,13 @@
               <el-option label="下午3:00-4:30" value="3"></el-option>
               <el-option label="下午4:30-6:00" value="4"></el-option>
             </el-select>
-          </el-form-item>   
+          </el-form-item>
           <el-divider></el-divider>
           <div class="submit-btn">
             <el-form-item>
               <el-button type="primary" @click="submitForm('NucleicAppointmentForm')">提交表单</el-button>
             </el-form-item>
-          </div>    
+          </div>
         </el-form>
      </div>
    </div>
@@ -156,12 +156,9 @@ export default {
     submitForm(form_name) {
       this.$refs[form_name].validate((valid) =>{
         if(valid) {
-          nucleicAppointment(this.form).then(res=>{
-            if(res.data.success == 0)
-              this.$message.error('传输失败');
-            else
-              this.$message.success('传输成功');
-          });
+          console.log(this.form)
+          nucleicAppointment(this.form);
+
         }
         else {
           this.$message.error('表单填写有误，请检查后重新提交!');
