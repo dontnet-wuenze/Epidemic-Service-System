@@ -22,7 +22,7 @@
         style="width: 100%">
         <el-table-column prop="id" label="学工号" width="180"></el-table-column>
         <el-table-column prop="date" label="日期" width="180"></el-table-column>
-        <el-table-column prop="result" label="结果" width="180"></el-table-column>
+        <el-table-column prop="result_show" label="结果" width="180"></el-table-column>
         <el-table-column
           fixed="right"
           label="操作">
@@ -92,7 +92,13 @@ import {nucleicUpload} from '@/api/nucleic.js';
       else{
         obj.id = _this.input_id;
         obj.date = _this.input_date.getFullYear() + '/' + (_this.input_date.getMonth() + 1) + '/' + _this.input_date.getDate();
-        obj.result = _this.input_result;
+        obj.result_show = _this.input_result;
+
+        if(_this.input_result == "阳性")
+          obj.result = 1;
+        else
+          obj.result = 0;
+
         _this.tableData.push(obj);
         _this.input_id = '';
         _this.input_date = '';
@@ -157,8 +163,12 @@ import {nucleicUpload} from '@/api/nucleic.js';
         const obj = { }
         const temp_date = new Date((v.date-25567) * 24 * 3600000 - 5 * 60 * 1000 - 43 * 1000  - 24 * 3600000 - 8 * 3600000)
         obj.id = v.id
-        obj.date = temp_date.getFullYear() + '/' + (temp_date.getMonth() + 1)+ '/' + temp_date.getDate()
-        obj.result=v.result
+        obj.date = temp_date.getFullYear() + '-' + (temp_date.getMonth() + 1)+ '-' + temp_date.getDate()
+        obj.result_show=v.result
+        if(v.result == "阳性")
+          obj.result = 1;
+        else
+          obj.result = 0;
         arr.push(obj)
         })
         _this.tableData = _this.tableData.concat(arr)
@@ -197,7 +207,6 @@ import {nucleicUpload} from '@/api/nucleic.js';
   width: 70%;
   height: 600px;
   border-radius: 10px;
-  box-shadow: 0 0 8px rgb(0 0 0 / 40%);
   background: #fff;
   margin: 0 auto;
   position: relative;
