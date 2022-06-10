@@ -42,3 +42,6 @@ INSERT INTO punch (id, name, date, campus, region, oncampus, codestatus, fever, 
 
 INSERT INTO punch (id, name, date, campus, region, oncampus, codestatus, fever, control, contact, status) VALUES
 (3190102303, 'Boris', '2022-06-01', '玉泉校区', '天津市，市辖区，和平区', 'false', '0', 'false', 'false', 'false', 'false');
+
+INSERT INTO punch (id, name, date, campus, region, oncampus, codestatus, fever, control, contact, status) VALUES
+(123456, '王奕飞', '2022-06-01', '玉泉校区', '天津市，市辖区，和平区', 'false', '0', 'false', 'false', 'false', 'false');

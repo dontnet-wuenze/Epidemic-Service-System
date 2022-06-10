@@ -60,12 +60,19 @@ service.interceptors.response.use(
         // 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据
         // 否则的话抛出错误
         if (response.status === 200) {
-            if(response.data.code !== 200)
-                return Promise.reject(response);
+            if(response.data.code !== 200) {
+                Message({
+                    message: response.data.msg,
+                    duration: 1500,
+                    forbidClick: true
+                });
+                return Promise.reject(response)
+            }
             response = response.data;
             console.log(response);
             return Promise.resolve(response);
         } else {
+            console("throw reject")
             return Promise.reject(response);
         }
     },

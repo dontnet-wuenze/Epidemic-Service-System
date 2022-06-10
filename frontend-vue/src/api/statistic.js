@@ -2,14 +2,14 @@ import request from '@/utils/request'
 
 export function unattendList() {
     return request({
-        url: '/statistic/unattendlist',
+        url: '/monitor/unattendlist',
         method: 'get',
     })
 }
 
 export function attendNum() {
     return request({
-        url: '/statistic/attendnum',
+        url: '/monitor/attendnum',
         method: 'get',
     })
 }
