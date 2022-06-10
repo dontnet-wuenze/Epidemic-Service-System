@@ -17,13 +17,16 @@ DELETE FROM user;
 DELETE FROM monitor;
 
 INSERT INTO user (id, name, password, identity, permission, department, major, grade, administrativeClass, campus, phone, code, healthycode, attend, nucleic, date) VALUES
-(3190102303, 'Boris', '123456', 'undergraduate', 'user', '计算机科学与技术学院', '计算机科学与技术', '大三', '计科1901', '玉泉校区', '13333333333', '1', 'green', false, '已检测', '20220603');
+    (123456, 'wyf', '123456', 'coordinator', 'admin', '计算机科学与技术学院', '计算机科学与技术', '大三', '', '玉泉校区', '13333333333', '1', 'green', false, '已检测', '20220603');
 
 INSERT INTO user (id, name, password, identity, permission, department, major, grade, administrativeClass, campus, phone, code, healthycode, attend, nucleic, date) VALUES
-(3190102475, 'Lwb', '123456', 'undergraduate', 'user', '计算机科学与技术学院', '计算机科学与技术', '大三', '计科1901', '玉泉校区', '13333333333', '1', 'green', true, '已检测', '20220604');
+(3190102303, 'Boris', '123456', 'undergraduate', 'student', '计算机科学与技术学院', '计算机科学与技术', '大三', '计科1901', '玉泉校区', '13333333333', '1', 'green', false, '已检测', '20220603');
 
 INSERT INTO user (id, name, password, identity, permission, department, major, grade, administrativeClass, campus, phone, code, healthycode, attend, nucleic, date) VALUES
-(111111, 'Yjw', '123456', 'fucking teacher', 'user', '计算机科学与技术学院', '计算机科学与技术', null, null, '玉泉校区', '13333333333', '1', 'red', false, '未检测', '20220503');
+(3190102475, 'Lwb', '123456', 'undergraduate', 'student', '计算机科学与技术学院', '计算机科学与技术', '大三', '计科1901', '玉泉校区', '13333333333', '1', 'green', true, '已检测', '20220604');
+
+INSERT INTO user (id, name, password, identity, permission, department, major, grade, administrativeClass, campus, phone, code, healthycode, attend, nucleic, date) VALUES
+(111111, 'Yjw', '123456', 'fucking teacher', 'student', '计算机科学与技术学院', '计算机科学与技术', null, null, '玉泉校区', '13333333333', '1', 'red', false, '未检测', '20220503');
 
 INSERT INTO message (userid, msgid, title, date, detail, read) VALUES
 (3190102475, 1, '今日未打卡', '2022-05-30 22:33:07', '请及时打卡', 'false');

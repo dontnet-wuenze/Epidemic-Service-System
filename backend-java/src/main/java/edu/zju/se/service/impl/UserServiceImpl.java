@@ -51,7 +51,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     if (getById(user.getId()) != null) {
       return false;
     } else {
-      save(user);
+      try {
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+          user.setPassword(user.getId().substring(user.getId().length() - 6));
+        }
+      } catch (Exception e) {
+        throw new RuntimeException("ID cannot shorter than 6.", e);
+      } saveOrUpdate(user);
       punchService.save(Punch.builder()
               .id(user.getId())
               .status(false)

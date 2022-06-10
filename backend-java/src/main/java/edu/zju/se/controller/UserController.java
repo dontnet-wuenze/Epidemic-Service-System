@@ -119,9 +119,8 @@ public class UserController {
 
   @PostMapping("/login")
   public Result login(@Validated @RequestBody User tempUser) {
-    boolean isLoginSuccess = userService.login(tempUser);
-
     try {
+      boolean isLoginSuccess = userService.login(tempUser);
       if (isLoginSuccess) {
         User user = userService.getUserInfoById(tempUser.getId());
         return Result.success(
@@ -135,7 +134,6 @@ public class UserController {
         return Result.fail("Login Failed");
       }
     } catch (Exception e) {
-      System.out.println("in error");
       return Result.fail("Login Failed");
     }
   }
