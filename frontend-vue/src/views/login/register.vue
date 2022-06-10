@@ -41,7 +41,7 @@
                          label="学院"></el-table-column>
         <el-table-column prop="major"
                          label="专业"></el-table-column>
-        <el-table-column prop="class"
+        <el-table-column prop="administrativeclass"
                          label="班级"></el-table-column>
         <el-table-column prop="phone"
                          label="手机号"></el-table-column>
@@ -90,7 +90,7 @@
         </el-form-item>
         <el-form-item label="班级"
                       prop="class">
-          <el-input v-model="addUserForm.class"></el-input>
+          <el-input v-model="addUserForm.administrativeclass"></el-input>
         </el-form-item>
         <el-form-item label="手机号"
                       prop="phone">
@@ -133,7 +133,7 @@
         </el-form-item>
          <el-form-item label="班级"
                       prop="class">
-          <el-input v-model="editUserForm.class"></el-input>
+          <el-input v-model="editUserForm.administrativeclass"></el-input>
         </el-form-item>
         <el-form-item label="手机号"
                       prop="phone">
@@ -185,7 +185,7 @@ export default {
           { required: true, message: "请输入用户姓名", trigger: "blur" }],
         department: [{ required: true, message: "请输入学院", trigger: "blur" }],
         major: [{ required: true, message: "请输入专业", trigger: "blur" }],
-        class: [{ required: true, message: "请输入班级", trigger: "blur" }],
+        administrativeclass: [{ required: true, message: "请输入班级", trigger: "blur" }],
         phone: [
           { required: true, message: "请输入手机号码", trigger: "blur" },
         ],
@@ -199,7 +199,7 @@ export default {
           { required: true, message: "请输入用户姓名", trigger: "blur" }],
         department: [{ required: true, message: "请输入学院", trigger: "blur" }],
         major: [{ required: true, message: "请输入专业", trigger: "blur" }],
-        class: [{ required: true, message: "请输入班级", trigger: "blur" }],
+        administrativeclass: [{ required: true, message: "请输入班级", trigger: "blur" }],
         phone: [
           { required: true, message: "请输入手机号码", trigger: "blur" },
         ],
@@ -215,17 +215,6 @@ export default {
     }
   },
   methods: {
-    async getUserList() {
-      const { data: res } = await this.$http.get("user/list", {
-        params: this.queryInfo,
-      });
-      if (res.code !== 200) {
-        return this.$message.error("获取用户列表失败！");
-      }
-      this.userlist = res.data.records;
-      this.total = res.data.total;
-    },
-
     // 监听 添加用户对话框的关闭事件
     addDialogClosed() {
       this.$refs.addUserFormRef.resetFields();
@@ -301,7 +290,9 @@ export default {
   },
   async mounted() {
     userList().then(res=> {
-      this.userlist = res.data.userlist;
+      console.log("success")
+      console.log(res)
+      this.userlist = res.data;
     })
   }
 }

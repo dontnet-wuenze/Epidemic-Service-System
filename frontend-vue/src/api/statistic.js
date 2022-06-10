@@ -7,6 +7,13 @@ export function unattendList() {
     })
 }
 
+export function attendNum() {
+    return request({
+        url: '/statistic/attendnum',
+        method: 'get',
+    })
+}
+
 export function sendNotice(data) {
     return request({
         url: '/sendnotice',
