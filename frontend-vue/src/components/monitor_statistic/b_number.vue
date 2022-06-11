@@ -11,16 +11,26 @@
 </template>
 <script>
 import * as echarts from "echarts";
+import request from '@/utils/request'
     // 引入基本模板
     export default {
         name: "DataCount",
         data: () => ({
-            msg: 'Welcome to Your Vue.js App'
+            b_number_data : []
         }),
         mounted(){
             this.drawLine();
+            this.get_b_number().then(res => {
+                this.b_number_data = res.data.data
+            })
         },
         methods:{
+        get_b_number() {
+            return request({
+                url: '/api/monitor/under_number',
+                method: 'get',
+            })
+        },
         goOff(){
             this.$router.go(-1);
         },
