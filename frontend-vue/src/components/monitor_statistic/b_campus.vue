@@ -15,13 +15,13 @@
 </template>
 <script>
 import * as echarts from "echarts";
- 
+import request from '@/utils/request'
 export default {
   data() {
     return {
       xData: ["紫金港", "玉泉", "西溪", "之江", "华家池", "海宁", "舟山"], //横坐标
-      yData: [23, 24, 18, 25, 27, 28, 25], //人数数据
-      taskDate: [10, 11, 9, 17, 14, 13, 14],
+      yData: [], //人数数据
+      taskDate: [],
       myChartStyle: { float: "left", width: "100%", height: "400px" }, //图表样式
       charts: '',
           opinion:['全校本科生已完成','全校本科生未完成'],
@@ -38,8 +38,17 @@ export default {
     this.$nextTick(function() {
                 this.drawPie('main')
             })
+    this.get_b_campus().then(res => {
+      this.yData = res.data.data
+    })
   },
   methods: {
+    get_b_campus() {
+      return request({
+          url: '/api/monitor/under_campus',
+          method: 'get',
+      })
+    },
     goOff(){
             this.$router.go(-1);
         },
