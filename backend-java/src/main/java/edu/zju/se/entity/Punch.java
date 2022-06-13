@@ -3,11 +3,8 @@
 package edu.zju.se.entity;
 
 
-<<<<<<< HEAD
-=======
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
->>>>>>> develop
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,10 +14,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Builder
-<<<<<<< HEAD
-=======
 @TableName("punch")
->>>>>>> develop
 public class Punch implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -36,11 +30,7 @@ public class Punch implements Serializable {
 
     private Boolean oncampus; //是否在校
 
-<<<<<<< HEAD
-    private String Codestatus;
-=======
     private String codestatus;
->>>>>>> develop
 
     private Boolean fever; //是否发烧
 

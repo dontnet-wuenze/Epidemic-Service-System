@@ -7,38 +7,108 @@
       <div class="log-container-title">
         <div style="display: flex; justify-content: center; align-items: center"><h3>申请记录</h3></div>
       </div>
-      <el-table :data="tabledata" style="width: 75%; margin: auto" max-height="550">
+      <el-table :data="tabledata" style="width: 100%" max-height="550">
         <el-table-column prop="applicant" label="申请人" width="150"></el-table-column>
         <el-table-column prop="application_time" label="申请时间" width="250"></el-table-column>
         <el-table-column prop="application_type" label="申请种类" width="150"></el-table-column>
         <el-table-column prop="audit_status" label="审核状态" width="200"></el-table-column>
+        <el-table-column prop="valid_duration" label="有效时间" width="250"></el-table-column>
       </el-table>
     </div>
   </div>
 </template>
 
 <script>
-import { get_application_log } from "@/api/approval"
-
 export default {
   name: "applicaiton_log",
   data() {
     return{
-      tabledata: []
+      tabledata: [{
+        applicant: '张三',
+        application_time: '2020-5-23 12:05:07',
+        application_type: '离校申请',
+        audit_status: '辅导员审核',
+        valid_duration: '暂无'
+      }, {
+        applicant: '张三',
+        application_time: '2020-5-27 9:12:35',
+        application_type: '离校申请',
+        audit_status: '通过',
+        valid_duration: '2020-5-27 - 2020-6-1'
+      }, {
+        applicant: '张三',
+        application_time: '2020-6-2 11:42:54',
+        application_type: '返校申请',
+        audit_status: '辅导员审核',
+        valid_duration: '暂无'
+      }, {
+        applicant: '张三',
+        application_time: '2020-6-7 13:43:46',
+        application_type: '返校申请',
+        audit_status: '通过',
+        valid_duration: '2020-6-7 - 2020-6-31'
+      }, {
+        applicant: '张三',
+        application_time: '2020-5-23 12:05:07',
+        application_type: '离校申请',
+        audit_status: '辅导员审核',
+        valid_duration: '暂无'
+      }, {
+        applicant: '张三',
+        application_time: '2020-5-23 12:05:07',
+        application_type: '离校申请',
+        audit_status: '辅导员审核',
+        valid_duration: '暂无'
+      }, {
+        applicant: '张三',
+        application_time: '2020-5-23 12:05:07',
+        application_type: '离校申请',
+        audit_status: '辅导员审核',
+        valid_duration: '暂无'
+      }, {
+        applicant: '张三',
+        application_time: '2020-5-23 12:05:07',
+        application_type: '离校申请',
+        audit_status: '辅导员审核',
+        valid_duration: '暂无'
+      }, {
+        applicant: '张三',
+        application_time: '2020-5-23 12:05:07',
+        application_type: '离校申请',
+        audit_status: '辅导员审核',
+        valid_duration: '暂无'
+      }, {
+        applicant: '张三',
+        application_time: '2020-5-23 12:05:07',
+        application_type: '离校申请',
+        audit_status: '辅导员审核',
+        valid_duration: '暂无'
+      }, {
+        applicant: '张三',
+        application_time: '2020-5-23 12:05:07',
+        application_type: '离校申请',
+        audit_status: '辅导员审核',
+        valid_duration: '暂无'
+      }, {
+        applicant: '张三',
+        application_time: '2020-5-23 12:05:07',
+        application_type: '离校申请',
+        audit_status: '辅导员审核',
+        valid_duration: '暂无'
+      }, {
+        applicant: '张三',
+        application_time: '2020-5-23 12:05:07',
+        application_type: '离校申请',
+        audit_status: '辅导员审核',
+        valid_duration: '暂无'
+      },
+      ]
     }
   },
   methods:{
       goOff(){
       this.$router.go(-1);
     }
-  },
-  async mounted() {
-    let _this = this;
-    get_application_log().then(res => {
-      _this.tabledata = res.data.tabledata
-    }).catch(error=> {
-      console.log(error);
-    })
   }
 }
 </script>
