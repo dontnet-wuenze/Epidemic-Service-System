@@ -16,10 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
-=======
 import java.util.HashMap;
->>>>>>> develop
 import java.util.List;
 
 /**
@@ -97,17 +94,10 @@ public class UserController {
     if(punch1 == null){
       return Result.fail("No such ID");
     }else{
-<<<<<<< HEAD
-//      UpdateWrapper<User> userUpdateWrapper = new UpdateWrapper<>();
-//      userUpdateWrapper.eq("id", punch.getId())
-//              .set("attend", "true");
-//      userService.update(userUpdateWrapper);
-=======
       UpdateWrapper<User> userUpdateWrapper = new UpdateWrapper<>();
       userUpdateWrapper.eq("id", punch.getId())
               .set("attend", true);
       userService.update(userUpdateWrapper);
->>>>>>> develop
       boolean isUpdateSuccess = punchService.AttendPunch(punch);
       if (isUpdateSuccess) {
         return Result.success();
@@ -128,15 +118,6 @@ public class UserController {
   }
 
   @PostMapping("/login")
-<<<<<<< HEAD
-  public Result login(@Validated @RequestBody User user) {
-    boolean isLoginSuccess = userService.login(user);
-
-    if (isLoginSuccess) {
-      return Result.success();
-    } else {
-      return Result.fail();
-=======
   public Result login(@Validated @RequestBody User tempUser) {
     try {
       boolean isLoginSuccess = userService.login(tempUser);
@@ -154,22 +135,13 @@ public class UserController {
       }
     } catch (Exception e) {
       return Result.fail("Login Failed");
->>>>>>> develop
     }
   }
 
   @PostMapping("/noticeread")
 //  public Result noticeRead(@RequestHeader("token") String userid, @Validated @RequestBody GetPost getPost){
-<<<<<<< HEAD
-  public Result noticeRead(@RequestHeader("token") String userid, @Validated @RequestParam("id") List readList){
-    return msgService.MsgRead(userid, readList);
-//    return msgService.MsgRead(userid, getPost);
-  }
-}
-=======
   public Result noticeRead(@RequestHeader("token") String userid, @Validated @RequestParam("msgid") List readList){
     return msgService.MsgRead(userid, readList);
 //    return msgService.MsgRead(userid, getPost);
   }
 }
->>>>>>> develop

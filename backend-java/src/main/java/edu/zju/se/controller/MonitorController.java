@@ -2,15 +2,8 @@ package edu.zju.se.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import edu.zju.se.common.Result;
-<<<<<<< HEAD
-import edu.zju.se.entity.People;
 import edu.zju.se.entity.User;
 import edu.zju.se.service.IMonitorService;
-import edu.zju.se.service.IPeopleService;
-=======
-import edu.zju.se.entity.User;
-import edu.zju.se.service.IMonitorService;
->>>>>>> develop
 import edu.zju.se.service.IUserService;
 import lombok.Builder;
 import lombok.Data;
@@ -45,39 +38,22 @@ public class MonitorController {
     @Autowired
     IMonitorService monitorService;
     @Autowired
-<<<<<<< HEAD
-    IPeopleService peopleService;
-    //全校核酸已完成、未完成
-    @GetMapping("/w_number")
-    public Result getNucleic_All(){
-        QueryWrapper<People> queryWrapper1 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper2 = new QueryWrapper<>();
-=======
     IUserService userService;
     //全校核酸已完成、未完成
     @GetMapping("/w_number")
     public Result getNucleic_All(){
         QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper2 = new QueryWrapper<>();
->>>>>>> develop
         queryWrapper1.eq("nucleic", "已检测");
         queryWrapper2.eq("nucleic", "未检测");
         List<Returned_w> myList = new ArrayList<Returned_w>(){
             {
                 add(Returned_w.builder()
-<<<<<<< HEAD
-                        .value(peopleService.count(queryWrapper1))
-                        .name("已完成核酸检测")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper2))
-=======
                         .value(userService.count(queryWrapper1))
                         .name("已完成核酸检测")
                         .build());
                 add(Returned_w.builder()
                         .value(userService.count(queryWrapper2))
->>>>>>> develop
                         .name("未完成核酸检测")
                         .build());
             }
@@ -88,19 +64,6 @@ public class MonitorController {
     //全校人员核酸校区统计
     @GetMapping("/w_campus")
     public Result getNucleic_Campus(){
-<<<<<<< HEAD
-        QueryWrapper<People> queryWrapper1 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper2 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper3 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper4 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper5 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper6 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper7 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper8 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper9 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper10 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper11 = new QueryWrapper<>();
-=======
         QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper2 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper3 = new QueryWrapper<>();
@@ -112,7 +75,6 @@ public class MonitorController {
         QueryWrapper<User> queryWrapper9 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper10 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper11 = new QueryWrapper<>();
->>>>>>> develop
         queryWrapper1.eq("campus", "紫金港校区").eq("nucleic", "已检测");
         queryWrapper2.eq("campus", "玉泉校区").eq("nucleic", "已检测");
         queryWrapper3.eq("campus", "西溪校区").eq("nucleic", "已检测");
@@ -127,49 +89,6 @@ public class MonitorController {
         List<Returned_w> myList = new ArrayList<Returned_w>(){
             {
                 add(Returned_w.builder()
-<<<<<<< HEAD
-                        .value(peopleService.count(queryWrapper1))
-                        .name("紫金港校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper2))
-                        .name("玉泉校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper3))
-                        .name("西溪校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper4))
-                        .name("华家池校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper5))
-                        .name("之江校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper6))
-                        .name("海宁校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper7))
-                        .name("舟山校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper8))
-                        .name("宁波校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper9))
-                        .name("工程师学院")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper10))
-                        .name("杭州国际科创中心")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper11))
-=======
                         .value(userService.count(queryWrapper1))
                         .name("紫金港校区")
                         .build());
@@ -211,7 +130,6 @@ public class MonitorController {
                         .build());
                 add(Returned_w.builder()
                         .value(userService.count(queryWrapper11))
->>>>>>> develop
                         .name("其他")
                         .build());
             }
@@ -222,15 +140,9 @@ public class MonitorController {
     //全校未做核酸人员名单
     @GetMapping("/w_no_check")
     public Result getNotNucleic_All(){
-<<<<<<< HEAD
-        QueryWrapper<People> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("nucleic", "未检测");
-        return Result.success(peopleService.list(queryWrapper));
-=======
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("nucleic", "未检测");
         return Result.success(userService.list(queryWrapper));
->>>>>>> develop
     }
 
     //本科生核酸统计
@@ -265,22 +177,6 @@ public class MonitorController {
         String reStr4 = sdf.format(dt4);
         String reStr5 = sdf.format(dt5);
         String reStr6 = sdf.format(dt6);
-<<<<<<< HEAD
-        QueryWrapper<People> queryWrapper0_1 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper1_1 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper2_1 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper3_1 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper4_1 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper5_1 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper6_1 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper0_2 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper1_2 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper2_2 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper3_2 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper4_2 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper5_2 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper6_2 = new QueryWrapper<>();
-=======
         QueryWrapper<User> queryWrapper0_1 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper1_1 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper2_1 = new QueryWrapper<>();
@@ -295,7 +191,6 @@ public class MonitorController {
         QueryWrapper<User> queryWrapper4_2 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper5_2 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper6_2 = new QueryWrapper<>();
->>>>>>> develop
         queryWrapper0_1.eq("date", reStr0).eq("nucleic", "已检测").eq("identity", "undergraduate");
         queryWrapper1_1.eq("date", reStr1).eq("nucleic", "已检测").eq("identity", "undergraduate");
         queryWrapper2_1.eq("date", reStr2).eq("nucleic", "已检测").eq("identity", "undergraduate");
@@ -314,85 +209,50 @@ public class MonitorController {
             {
                 add(Returned_u.builder()
                         .date(reStr0)
-<<<<<<< HEAD
-                        .value1(peopleService.count(queryWrapper0_1))
-                        .value2(peopleService.count(queryWrapper0_2))
-=======
                         .value1(userService.count(queryWrapper0_1))
                         .value2(userService.count(queryWrapper0_2))
->>>>>>> develop
                         .name1("已完成核酸检测")
                         .name2("未完成核酸检测")
                         .build());
                 add(Returned_u.builder()
                         .date(reStr1)
-<<<<<<< HEAD
-                        .value1(peopleService.count(queryWrapper1_1))
-                        .value2(peopleService.count(queryWrapper1_2))
-=======
                         .value1(userService.count(queryWrapper1_1))
                         .value2(userService.count(queryWrapper1_2))
->>>>>>> develop
                         .name1("已完成核酸检测")
                         .name2("未完成核酸检测")
                         .build());
                 add(Returned_u.builder()
                         .date(reStr2)
-<<<<<<< HEAD
-                        .value1(peopleService.count(queryWrapper2_1))
-                        .value2(peopleService.count(queryWrapper2_2))
-=======
                         .value1(userService.count(queryWrapper2_1))
                         .value2(userService.count(queryWrapper2_2))
->>>>>>> develop
                         .name1("已完成核酸检测")
                         .name2("未完成核酸检测")
                         .build());
                 add(Returned_u.builder()
                         .date(reStr3)
-<<<<<<< HEAD
-                        .value1(peopleService.count(queryWrapper3_1))
-                        .value2(peopleService.count(queryWrapper3_2))
-=======
                         .value1(userService.count(queryWrapper3_1))
                         .value2(userService.count(queryWrapper3_2))
->>>>>>> develop
                         .name1("已完成核酸检测")
                         .name2("未完成核酸检测")
                         .build());
                 add(Returned_u.builder()
                         .date(reStr4)
-<<<<<<< HEAD
-                        .value1(peopleService.count(queryWrapper4_1))
-                        .value2(peopleService.count(queryWrapper4_2))
-=======
                         .value1(userService.count(queryWrapper4_1))
                         .value2(userService.count(queryWrapper4_2))
->>>>>>> develop
                         .name1("已完成核酸检测")
                         .name2("未完成核酸检测")
                         .build());
                 add(Returned_u.builder()
                         .date(reStr5)
-<<<<<<< HEAD
-                        .value1(peopleService.count(queryWrapper5_1))
-                        .value2(peopleService.count(queryWrapper5_2))
-=======
                         .value1(userService.count(queryWrapper5_1))
                         .value2(userService.count(queryWrapper5_2))
->>>>>>> develop
                         .name1("已完成核酸检测")
                         .name2("未完成核酸检测")
                         .build());
                 add(Returned_u.builder()
                         .date(reStr6)
-<<<<<<< HEAD
-                        .value1(peopleService.count(queryWrapper6_1))
-                        .value2(peopleService.count(queryWrapper6_2))
-=======
                         .value1(userService.count(queryWrapper6_1))
                         .value2(userService.count(queryWrapper6_2))
->>>>>>> develop
                         .name1("已完成核酸检测")
                         .name2("未完成核酸检测")
                         .build());
@@ -405,19 +265,6 @@ public class MonitorController {
     //本科生核酸统计校区统计
     @GetMapping("/under_campus")
     public Result getNucleic_Student_Campus(){
-<<<<<<< HEAD
-        QueryWrapper<People> queryWrapper1 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper2 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper3 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper4 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper5 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper6 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper7 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper8 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper9 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper10 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper11 = new QueryWrapper<>();
-=======
         QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper2 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper3 = new QueryWrapper<>();
@@ -429,7 +276,6 @@ public class MonitorController {
         QueryWrapper<User> queryWrapper9 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper10 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper11 = new QueryWrapper<>();
->>>>>>> develop
         queryWrapper1.eq("campus", "紫金港校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
         queryWrapper2.eq("campus", "玉泉校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
         queryWrapper3.eq("campus", "西溪校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
@@ -444,49 +290,6 @@ public class MonitorController {
         List<Returned_w> myList = new ArrayList<Returned_w>(){
             {
                 add(Returned_w.builder()
-<<<<<<< HEAD
-                        .value(peopleService.count(queryWrapper1))
-                        .name("紫金港校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper2))
-                        .name("玉泉校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper3))
-                        .name("西溪校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper4))
-                        .name("华家池校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper5))
-                        .name("之江校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper6))
-                        .name("海宁校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper7))
-                        .name("舟山校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper8))
-                        .name("宁波校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper9))
-                        .name("工程师学院")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper10))
-                        .name("杭州国际科创中心")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper11))
-=======
                         .value(userService.count(queryWrapper1))
                         .name("紫金港校区")
                         .build());
@@ -528,7 +331,6 @@ public class MonitorController {
                         .build());
                 add(Returned_w.builder()
                         .value(userService.count(queryWrapper11))
->>>>>>> develop
                         .name("其他")
                         .build());
             }
@@ -539,33 +341,14 @@ public class MonitorController {
     //本科生未检测名单
     @GetMapping("/under_no_check")
     public Result getNotNucleic_Student(){
-<<<<<<< HEAD
-        QueryWrapper<People> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("nucleic", "未检测").eq("identity", "undergraduate");
-        return Result.success(peopleService.list(queryWrapper));
-=======
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("nucleic", "未检测").eq("identity", "undergraduate");
         return Result.success(userService.list(queryWrapper));
->>>>>>> develop
     }
 
     //在校人数分校区统计
     @GetMapping("/in_school")
     public Result getCount_All(){
-<<<<<<< HEAD
-        QueryWrapper<People> queryWrapper1 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper2 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper3 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper4 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper5 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper6 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper7 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper8 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper9 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper10 = new QueryWrapper<>();
-        QueryWrapper<People> queryWrapper11 = new QueryWrapper<>();
-=======
         QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper2 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper3 = new QueryWrapper<>();
@@ -577,7 +360,6 @@ public class MonitorController {
         QueryWrapper<User> queryWrapper9 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper10 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper11 = new QueryWrapper<>();
->>>>>>> develop
         queryWrapper1.eq("campus", "紫金港校区");
         queryWrapper2.eq("campus", "玉泉校区");
         queryWrapper3.eq("campus", "西溪校区");
@@ -592,49 +374,6 @@ public class MonitorController {
         List<Returned_w> myList = new ArrayList<Returned_w>(){
             {
                 add(Returned_w.builder()
-<<<<<<< HEAD
-                        .value(peopleService.count(queryWrapper1))
-                        .name("紫金港校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper2))
-                        .name("玉泉校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper3))
-                        .name("西溪校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper4))
-                        .name("华家池校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper5))
-                        .name("之江校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper6))
-                        .name("海宁校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper7))
-                        .name("舟山校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper8))
-                        .name("宁波校区")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper9))
-                        .name("工程师学院")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper10))
-                        .name("杭州国际科创中心")
-                        .build());
-                add(Returned_w.builder()
-                        .value(peopleService.count(queryWrapper11))
-=======
                         .value(userService.count(queryWrapper1))
                         .name("紫金港校区")
                         .build());
@@ -676,7 +415,6 @@ public class MonitorController {
                         .build());
                 add(Returned_w.builder()
                         .value(userService.count(queryWrapper11))
->>>>>>> develop
                         .name("其他")
                         .build());
             }
@@ -684,19 +422,10 @@ public class MonitorController {
         return Result.success(myList);
     }
 
-<<<<<<< HEAD
-    @Autowired
-    IUserService userService;
-    @GetMapping("/unattendlist")
-    public Result unattendList(){
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("attend", "false");
-=======
     @GetMapping("/unattendlist")
     public Result unattendList(){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("attend", false);
->>>>>>> develop
         return Result.success(userService.list(queryWrapper));
     }
 
@@ -713,19 +442,6 @@ public class MonitorController {
         QueryWrapper<User> queryWrapper9 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper10 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper11 = new QueryWrapper<>();
-<<<<<<< HEAD
-        queryWrapper1.eq("campus", "紫金港校区").eq("attend", "false");
-        queryWrapper2.eq("campus", "玉泉校区").eq("attend", "false");
-        queryWrapper3.eq("campus", "西溪校区").eq("attend", "false");
-        queryWrapper4.eq("campus", "华家池校区").eq("attend", "false");
-        queryWrapper5.eq("campus", "之江校区").eq("attend", "false");
-        queryWrapper6.eq("campus", "海宁校区").eq("attend", "false");
-        queryWrapper7.eq("campus", "舟山校区").eq("attend", "false");
-        queryWrapper8.eq("campus", "宁波校区").eq("attend", "false");
-        queryWrapper9.eq("campus", "工程师学院").eq("attend", "false");
-        queryWrapper10.eq("campus", "杭州国际科创中心").eq("attend", "false");
-        queryWrapper11.eq("campus", "其他").eq("attend", "false");
-=======
         queryWrapper1.eq("campus", "紫金港校区").eq("attend", true);
         queryWrapper2.eq("campus", "玉泉校区").eq("attend", true);
         queryWrapper3.eq("campus", "西溪校区").eq("attend", true);
@@ -737,7 +453,6 @@ public class MonitorController {
         queryWrapper9.eq("campus", "工程师学院").eq("attend", true);
         queryWrapper10.eq("campus", "杭州国际科创中心").eq("attend", true);
         queryWrapper11.eq("campus", "其他").eq("attend", true);
->>>>>>> develop
         List<Returned_w> myList = new ArrayList<Returned_w>(){
             {
                 add(Returned_w.builder()
@@ -793,13 +508,8 @@ public class MonitorController {
     public Result attendnum(){
         QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
         QueryWrapper<User> queryWrapper2 = new QueryWrapper<>();
-<<<<<<< HEAD
-        queryWrapper1.eq("attend", "true");
-        queryWrapper2.eq("attend", "false");
-=======
         queryWrapper1.eq("attend", true);
         queryWrapper2.eq("attend", false);
->>>>>>> develop
         List<Returned_w> myList = new ArrayList<Returned_w>(){
             {
                 add(Returned_w.builder()

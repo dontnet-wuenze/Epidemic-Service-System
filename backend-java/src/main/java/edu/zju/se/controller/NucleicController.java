@@ -3,10 +3,7 @@ package edu.zju.se.controller;
 import edu.zju.se.common.Result;
 import edu.zju.se.entity.Nucleic;
 import edu.zju.se.service.INucleicService;
-<<<<<<< HEAD
-=======
 import edu.zju.se.service.IUserService;
->>>>>>> develop
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,11 +29,8 @@ import java.util.List;
 public class NucleicController {
   @Autowired
   INucleicService nucleicService;
-<<<<<<< HEAD
-=======
   @Autowired
   IUserService userService;
->>>>>>> develop
 
   @GetMapping("/appointment")
   public Result getAppointmentNumber(@RequestHeader("token") String userId) {
@@ -66,13 +60,7 @@ public class NucleicController {
   @PostMapping("/upload")
   public Result uploadResult(@RequestBody List<Nucleic> resultList) {
     nucleicService.postResult(resultList);
-<<<<<<< HEAD
-    return Result.success();
-  }
-
-=======
     userService.setNucleicTrue(resultList);
     return Result.success();
   }
->>>>>>> develop
 }
