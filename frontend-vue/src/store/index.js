@@ -3,6 +3,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import {userValidate} from '@/axios/api.js';
 import {userLogin} from '@/api/user.js';
+import message from "element-ui/packages/message";
 
 Vue.use(Vuex);
 
@@ -21,12 +22,13 @@ export default new Vuex.Store({
     },
     actions: {
         async login({commit}, userdata){
+            console.log(userdata)
             await userLogin(userdata).then(res=> {
                 console.log(res);
                 // 登录成功后将接口返回的token保存在本地
                 localStorage.setItem('token', res.data.token);
                 // 将用户名保存在vuex中
-                commit('setUsername', res.data.username);
+                commit('setUsername', res.data.name);
                 commit('setAuth', res.data.authorization);
             })
         },

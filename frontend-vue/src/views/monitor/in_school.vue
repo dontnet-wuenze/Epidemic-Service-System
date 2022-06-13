@@ -18,19 +18,19 @@
  
 <script>
 import * as echarts from "echarts";
- 
+import request from '@/utils/request'
 export default {
   data() {
     return {
       xData: ["紫金港", "玉泉", "西溪", "之江", "华家池", "海宁", "舟山"], //横坐标
-      yData: [23, 24, 18, 25, 27, 28, 25], //人数数据
-      taskDate: [10, 11, 9, 17, 14, 13, 14],
+      yData: [], //人数数据
+      taskDate: [],
       myChartStyle: { float: "left", width: "100%", height: "400px" }, //图表样式
       charts: '',
           opinion:['在校总人数','不在校总人数'],
           opinionData:[
-            {value:335, name:'在校总人数'},
-            {value:310, name:'不在校总人数'},
+            {},
+            {},
                 
           ]
     };
@@ -41,8 +41,17 @@ export default {
     this.$nextTick(function() {
                 this.drawPie('main')
             })
+    this.get_number().then(res => {
+      this.yData = res.data.data
+    })
   },
   methods: {
+    get_number() {
+      return request({
+          url: '/api/monitor/in_school',
+          method: 'get',
+      })
+    },
     goOff(){
             this.$router.go(-1);
         },

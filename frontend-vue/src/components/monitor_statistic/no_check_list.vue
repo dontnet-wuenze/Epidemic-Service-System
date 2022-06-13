@@ -79,10 +79,21 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+import { sendNotice } from "@/api/statistic";
+import request from '@/utils/request'
+import departmentJSON from './department.json'
+let departmentList = departmentJSON.departmentList
+
+import majorJSON from './major.json'
+let majorList = majorJSON.majorList
+>>>>>>> develop
 export default {
   name: "peopleList",
   data() {
     return {
+<<<<<<< HEAD
       multipleSelection: [],
       search: '',
       tableData: [{
@@ -188,6 +199,23 @@ export default {
     }
   },
   methods: {
+=======
+      loading: true,
+      departmentList: departmentList,
+      majorList: majorList,
+      multipleSelection: [],
+      search: '',
+      tableData: []
+    }
+  },
+  methods: {
+    get_nocheck() {
+      return request({
+          url: '/api/monitor/w_no_check',
+          method: 'get',
+      })
+    },
+>>>>>>> develop
     toggleSelection(rows) {
       if (rows) {
         rows.forEach(row => {
@@ -203,7 +231,53 @@ export default {
     filterMajor(value, row, column) {
       const property = column['property'];
       return row[property] === value;
+<<<<<<< HEAD
     }
+=======
+    },
+    sendSingleNotice(index, row) {
+      var noticeList = [];
+      noticeList.push(row.id);
+      var send_data = {
+        noticeList: noticeList
+      }
+      sendNotice(send_data).then(res=>{
+        console.log(res)
+        this.$message.success('发送通知成功')
+      })
+    },
+    sendMultiNotice() {
+      this.$confirm('是否向所有选中的人发送消息?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        var noticeList = [];
+        this.multipleSelection.forEach(value => {
+          noticeList.push(value.id)
+        })
+        var send_data = {
+          noticeList: noticeList
+        }
+        sendNotice(send_data).then(res=>{
+          console.log(res)
+          this.$message.success('发送通知成功')
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消'
+        });
+      });
+    }
+  },
+  async mounted() {
+    this.loading = true
+    this.get_nocheck().then(res => {
+      this.tableData = res.data.unattendList;
+      this.loading = false;
+    })
+>>>>>>> develop
   }
 }
 </script>

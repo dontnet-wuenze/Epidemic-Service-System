@@ -53,10 +53,8 @@ export default {
 submitForm(formName){
       this.$refs[formName].validate( (valid) =>{
         if(valid){
-          var user_data = {
-            id: this.$refs[formName].id,
-            password: this.$refs[formName].password
-          }
+          var user_data = this.rulesForm
+          console.log(user_data)
           //如果校检通过，在这里向后端发送用户名和密码
           this.$store.dispatch('login', user_data).then(() => {
             // 登陆成功之后，路由跳转至用户账户页或者进行你需要的操作

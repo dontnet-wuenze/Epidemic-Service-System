@@ -33,13 +33,15 @@ export default{
         _this.staff_id = res.data.staff_id
         _this.user_result = res.data.user_result
         _this.result_time = res.data.result_time
+        if(_this.user_result !== 0 && _this.user_result !== 1)
+          _this.user_result = 2;
       })
   },
   data(){
     return {
       name:'',
       staff_id:'',
-      user_result: '',
+      user_result: '2',
       result_addr: ['/img/health/nu-neg.png', '/img/health/nu-pos.png', '/img/health/nu-ukn.png'],
       result_time: ''
     }

@@ -43,7 +43,7 @@ export default {
       this.username = res.data.name
       this.department = res.data.department
       this.major = res.data.major
-      this.cclass = res.data.class
+      this.cclass = res.data.administrativeclass
       this.phone = res.data.phone
     })
   }

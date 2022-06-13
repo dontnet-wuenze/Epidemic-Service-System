@@ -6,6 +6,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 
+<<<<<<< HEAD
+=======
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+>>>>>>> develop
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,6 +26,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+<<<<<<< HEAD
+=======
+@JsonIgnoreProperties(ignoreUnknown = true)
+>>>>>>> develop
 @TableName("nucleic")
 public class Nucleic implements Serializable {
 
@@ -50,18 +58,30 @@ public class Nucleic implements Serializable {
     /**
      * 预约日期
      */
+<<<<<<< HEAD
+=======
+    @JsonProperty("appDate")
+>>>>>>> develop
     @TableField("app_date")
     private String appDate;
 
     /**
      * 预约时间(1/2/3/4代表四个时间段)
      */
+<<<<<<< HEAD
+=======
+    @JsonProperty("appTime")
+>>>>>>> develop
     @TableField("app_time")
     private Integer appTime;
 
     /**
      * 预约检查点
      */
+<<<<<<< HEAD
+=======
+    @JsonProperty("appAddress")
+>>>>>>> develop
     @TableField("app_address")
     private String appAddress;
 

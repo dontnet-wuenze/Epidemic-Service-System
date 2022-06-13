@@ -46,7 +46,7 @@
                   </div>
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="systemNotice">系统通知</el-dropdown-item>
-                    <el-dropdown-item>申请记录</el-dropdown-item>
+                    <el-dropdown-item command="applyRecord">申请记录</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
               </el-col>
@@ -117,14 +117,21 @@
           <button class="notice-button">全部标为已读</button>
         </div>
         <div class="drawer-notice">
-          <div class="notice-container" v-for="notice in currentNotice" :key="notice.date">
-            <div class="notice-container-top">
-              <div class="notice-container-date">{{notice.date}}</div>
-              <div class="notice-container-title">{{notice.title}}</div>
-            </div>
-            <div class="notice-container-bottom">
-              {{notice.detail}}
-            </div>
+          <div class="notice-container" v-for="notice in currentNotice" :key="notice.id" :class="{'boldFont':notice.read === true}">
+            <el-row>
+              <el-col :span="20">
+                <div class="notice-container-top" >
+                  <div class="notice-container-date">{{notice.date}}</div>
+                  <div class="notice-container-title">{{notice.title}}</div>
+                </div>
+                <div class="notice-container-bottom">
+                  {{notice.detail}}
+                </div>
+              </el-col>
+              <el-col :span="4">
+                <button v-if="notice.read" class="read-button" @click="readNotice(notice.id)">已读</button>
+              </el-col>
+            </el-row>
           </div>
         </div>
         <div class="splitPage">
@@ -156,9 +163,11 @@ export default {
       currentNotice: [],
       noticeList: [
         {
+          id: 10,
           title: '今日未打卡',
           date: '2022-05-16 09:57:16',
-          detail: '请及时打卡，当日未打卡取消健康码!'
+          detail: '请及时打卡，当日未打卡取消健康码!',
+          read: true
         },
         {
           title: '今日未打卡',
@@ -245,6 +254,8 @@ export default {
     handleNoticeMenu(command) {
       if(command==='systemNotice') {
         this.drawer=true
+      } else if(command==='applyRecord') {
+        this.$router.push('/approval/Application_Log')
       }
     },
     handleClose(done) {
@@ -260,6 +271,12 @@ export default {
       //这样得到的currentdata就是固定只有10个值的数组了，就可以用v-for展示啦
       this.currentNotice = this.noticeList.slice((currentindex-1)*8, currentindex*8)
       console.log(currentindex);
+    },
+    readNotice(id) {
+      console.log(id)
+    },
+    readAllNotice() {
+
     }
   },
   components: {
@@ -344,6 +361,9 @@ export default {
   justify-content: center;
 }
 
+.boldFont {
+  font-weight: bold;
+}
 
 .header-box{
   width: 100%;
@@ -541,7 +561,21 @@ body > .el-container {
   margin-left: 15px;
 }
 
+.read-button {
+  margin-top: 15px;
+  width: 70px;
+  height: 30px;
+  background-color: #5198d8;
+  color: #fcfcfc;
+  border: 0px;
+  border-radius: 3px;
+}
+
 .notice-button:hover {
+  filter: brightness(1.2);
+}
+
+.read-button:hover {
   filter: brightness(1.2);
 }
 

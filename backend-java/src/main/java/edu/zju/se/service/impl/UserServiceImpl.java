@@ -1,5 +1,11 @@
 package edu.zju.se.service.impl;
 
+<<<<<<< HEAD
+=======
+import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
+import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
+import edu.zju.se.entity.Nucleic;
+>>>>>>> develop
 import edu.zju.se.entity.Punch;
 import edu.zju.se.entity.User;
 import edu.zju.se.mapper.UserMapper;
@@ -10,6 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
+=======
+import java.util.List;
+
+>>>>>>> develop
 /**
  * <p>
  *  服务实现类
@@ -37,6 +48,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                     .major(tempUser.getMajor())
                     .administrativeclass(tempUser.getAdministrativeclass())
                     .phone(tempUser.getPhone())
+<<<<<<< HEAD
+=======
+                    .permission(tempUser.getPermission())
+>>>>>>> develop
                     .build();
   }
 
@@ -45,7 +60,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     if (getById(user.getId()) != null) {
       return false;
     } else {
+<<<<<<< HEAD
       save(user);
+=======
+      try {
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+          user.setPassword(user.getId().substring(user.getId().length() - 6));
+        }
+      } catch (Exception e) {
+        throw new RuntimeException("ID cannot shorter than 6.", e);
+      } saveOrUpdate(user);
+>>>>>>> develop
       punchService.save(Punch.builder()
               .id(user.getId())
               .status(false)
@@ -74,4 +99,29 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             .build();
   }
 
+<<<<<<< HEAD
+=======
+  @Override
+  public void setNucleicTrue(List<Nucleic> resultList){
+    LambdaUpdateChainWrapper<User> updateWrapper = new LambdaUpdateChainWrapper<>(getBaseMapper());
+    for (Nucleic res : resultList) {
+      updateWrapper.eq(User::getId, res.getStaffId())
+              .set(User::getNucleic, "已检测")
+              .set(User::getDate, res.getAppDate())
+              .update();
+    }
+  }
+
+  @Override public User getAdminOfStudent(String stu_id) {
+    try {
+      User student = getById(stu_id);
+      LambdaQueryChainWrapper<User> queryWrapper = new LambdaQueryChainWrapper<>(getBaseMapper());
+      return queryWrapper.eq(User::getDepartment, student.getDepartment())
+          .eq(User::getPermission, "admin").list().get(0);
+    } catch (Exception e) {
+      throw new RuntimeException("No Result!");
+    }
+  }
+
+>>>>>>> develop
 }

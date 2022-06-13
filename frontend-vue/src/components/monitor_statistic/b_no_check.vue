@@ -79,115 +79,32 @@
 </template>
 
 <script>
+import { sendNotice } from "@/api/statistic";
+import request from '@/utils/request'
+import departmentJSON from './department.json'
+let departmentList = departmentJSON.departmentList
+
+import majorJSON from './major.json'
+let majorList = majorJSON.majorList
 export default {
   name: "peopleList",
   data() {
     return {
+      loading: true,
+      departmentList: departmentList,
+      majorList: majorList,
       multipleSelection: [],
       search: '',
-      tableData: [{
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      },
-      ]
+      tableData: []
     }
   },
   methods: {
+    get_b_nocheck() {
+      return request({
+          url: '/api/monitor/under_no_check',
+          method: 'get',
+      })
+    },
     toggleSelection(rows) {
       if (rows) {
         rows.forEach(row => {
@@ -203,7 +120,49 @@ export default {
     filterMajor(value, row, column) {
       const property = column['property'];
       return row[property] === value;
+    },
+    sendSingleNotice(index, row) {
+      var noticeList = [];
+      noticeList.push(row.id);
+      var send_data = {
+        noticeList: noticeList
+      }
+      sendNotice(send_data).then(res=>{
+        console.log(res)
+        this.$message.success('发送通知成功')
+      })
+    },
+    sendMultiNotice() {
+      this.$confirm('是否向所有选中的人发送消息?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        var noticeList = [];
+        this.multipleSelection.forEach(value => {
+          noticeList.push(value.id)
+        })
+        var send_data = {
+          noticeList: noticeList
+        }
+        sendNotice(send_data).then(res=>{
+          console.log(res)
+          this.$message.success('发送通知成功')
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消'
+        });
+      });
     }
+  },
+  async mounted() {
+    this.loading = true
+    this.get_b_nocheck().then(res => {
+      this.tableData = res.data.unattendList;
+      this.loading = false;
+    })
   }
 }
 </script>

@@ -10,7 +10,7 @@
          <el-row>
            <el-col :span="6">
              <el-form-item label="申请编号">
-               {{form.id}}
+               {{form.form_id}}
              </el-form-item>
            </el-col>
            <el-col :span="7" :offset="3">
@@ -83,13 +83,13 @@
               <el-option label="下午3:00-4:30" value="3"></el-option>
               <el-option label="下午4:30-6:00" value="4"></el-option>
             </el-select>
-          </el-form-item>   
+          </el-form-item>
           <el-divider></el-divider>
           <div class="submit-btn">
             <el-form-item>
               <el-button type="primary" @click="submitForm('NucleicAppointmentForm')">提交表单</el-button>
             </el-form-item>
-          </div>    
+          </div>
         </el-form>
      </div>
    </div>
@@ -106,7 +106,7 @@ export default {
   data() {
     return {
       form:{
-        id: '',
+        form_id: '',
         name: '',
         staff_id: '',
         date: Date.now(),
@@ -149,14 +149,16 @@ export default {
   async mounted(){
       let _this = this;
       nucleicGetAppointment().then(res=>{
-        _this.form.id = res.data.form_id;
+        _this.form.form_id = res.data.form_id;
       })
   },
   methods: {
     submitForm(form_name) {
       this.$refs[form_name].validate((valid) =>{
         if(valid) {
+          console.log(this.form)
           nucleicAppointment(this.form);
+
         }
         else {
           this.$message.error('表单填写有误，请检查后重新提交!');

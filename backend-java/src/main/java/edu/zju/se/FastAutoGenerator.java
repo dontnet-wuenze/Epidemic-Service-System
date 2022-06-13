@@ -18,6 +18,12 @@ package edu.zju.se;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
+<<<<<<< HEAD
+=======
+import com.baomidou.mybatisplus.generator.config.converts.DB2TypeConvert;
+import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
+import com.baomidou.mybatisplus.generator.config.converts.SqliteTypeConvert;
+>>>>>>> develop
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
@@ -235,7 +241,12 @@ public final class FastAutoGenerator {
   }
 
   private static final DataSourceConfig.Builder DATA_SOURCE_CONFIG = new DataSourceConfig
+<<<<<<< HEAD
           .Builder("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL", "root", "admin");
+=======
+      .Builder("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL", "root", "admin")
+      .typeConvert(new SqliteTypeConvert());
+>>>>>>> develop
 
   // 处理 all 情况
   protected static List<String> getTables(String tables) {
@@ -247,7 +258,11 @@ public final class FastAutoGenerator {
     FastAutoGenerator.create(DATA_SOURCE_CONFIG)
             // 全局配置
             .globalConfig(builder -> builder.author("Boris Li").disableOpenDir()
+<<<<<<< HEAD
                     .outputDir(System.getProperty("user.dir") + "/src/main/java/"))
+=======
+            .outputDir(System.getProperty("user.dir") + "/src/main/java/"))
+>>>>>>> develop
             // 包配置
             .packageConfig(builder -> builder.parent("edu.zju.se"))
             // 策略配置

@@ -1,5 +1,9 @@
 package edu.zju.se.entity;
 
+<<<<<<< HEAD
+=======
+import com.baomidou.mybatisplus.annotation.TableName;
+>>>>>>> develop
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +13,10 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Builder
+<<<<<<< HEAD
+=======
+@TableName("monitor")
+>>>>>>> develop
 public class Monitor implements Serializable {
     private static final long serialVersionUID = 1L;
 
