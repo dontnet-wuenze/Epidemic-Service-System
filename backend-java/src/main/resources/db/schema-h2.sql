@@ -5,19 +5,29 @@ CREATE TABLE user
     id VARCHAR(20) NOT NULL COMMENT '主键ID-学工号',
     name VARCHAR(30) NULL DEFAULT NULL COMMENT '姓名',
     password VARCHAR(50) NOT NULL COMMENT '密码',
+<<<<<<< HEAD
+    permission VARCHAR(30) NULL DEFAULT NULL COMMENT '权限身份',
+    department VARCHAR(100) NULL DEFAULT NULL COMMENT '学院',
+    major VARCHAR(100) NULL DEFAULT NULL COMMENT '专业',
+=======
     identity VARCHAR(20) NULL DEFAULT NULL COMMENT '身份',
     permission VARCHAR(30) NULL DEFAULT NULL COMMENT '权限身份',
     department VARCHAR(100) NULL DEFAULT NULL COMMENT '学院',
     major VARCHAR(100) NULL DEFAULT NULL COMMENT '专业',
     grade VARCHAR(5) NULL DEFAULT NULL COMMENT '年级',
+>>>>>>> develop
     administrativeClass VARCHAR(20) NULL DEFAULT NULL COMMENT '班级',
     campus VARCHAR(50) NULL DEFAULT NULL COMMENT '校区',
     phone VARCHAR(20) NULL DEFAULT NULL COMMENT '电话号码',
     code VARCHAR(2) NULL DEFAULT NULL COMMENT '通行码',
+<<<<<<< HEAD
+    attend VARCHAR(5) NOT NULL DEFAULT 'false' COMMENT '是否已打卡',
+=======
     healthyCode VARCHAR(100) NULL DEFAULT NULL COMMENT '健康码',
     attend BOOLEAN NOT NULL DEFAULT FALSE COMMENT '是否已打卡',
     nucleic VARCHAR(30) NULL DEFAULT NULL COMMENT '核酸检测完成情况',
     date VARCHAR(15) NULL DEFAULT NULL COMMENT '最近检测日期',
+>>>>>>> develop
     PRIMARY KEY (id)
 );
 
@@ -32,6 +42,24 @@ CREATE TABLE monitor
     PRIMARY KEY (id)
 );
 
+<<<<<<< HEAD
+CREATE TABLE people
+(
+    id VARCHAR(20) NOT NULL COMMENT '主键ID-学工号',
+    name VARCHAR(30) NULL DEFAULT NULL COMMENT '姓名',
+    identity VARCHAR(20) NULL DEFAULT NULL COMMENT '身份',
+    grade VARCHAR(5) NULL DEFAULT NULL COMMENT '年级',
+    department VARCHAR(100) NULL DEFAULT NULL COMMENT '学院',
+    major VARCHAR(100) NULL DEFAULT NULL COMMENT '专业',
+    _class VARCHAR(50) NULL DEFAULT NULL COMMENT '班级',
+    phoneNumber VARCHAR(30) NULL DEFAULT NULL COMMENT '电话号码',
+    nucleic VARCHAR(30) NULL DEFAULT NULL COMMENT '核酸检测完成情况',
+    healthyCode VARCHAR(100) NULL DEFAULT NULL COMMENT '健康码',
+    campus VARCHAR(50) NULL DEFAULT NULL COMMENT '校区',
+    date VARCHAR(15) NULL DEFAULT NULL COMMENT '最近检测日期',
+    PRIMARY KEY (id)
+);
+=======
 -- CREATE TABLE people
 -- (
 --     id VARCHAR(20) NOT NULL COMMENT '主键ID-学工号',
@@ -48,16 +76,26 @@ CREATE TABLE monitor
 --     date VARCHAR(15) NULL DEFAULT NULL COMMENT '最近检测日期',
 --     PRIMARY KEY (id)
 -- );
+>>>>>>> develop
 
 CREATE TABLE message
 (
     userid VARCHAR(20) NOT NULL COMMENT '用户ID',
+<<<<<<< HEAD
+    id VARCHAR(20) NOT NULL COMMENT '消息ID',
+    title VARCHAR(20) NULL DEFAULT NULL COMMENT '消息标题',
+    date VARCHAR(30) NULL DEFAULT NULL COMMENT '消息时间',
+    detail VARCHAR(100) NULL DEFAULT NULL COMMENT '消息内容',
+    read VARCHAR(5) not NULL DEFAULT 'false' COMMENT '是否已读',
+    PRIMARY KEY (id)
+=======
     msgid VARCHAR(20) NOT NULL COMMENT '消息ID',
     title VARCHAR(20) NULL DEFAULT NULL COMMENT '消息标题',
     date VARCHAR(30) NULL DEFAULT NULL COMMENT '消息时间',
     detail VARCHAR(100) NULL DEFAULT NULL COMMENT '消息内容',
     read BOOLEAN not NULL DEFAULT FALSE COMMENT '是否已读',
     PRIMARY KEY (msgid)
+>>>>>>> develop
 );
 
 CREATE TABLE nucleic
@@ -83,6 +121,15 @@ CREATE TABLE punch
     date VARCHAR(20) NULL DEFAULT NULL COMMENT '日期',
     campus VARCHAR(50) NULL DEFAULT NULL COMMENT '校区',
     region VARCHAR(50) NULL DEFAULT NULL COMMENT '地区',
+<<<<<<< HEAD
+    oncampus VARCHAR(5) NULL DEFAULT NULL COMMENT '是否在校',
+    Codestatus VARCHAR(2) NULL DEFAULT NULL COMMENT '通行码状态',
+    fever VARCHAR(5) NULL DEFAULT NULL COMMENT '是否发烧',
+    control VARCHAR(5) NULL DEFAULT NULL COMMENT '是否在控制区',
+    contact VARCHAR(5) NULL DEFAULT NULL COMMENT '是否密接',
+    status VARCHAR(5) NULL DEFAULT NULL COMMENT '是否已打卡',
+    PRIMARY KEY (id)
+=======
     onCampus BOOLEAN NULL DEFAULT NULL COMMENT '是否在校',
     codeStatus VARCHAR(2) NULL DEFAULT NULL COMMENT '通行码状态',
     fever BOOLEAN NULL DEFAULT NULL COMMENT '是否发烧',
@@ -103,4 +150,5 @@ CREATE TABLE form
     content VARCHAR(3000) NULL DEFAULT NULL COMMENT '表单内容',
     application_time VARCHAR(50) NOT NULL COMMENT '申请时间',
     PRIMARY KEY (form_id)
+>>>>>>> develop
 );
