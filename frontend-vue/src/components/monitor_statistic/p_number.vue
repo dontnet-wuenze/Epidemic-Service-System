@@ -15,12 +15,8 @@
 </template>
 <script>
 import * as echarts from "echarts";
-<<<<<<< HEAD
- 
-=======
 import request from '@/utils/request'
 
->>>>>>> develop
 export default {
   data() {
     return {
@@ -29,28 +25,12 @@ export default {
       taskDate: [10, 11, 9, 17, 14, 13, 14],
       myChartStyle: { float: "left", width: "100%", height: "400px" }, //图表样式
       charts: '',
-<<<<<<< HEAD
-          opinion:['全校已完成','全校未完成'],
-          opinionData:[
-            {value:335, name:'全校已完成'},
-            {value:310, name:'全校未完成'},
-                
-          ]
-=======
       opinion:['全校已完成','全校未完成'],
       opinionData:[]
->>>>>>> develop
     };
   },
   name: '',
   mounted() {
-<<<<<<< HEAD
-    this.$nextTick(function() {
-                this.drawPie('main')
-            })
-  },
-  methods: {
-=======
     const axios = require('axios');
     this.$nextTick(function() {
                 this.drawPie('main')
@@ -66,7 +46,6 @@ export default {
           method: 'get',
       })
     },
->>>>>>> develop
     goOff(){
             this.$router.go(-1);
         },

@@ -79,8 +79,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
 import { sendNotice } from "@/api/statistic";
 import request from '@/utils/request'
 import departmentJSON from './department.json'
@@ -88,118 +86,10 @@ let departmentList = departmentJSON.departmentList
 
 import majorJSON from './major.json'
 let majorList = majorJSON.majorList
->>>>>>> develop
 export default {
   name: "peopleList",
   data() {
     return {
-<<<<<<< HEAD
-      multipleSelection: [],
-      search: '',
-      tableData: [{
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      }, {
-        id: '3190102222',
-        name: '王小虎',
-        department: '计算机科学与技术学院',
-        major: '计算机科学与技术',
-        class: '计科1901',
-        phone: '13888888888'
-      },
-      ]
-    }
-  },
-  methods: {
-=======
       loading: true,
       departmentList: departmentList,
       majorList: majorList,
@@ -215,7 +105,6 @@ export default {
           method: 'get',
       })
     },
->>>>>>> develop
     toggleSelection(rows) {
       if (rows) {
         rows.forEach(row => {
@@ -231,9 +120,6 @@ export default {
     filterMajor(value, row, column) {
       const property = column['property'];
       return row[property] === value;
-<<<<<<< HEAD
-    }
-=======
     },
     sendSingleNotice(index, row) {
       var noticeList = [];
@@ -277,7 +163,6 @@ export default {
       this.tableData = res.data.unattendList;
       this.loading = false;
     })
->>>>>>> develop
   }
 }
 </script>
