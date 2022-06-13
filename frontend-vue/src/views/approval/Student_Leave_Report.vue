@@ -31,7 +31,7 @@
             </el-col>
             <el-col :span="5" :offset="2">
               <el-form-item label="学号">
-                <el-input v-model="form.stu_id" readonly="true"></el-input>
+                <el-input v-model="form.st_id" readonly="true"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -63,16 +63,16 @@
             <el-col :span="6" :offset="1">
               <el-form-item label="所在校区" prop="campus">
                 <el-select v-model="form.campus" filterable clearable placeholder="请选择校区">
-                  <el-option label="紫金港校区 Zijingang" value="Zijingang"></el-option>
-                  <el-option label="玉泉校区 Yuquan" value="Yuquan"></el-option>
-                  <el-option label="西溪校区 Xixi" value="Xixi"></el-option>
-                  <el-option label="华家池校区 Huajiachi" value="Huajiachi"></el-option>
-                  <el-option label="之江校区 Zhijiang" value="Zhijiang"></el-option>
-                  <el-option label="海宁校区 Haining" value="Haining"></el-option>
-                  <el-option label="舟山校区 Zhoushan" value="Zhoushan"></el-option>
-                  <el-option label="宁波校区 Ningbo" value="Ningbo"></el-option>
-                  <el-option label="工程师学院 Polytechnic Institue" value="Polytechnic Institue"></el-option>
-                  <el-option label="杭州国际科创中心 Innovation Center" value="Innovation Center"></el-option>
+                  <el-option label="紫金港校区" value="Zijingang"></el-option>
+                  <el-option label="玉泉校区" value="Yuquan"></el-option>
+                  <el-option label="西溪校区" value="Xixi"></el-option>
+                  <el-option label="华家池校区" value="Huajiachi"></el-option>
+                  <el-option label="之江校区" value="Zhijiang"></el-option>
+                  <el-option label="海宁校区" value="Haining"></el-option>
+                  <el-option label="舟山校区" value="Zhoushan"></el-option>
+                  <el-option label="宁波校区" value="Ningbo"></el-option>
+                  <el-option label="工程师学院" value="Polytechnic Institue"></el-option>
+                  <el-option label="杭州国际科创中心" value="Innovation Center"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
@@ -118,13 +118,13 @@
           <el-form-item label="预计返校日期" prop="return_date">
             <el-date-picker type="date" v-model="form.return_date" placeholder="请选择日期"></el-date-picker>
           </el-form-item>
-          <el-form-item label="往返交通工具" prop="vehicle">
+          <el-form-item label="往返交通工具" prop="vehicle_kind">
             <el-select v-model="form.vehicle_kind">
               <el-option label="家庭自备车辆" value="family_car"></el-option>
               <el-option label="公共交通工具" value="public_transport"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item v-if="form.vehicle == 'public_transport'" label="具体车次" prop="transport_num">
+          <el-form-item v-if="form.vehicle_kind == 'public_transport'" label="具体车次" prop="transport_num">
             <el-input v-model="form.transport_num" style="width: 500px"></el-input>
           </el-form-item>
           <el-row>
@@ -172,10 +172,13 @@
 </template>
 
 <script>
-import { regionData } from "element-china-area-data";
+import { departmentList } from "@/components/statistic/department"
+import { regionData } from "element-china-area-data"
+import { stu_leave_submit, get_apply_id } from "@/api/approval"
+import router from "@/router"
 
 export default {
-  name: "student_leave_report",
+  name: "student_leave_form",
   data() {
     let validCascader = (rule, value, callback) => {
       if (this.form.location.length === 0) {
@@ -184,8 +187,8 @@ export default {
         callback();
       }
     }
-    let vlidator_transport_num = (rule, value, callback) => {
-      if (this.form.vehicle == "public_transport") {
+    let validator_transport_num = (rule, value, callback) => {
+      if (this.form.vehicle_kind == "public_transport") {
         if(!value) {
           callback(new Error('该栏不能为空'));
         } else {
@@ -198,29 +201,32 @@ export default {
     return {
       form: {
         id: '1145141919810',
+        date: Date.now(),
         name: 'Lingsing',
-        stu_id: '3190103176',
-        date: Date.now()
+        st_id: '3190103176',
+        telenum: '',
+        email: '',
+        institute: '',
+        campus: '',
+        in_residence: '',
+        address: '',
+        parent_name: '',
+        parent_tele: '',
+        tutor_name: '',
+        tutor_tele: '',
+        leave_date: '',
+        return_date: '',
+        vehicle_kind: '',
+        transport_num: '',
+        location: [],
+        address_1: '',
+        reason_1: '',
+        remark: '',
+        promise: ''
       },
-      locations:regionData,
-      //选项不完整，待完成
-      institutes: [{
-       value: 'BaoWeiChu',
-       label: '安全保卫处' 
-      },{
-        value: 'BeiJing',
-        label: '北京研究院'
-      },{
-        value: 'BenKe',
-        label: '本科生院'
-      },{
-        value: 'CaiGou',
-        label: '采购管理办公室'
-      },{
-        value: 'DangWei',
-        label: '党委办公室(含保密办公室、信访办公室)'
-      }],
-      //校验，等待完善
+      locations: regionData,
+      institutes: departmentList,
+      //校验规则
       rules: {
         telenum: [
           { required: true, message: "该栏不能为空", trigger: "blur" }
@@ -259,11 +265,11 @@ export default {
         return_date: [
           { required: true, message: "请选择日期", trigger: "change" }
         ],
-        vehicle: [
+        vehicle_kind: [
           { required: true, message: "请选择乘坐交通工具", trigger: "change"}
         ],
         transport_num: [
-          { required: true, validator:vlidator_transport_num, trigger: "blur" }
+          { required: true, validator:validator_transport_num, trigger: "blur" }
         ],
         location: [
           { required: true, validator:validCascader, trigger: "change" }
@@ -284,11 +290,40 @@ export default {
     goOff(){
       this.$router.go(-1);
     },
-
     submitForm(form_name) {
       this.$refs[form_name].validate((valid) =>{
         if(valid) {
-          this.$message.success('提交成功!');
+          var submit_data = {
+            id: this.form.id,
+            date: this.form.date,
+            name: this.form.name,
+            st_id: this.form.st_id,
+            telenum: this.form.telenum,
+            email: this.form.email,
+            institute: this.form.institute,
+            campus: this.form.campus,
+            in_residence: this.form.in_residence,
+            address: this.form.address,
+            parent_name: this.form.parent_name,
+            parent_tele: this.form.parent_tele,
+            tutor_name: this.form.tutor_name,
+            tutor_tele: this.form.tutor_tele,
+            leave_date: this.form.leave_date,
+            return_date: this.form.return_date,
+            vehicle_kind: this.form.vehicle_kind,
+            transport_num: this.form.transport_num,
+            location: this.form.location,
+            address_1: this.form.address_1,
+            reason_1: this.form.reason_1,
+            remark: this.form.remark,
+            promise: this.form.promise
+          }
+          stu_leave_submit(submit_data).then(res => {
+            this.$message.success('提交成功!');
+            router.go(0);
+          }).catch(error => {
+              this.$message.error(error)
+          })
         }
         else {
           this.$message.error('表单填写有误，请检查后重新提交!');
@@ -296,6 +331,17 @@ export default {
         }
       });
     }
+  },
+  async mounted() {
+    let _this = this;
+    get_apply_id().then(res => {
+      _this.form.id = res.data.id;
+      _this.form.date = Date.now();
+      _this.form.name = res.data.name;
+      _this.form.st_id = res.data.staff_id;
+    }).catch(error=> {
+      console.log(error);
+    })
   }
 }
 </script>
