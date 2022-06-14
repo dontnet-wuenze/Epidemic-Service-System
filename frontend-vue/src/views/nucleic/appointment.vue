@@ -149,7 +149,7 @@ export default {
   async mounted(){
       let _this = this;
       nucleicGetAppointment().then(res=>{
-        _this.form.form_id = res.data.form_id;
+        _this.form.form_id = res.data.form_id.toString();
       })
   },
   methods: {

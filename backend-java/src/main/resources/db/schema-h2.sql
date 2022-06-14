@@ -62,7 +62,7 @@ CREATE TABLE message
 
 CREATE TABLE nucleic
 (
-    form_id BIGINT(20) NOT NULL COMMENT '主键ID-表单ID',
+    form_id VARCHAR(30) NOT NULL COMMENT '主键ID-表单ID',
     name VARCHAR(30) NULL DEFAULT NULL COMMENT '姓名',
     staff_id VARCHAR(50) NOT NULL COMMENT '学工号',
     app_date VARCHAR(50) NULL DEFAULT NULL COMMENT '预约日期',

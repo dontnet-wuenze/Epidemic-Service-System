@@ -35,8 +35,8 @@ public class NucleicController {
   @GetMapping("/appointment")
   public Result getAppointmentNumber(@RequestHeader("token") String userId) {
     try {
-      long formId = nucleicService.getNewFormId(userId);
-      return Result.success(new HashMap<String, Long>(){{put("form_id", formId);}});
+      String formId = nucleicService.getNewFormId(userId);
+      return Result.success(new HashMap<String, String>(){{put("form_id", formId);}});
     } catch (RuntimeException e) {
       return Result.fail(e.getMessage());
     }

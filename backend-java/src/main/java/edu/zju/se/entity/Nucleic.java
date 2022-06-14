@@ -18,7 +18,7 @@ import lombok.Setter;
  * </p>
  *
  * @author Boris Li
- * @since 2022-06-01
+ * @since 2022-06-10
  */
 @Getter
 @Setter
@@ -32,9 +32,9 @@ public class Nucleic implements Serializable {
     /**
      * 主键ID-表单ID
      */
-    @JsonProperty("form_id")
     @TableId(value = "form_id", type = IdType.ASSIGN_ID)
-    private Long formId;
+    @JsonProperty("form_id")
+    private String formId;
 
     /**
      * 姓名
@@ -45,8 +45,8 @@ public class Nucleic implements Serializable {
     /**
      * 学工号
      */
-    @JsonProperty("staff_id")
     @TableField("staff_id")
+    @JsonProperty("staff_id")
     private String staffId;
 
     /**
@@ -93,5 +93,6 @@ public class Nucleic implements Serializable {
      */
     @TableField("result")
     private Integer result;
+
 
 }
