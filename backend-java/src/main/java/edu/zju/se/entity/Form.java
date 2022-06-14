@@ -1,5 +1,6 @@
 package edu.zju.se.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -36,7 +37,7 @@ public class Form implements Serializable {
     /**
      * 表单 ID
      */
-    @TableId("form_id")
+    @TableId(value = "form_id", type = IdType.ASSIGN_UUID)
     @JsonProperty("form_id")
     @JsonAlias("id")
     private String formId;

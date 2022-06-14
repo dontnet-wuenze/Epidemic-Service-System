@@ -22,7 +22,7 @@ import java.util.List;
 public class NucleicServiceImpl extends ServiceImpl<NucleicMapper, Nucleic> implements INucleicService {
 
   @Override
-  public long getNewFormId(String userId) {
+  public String getNewFormId(String userId) {
     Nucleic nucleic = Nucleic.builder()
         .staffId(userId)
         .build();
