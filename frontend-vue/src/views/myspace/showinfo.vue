@@ -37,6 +37,18 @@ export default {
       phone: '13991391032',
     }
   },
+  watch: {
+    '$route' (to, from) {
+      userInfo().then(res=> {
+        this.id = res.data.id
+        this.username = res.data.name
+        this.department = res.data.department
+        this.major = res.data.major
+        this.cclass = res.data.administrativeclass
+        this.phone = res.data.phone
+      })
+    }
+  },
   async mounted() {
     userInfo().then(res=> {
       this.id = res.data.id
