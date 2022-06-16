@@ -39,7 +39,7 @@
                 <el-dropdown style="width: 100%;" @command="handleNoticeMenu">
                   <div class="notice-box" style="cursor: pointer">
                     <div style="display: flex; justify-content: center; align-items: center">
-                      <el-badge class="notice" :value="10">
+                      <el-badge hidden="!notice_num" class="notice" :value="notice_num">
                         <i class="el-icon-bell" style="font-size: 20px; color: white"></i>
                       </el-badge>
                     </div>
@@ -119,7 +119,7 @@
         <div class="drawer-notice">
           <div class="notice-container" v-for="notice in currentNotice" :key="notice.id" :class="{'boldFont':notice.read === true}">
             <el-row>
-              <el-col :span="20">
+              <el-col :span="20" v-bind:class="{unread: !notice.read}">
                 <div class="notice-container-top" >
                   <div class="notice-container-date">{{notice.date}}</div>
                   <div class="notice-container-title">{{notice.title}}</div>
@@ -152,6 +152,7 @@
 <script>
 //import HelloWorld from "@/components/HelloWorld";
 import {sendNotice} from "@/api/statistic";
+import {userNotice} from "@/api/user";
 
 export default {
   name: 'Header',
@@ -161,6 +162,7 @@ export default {
       direction: 'rtl',
       isLogin: !!localStorage.getItem('token'),
       currentNotice: [],
+      notice_num: 0,
       noticeList: [
         {
           id: 10,
@@ -283,7 +285,17 @@ export default {
     //HelloWorld
   },
   mounted() {
-    this.currentNotice = this.noticeList.slice(0, 8)
+    userNotice().then(res=> {
+      this.noticeList = res.noticeList;
+      this.notice_num = 0;
+      for(const notice of this.noticeList) {
+        if(notice.read === false) {
+          this.notice_num++;
+        }
+      }
+      this.currentNotice = this.noticeList.slice(0, 8)
+    })
+
   }
 }
 </script>
@@ -341,6 +353,10 @@ export default {
   background: white;
   margin: 0 auto;
   position: relative;
+}
+
+.unread{
+  font-weight: bold;
 }
 
 .notice-box{
