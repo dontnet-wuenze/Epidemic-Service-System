@@ -69,7 +69,7 @@ export default {
       _this.user_code = res.data.code;
       _this.user_name = res.data.name;
       _this.user_department = res.data.department;
-      _this.user_grade = res.data.grade;
+      _this.user_grade = "本科生";
       setTimeout(() => {
         loading.close();
       }, 1000);

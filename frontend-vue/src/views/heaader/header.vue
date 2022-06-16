@@ -39,7 +39,7 @@
                 <el-dropdown style="width: 100%;" @command="handleNoticeMenu">
                   <div class="notice-box" style="cursor: pointer">
                     <div style="display: flex; justify-content: center; align-items: center">
-                      <el-badge hidden="!notice_num" class="notice" :value="notice_num">
+                      <el-badge :hidden="!notice_num" class="notice" :value="notice_num">
                         <i class="el-icon-bell" style="font-size: 20px; color: white"></i>
                       </el-badge>
                     </div>
@@ -74,9 +74,9 @@
         <img src="/img/health/text.png">
       </div>
       <div class="content-box">
-        <keep-alive>
+        <!--keep-alive-->
          <router-view></router-view>
-        </keep-alive>
+        <!--/keep-alive-->
       </div>
     </div>
     <div class="footer-box">
@@ -114,12 +114,12 @@
         :before-close="handleClose">
       <div class="drawer-container">
         <div class="drawer-button">
-          <button class="notice-button">全部标为已读</button>
+          <button class="notice-button" @click="readAllNotice">全部标为已读</button>
         </div>
         <div class="drawer-notice">
-          <div class="notice-container" v-for="notice in currentNotice" :key="notice.id" :class="{'boldFont':notice.read === true}">
+          <div class="notice-container" v-for="notice in currentNotice" :key="notice.id" :class="{'boldFont':notice.read === false}">
             <el-row>
-              <el-col :span="20" v-bind:class="{unread: !notice.read}">
+              <el-col :span="20">
                 <div class="notice-container-top" >
                   <div class="notice-container-date">{{notice.date}}</div>
                   <div class="notice-container-title">{{notice.title}}</div>
@@ -129,7 +129,7 @@
                 </div>
               </el-col>
               <el-col :span="4">
-                <button v-if="notice.read" class="read-button" @click="readNotice(notice.id)">已读</button>
+                <button v-if="!notice.read" class="read-button" @click="readNotice(notice.id)">已读</button>
               </el-col>
             </el-row>
           </div>
@@ -163,70 +163,7 @@ export default {
       isLogin: !!localStorage.getItem('token'),
       currentNotice: [],
       notice_num: 0,
-      noticeList: [
-        {
-          id: 10,
-          title: '今日未打卡',
-          date: '2022-05-16 09:57:16',
-          detail: '请及时打卡，当日未打卡取消健康码!',
-          read: true
-        },
-        {
-          title: '今日未打卡',
-          date: '2022-05-16 09:57:16',
-          detail: '请及时打卡，当日未打卡取消健康码!'
-        },
-        {
-          title: '今日未打卡',
-          date: '2022-05-16 09:57:16',
-          detail: '请及时打卡，当日未打卡取消健康码!'
-        },
-        {
-          title: '今日未打卡',
-          date: '2022-05-16 09:57:16',
-          detail: '请及时打卡，当日未打卡取消健康码!'
-        },
-        {
-          title: '今日未打卡',
-          date: '2022-05-16 09:57:16',
-          detail: '请及时打卡，当日未打卡取消健康码!'
-        },
-        {
-          title: '今日未打卡',
-          date: '2022-05-16 09:57:16',
-          detail: '请及时打卡，当日未打卡取消健康码!'
-        },
-        {
-          title: '今日未打卡',
-          date: '2022-05-16 09:57:16',
-          detail: '请及时打卡，当日未打卡取消健康码!'
-        },
-        {
-          title: '今日未打卡',
-          date: '2022-05-16 09:57:16',
-          detail: '请及时打卡，当日未打卡取消健康码!'
-        },
-        {
-          title: '今日未打卡',
-          date: '2022-05-16 09:57:16',
-          detail: '请及时打卡，当日未打卡取消健康码!'
-        },
-        {
-          title: '今日未打卡',
-          date: '2022-05-16 09:57:16',
-          detail: '请及时打卡，当日未打卡取消健康码!'
-        },
-        {
-          title: '今日未打卡',
-          date: '2022-05-16 09:57:16',
-          detail: '请及时打卡，当日未打卡取消健康码!'
-        },
-        {
-          title: '今日未打卡',
-          date: '2022-05-16 09:57:16',
-          detail: '请及时打卡，当日未打卡取消健康码!'
-        }
-      ]
+      noticeList: []
     }
   },
   watch: {
@@ -276,9 +213,40 @@ export default {
     },
     readNotice(id) {
       console.log(id)
+      let readList = []
+      readList.push(id)
+      sendNotice(readList).then(res=>{
+        userNotice().then(res=> {
+          this.noticeList = res.data;
+          this.notice_num = 0;
+          for(const notice of this.noticeList) {
+            if(notice.read === false) {
+              this.notice_num++;
+            }
+          }
+          this.currentNotice = this.noticeList.slice(0, 8)
+        })
+      })
     },
     readAllNotice() {
-
+      let readList = []
+      for(const notice of this.noticeList) {
+        if(notice.read === false) {
+          readList.push(notice.id)
+        }
+      }
+      sendNotice(readList).then(res=>{
+        userNotice().then(res=> {
+          this.noticeList = res.data;
+          this.notice_num = 0;
+          for(const notice of this.noticeList) {
+            if(notice.read === false) {
+              this.notice_num++;
+            }
+          }
+          this.currentNotice = this.noticeList.slice(0, 8)
+        })
+      })
     }
   },
   components: {
@@ -286,7 +254,7 @@ export default {
   },
   mounted() {
     userNotice().then(res=> {
-      this.noticeList = res.noticeList;
+      this.noticeList = res.data;
       this.notice_num = 0;
       for(const notice of this.noticeList) {
         if(notice.read === false) {
