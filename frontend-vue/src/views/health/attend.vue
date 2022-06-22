@@ -152,8 +152,10 @@ import router from "@/router";
 const dayjs = require('dayjs');
 
 function regionConvert(region) {
+  console.log(region)
   var regionList = region.split(',')
   var List = []
+  console.log(regionList)
   List[0] = TextToCode[regionList[0]].code;
   List[1] = TextToCode[regionList[0]][regionList[1]].code;
   List[2] = TextToCode[regionList[0]][regionList[1]][regionList[2]].code;
@@ -240,8 +242,8 @@ export default {
       _this.status = res.data.status;
       if(res.data.status) {
         _this.form.campus = res.data.campus;
-        _this.form.onCampus = res.data.onCampus;
-        _this.form.codeStatus = res.data.codeStatus;
+        _this.form.onCampus = res.data.oncampus;
+        _this.form.codeStatus = res.data.codestatus;
         _this.form.fever = res.data.fever;
         _this.form.control = res.data.control;
         _this.form.contact = res.data.contact;
@@ -256,7 +258,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          if(this.inputCode == this.identifyCode) {
+          if(this.inputCode === this.identifyCode) {
             var submit_data = {
               id: this.form.id,
               name: this.form.name,
