@@ -1,5 +1,6 @@
 package edu.zju.se.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import edu.zju.se.entity.Form;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,15 +19,15 @@ class FormControllerTest {
     formController.getApplyId("3190102303");
   }
 
-  @Test void testGetForm() {
+  @Test void testGetForm() throws JsonProcessingException {
     formController.getForm("3190102303", "11111111");
   }
 
-  @Test void testGetUserFormList() {
+  @Test void testGetUserFormList() throws JsonProcessingException {
     testGetForm();
   }
 
-  @Test void testGetApprovalFormList() {
+  @Test void testGetApprovalFormList() throws JsonProcessingException {
     testGetForm();
   }
 }
