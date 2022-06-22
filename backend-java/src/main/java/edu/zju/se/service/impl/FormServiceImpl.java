@@ -1,12 +1,8 @@
 package edu.zju.se.service.impl;
 
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
-import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import edu.zju.se.entity.Form;
-import edu.zju.se.entity.Nucleic;
-import edu.zju.se.entity.User;
 import edu.zju.se.mapper.FormMapper;
-import edu.zju.se.mapper.UserMapper;
 import edu.zju.se.service.IFormService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import edu.zju.se.service.IUserService;
@@ -44,12 +40,15 @@ public class FormServiceImpl extends ServiceImpl<FormMapper, Form> implements IF
     if (!updateById(form)) {
       throw new RuntimeException("Provided form_id is invalid, please try again!");
     }
-    userService.updateCodeToYellow(form.getStaffId());
+    userService.updateCode(form.getStaffId(), "1");
   }
 
   @Override public void postPassPhraseForm(Form form) {
     if (!updateById(form)) {
       throw new RuntimeException("Provided form_id is invalid, please try again!");
+    }
+    if ("审核通过".equals(form.getStatus())) {
+      userService.updateCode(form.getStaffId(), "0");
     }
   }
 
