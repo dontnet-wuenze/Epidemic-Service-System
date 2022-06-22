@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
@@ -14,7 +15,7 @@ import lombok.Setter;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Boris Li
@@ -47,6 +48,7 @@ public class Nucleic implements Serializable {
      */
     @TableField("staff_id")
     @JsonProperty("staff_id")
+    @JsonAlias("id")
     private String staffId;
 
     /**
@@ -54,6 +56,7 @@ public class Nucleic implements Serializable {
      */
     @JsonProperty("appDate")
     @TableField("app_date")
+    @JsonAlias("date")
     private String appDate;
 
     /**

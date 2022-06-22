@@ -31,7 +31,7 @@ export default{
       nucleicResult().then(res=>{
         _this.name = res.data.name
         _this.staff_id = res.data.staff_id
-        _this.user_result = res.data.user_result
+        _this.user_result = res.data.result
         _this.result_time = res.data.result_time
         if(_this.user_result !== 0 && _this.user_result !== 1)
           _this.user_result = 2;

@@ -16,7 +16,7 @@ public class MessageController {
     IMessageService msgService;
     @Autowired
     IUserService userService;
-    @PostMapping
+    @PostMapping("/sendnotice")
     public Result sendMsg(@Validated @RequestBody Message msg){
         User user = userService.getById(msg.getUserid());
         if(user == null){

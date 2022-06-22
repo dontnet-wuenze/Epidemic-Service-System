@@ -157,8 +157,9 @@ export default {
       this.$refs[form_name].validate((valid) =>{
         if(valid) {
           console.log(this.form)
-          nucleicAppointment(this.form);
-
+          nucleicAppointment(this.form).then(res=> {
+            this.$message.success('预约成功');
+          })
         }
         else {
           this.$message.error('表单填写有误，请检查后重新提交!');

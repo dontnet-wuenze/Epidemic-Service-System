@@ -101,7 +101,7 @@ export default {
   methods: {
     get_b_nocheck() {
       return request({
-          url: '/api/monitor/under_no_check',
+          url: '/monitor/under_no_check',
           method: 'get',
       })
     },
