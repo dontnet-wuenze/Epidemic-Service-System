@@ -156,6 +156,9 @@ public class FormController {
     List<Map<String, String>> resultList = new ArrayList<>();
     User user = userService.getUserInfoById(userId);
     for (Form form : formList) {
+      if (form.getFormType() == null) {
+        continue;
+      }
       resultList.add(new HashMap<String, String>(){{
         put("applicant", user.getName());
         put("application_time", form.getApplicationTime());
@@ -171,6 +174,9 @@ public class FormController {
     List<Form> formList = formService.getApprovalForm(userId);
     List<Map<String, String>> resultList = new ArrayList<>();
     for (Form form : formList) {
+      if (form.getFormType() == null) {
+        continue;
+      }
       User user = userService.getUserInfoById(form.getStaffId());
       resultList.add(new HashMap<String, String>(){{
         put("id", form.getFormId());
