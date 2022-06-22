@@ -56,13 +56,15 @@ export function get_form_approval_list() {
 export function get_stu_passphrase_form(id) {
   return request({
     url: '/apply/get_stu_passphrase_form',
-    method: 'get'
+    method: 'post',
+    data: id
   })
 }
 
 export function get_staff_passphrase_form(id) {
   return request({
     url: '/apply/get_staff_passphrase_form',
-    method: 'get'
+    method: 'post',
+    data: id
   })
 }
