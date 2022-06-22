@@ -12,10 +12,10 @@
   <div style="width: 100%;height: 100%;margin-left: 28%;" >
     <div id="main" style="width: 600px;height: 300px;align-items: center;"></div>
   </div>
-  
+
 </div>
 </template>
- 
+
 <script>
 import * as echarts from "echarts";
 import request from '@/utils/request'
@@ -31,7 +31,7 @@ export default {
           opinionData:[
             {},
             {},
-                
+
           ]
     };
   },
@@ -48,7 +48,7 @@ export default {
   methods: {
     get_number() {
       return request({
-          url: '/api/monitor/in_school',
+          url: '/monitor/in_school',
           method: 'get',
       })
     },
@@ -102,7 +102,7 @@ export default {
                this.charts.setOption({
                  tooltip: {
                    trigger: 'item',
-                  
+
                  },
                  legend: {
                    orient: 'vertical',
@@ -163,7 +163,7 @@ export default {
     overflow: hidden;
     cursor: pointer;
 }
- 
+
 .button:after {
     content: "";
     background: #a9a9a9;

@@ -6,11 +6,11 @@
   <div style="width:100%;height:30px;text-align: center;">
     <div style="height:30px;width:100%;"></div>
   </div>
-  
+
   <div style="width: 100%;height: 300px;margin-left: 20%;margin-top: 10%;" >
     <div id="main" style="width: 600px;height: 300px;align-items: center;"></div>
   </div>
-   
+
 </div>
 </template>
 <script>
@@ -42,7 +42,7 @@ export default {
   methods: {
     getnumber() {
       return request({
-          url: '/api/monitor/w_number',
+          url: '/monitor/w_number',
           method: 'get',
       })
     },
@@ -54,7 +54,7 @@ export default {
                this.charts.setOption({
                  tooltip: {
                    trigger: 'item',
-                  
+
                  },
                  legend: {
                    orient: 'vertical',
@@ -115,7 +115,7 @@ export default {
     overflow: hidden;
     cursor: pointer;
 }
- 
+
 .button:after {
     content: "";
     background: #a9a9a9;

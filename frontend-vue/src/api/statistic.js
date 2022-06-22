@@ -16,7 +16,7 @@ export function attendNum() {
 
 export function sendNotice(data) {
     return request({
-        url: '/sendnotice',
+        url: '/message/sendnotice',
         method: 'post',
         data : data
     })

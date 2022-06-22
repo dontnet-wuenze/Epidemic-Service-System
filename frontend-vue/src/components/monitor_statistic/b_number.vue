@@ -27,7 +27,7 @@ import request from '@/utils/request'
         methods:{
         get_b_number() {
             return request({
-                url: '/api/monitor/under_number',
+                url: '/monitor/under_number',
                 method: 'get',
             })
         },
@@ -147,7 +147,7 @@ import request from '@/utils/request'
     overflow: hidden;
     cursor: pointer;
 }
- 
+
 .button:after {
     content: "";
     background: #a9a9a9;

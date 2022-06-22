@@ -28,7 +28,7 @@ export default {
           opinionData:[
             {value:335, name:'全校本科生已完成'},
             {value:310, name:'全校本科生未完成'},
-                
+
           ]
     };
   },
@@ -45,7 +45,7 @@ export default {
   methods: {
     get_b_campus() {
       return request({
-          url: '/api/monitor/under_campus',
+          url: '/monitor/under_campus',
           method: 'get',
       })
     },
@@ -99,7 +99,7 @@ export default {
                this.charts.setOption({
                  tooltip: {
                    trigger: 'item',
-                  
+
                  },
                  legend: {
                    orient: 'vertical',
@@ -160,7 +160,7 @@ export default {
     overflow: hidden;
     cursor: pointer;
 }
- 
+
 .button:after {
     content: "";
     background: #a9a9a9;

@@ -26,7 +26,7 @@ export default {
           opinionData:[
             {value:335, name:'全校已完成'},
             {value:310, name:'全校未完成'},
-                
+
           ]
     };
   },
@@ -43,7 +43,7 @@ export default {
   methods: {
     get_campus_number() {
       return request({
-          url: '/api/monitor/w_campus',
+          url: '/monitor/w_campus',
           method: 'get',
       })
     },
@@ -97,7 +97,7 @@ export default {
                this.charts.setOption({
                  tooltip: {
                    trigger: 'item',
-                  
+
                  },
                  legend: {
                    orient: 'vertical',
@@ -158,7 +158,7 @@ export default {
     overflow: hidden;
     cursor: pointer;
 }
- 
+
 .button:after {
     content: "";
     background: #a9a9a9;
