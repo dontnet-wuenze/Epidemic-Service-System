@@ -28,4 +28,5 @@ public interface IUserService extends IService<User> {
 
   User getAdminOfStudent(String stu_id);
 
+  void updateCodeToYellow(String userId);
 }

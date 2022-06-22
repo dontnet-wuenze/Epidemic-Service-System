@@ -6,9 +6,11 @@ import edu.zju.se.entity.Form;
 import edu.zju.se.entity.Nucleic;
 import edu.zju.se.entity.User;
 import edu.zju.se.mapper.FormMapper;
+import edu.zju.se.mapper.UserMapper;
 import edu.zju.se.service.IFormService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import edu.zju.se.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +26,9 @@ import java.util.List;
 @Service
 public class FormServiceImpl extends ServiceImpl<FormMapper, Form> implements IFormService {
 
+  @Autowired
+  IUserService userService;
+
   @Override
   public String getNewFormId(String userId) {
     Form form = Form.builder()
@@ -36,14 +41,10 @@ public class FormServiceImpl extends ServiceImpl<FormMapper, Form> implements IF
     }
   }
   @Override public void postLeaveForm(Form form) {
-    IUserService userService = new UserServiceImpl();
-    LambdaUpdateChainWrapper<User> updateWrapper = new LambdaUpdateChainWrapper<>(userService.getBaseMapper());
-    updateWrapper.eq(User::getId, form.getStaffId())
-        .set(User::getCode, "1")
-        .update();
     if (!updateById(form)) {
       throw new RuntimeException("Provided form_id is invalid, please try again!");
     }
+    userService.updateCodeToYellow(form.getStaffId());
   }
 
   @Override public void postPassPhraseForm(Form form) {
