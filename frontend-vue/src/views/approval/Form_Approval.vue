@@ -331,10 +331,10 @@
               <el-divider></el-divider>
               <el-row>
                 <el-col span="10">
-                  <el-form-item label="审核人意见" prop="auditor_advice">
-                    <el-radio-group v-model="stu_passphrase_approval.auditor_advice">
-                      <el-radio label="true">同意</el-radio>
-                      <el-radio label="false">不同意</el-radio>
+                  <el-form-item label="审核人意见" prop="status">
+                    <el-radio-group v-model="stu_passphrase_approval.status">
+                      <el-radio label="审核通过">同意</el-radio>
+                      <el-radio label="审核不通过">不同意</el-radio>
                     </el-radio-group>
                   </el-form-item>
                 </el-col>
@@ -652,10 +652,10 @@
               <el-divider></el-divider>
               <el-row>
                 <el-col span="10">
-                  <el-form-item label="审核人意见" prop="auditor_advice">
-                    <el-radio-group v-model="staff_passphrase_approval.auditor_advice">
-                      <el-radio label="true">同意</el-radio>
-                      <el-radio label="false">不同意</el-radio>
+                  <el-form-item label="审核人意见" prop="status">
+                    <el-radio-group v-model="staff_passphrase_approval.status">
+                      <el-radio label="审核通过">同意</el-radio>
+                      <el-radio label="审核不通过">不同意</el-radio>
                     </el-radio-group>
                   </el-form-item>
                 </el-col>
@@ -698,7 +698,7 @@ export default {
       institutes: departmentList,
       tabledata: [],
       rules:{
-        auditor_advice: { required: true, message: "请选择是否通过", trigger: "change"}
+        status: { required: true, message: "请选择是否通过", trigger: "change"}
       },
 
       stu_passphrase_approval: {
@@ -799,7 +799,7 @@ export default {
         if(row.application_type === "学生通行码申请") {
           this.stu_passphrase_form_visible = true;
           get_stu_passphrase_form(row.id).then(res => {
-            this.stu_passphrase_approval.id = res.data.form_id;
+            this.stu_passphrase_approval.id = res.data.id;
             this.stu_passphrase_approval.date = res.data.date;
             this.stu_passphrase_approval.name = res.data.name;
             this.stu_passphrase_approval.st_id = res.data.st_id;
@@ -844,7 +844,7 @@ export default {
             console.log(error);
           })
         }
-        else if(row.application_type == "教职工通行码申请") {
+        else if(row.application_type === "教职工通行码申请") {
           this.staff_passphrase_form_visible = true;
           get_staff_passphrase_form(row.id).then(res => {
             this.staff_passphrase_approval.id = res.data.id;
@@ -897,107 +897,108 @@ export default {
     submitForm(form_name) {
       this.$refs[form_name].validate((valid) =>{
         if(valid) {
-          if(form_name == "StuPassphraseApplication") {
+          if(form_name === "StuPassphraseApplication") {
             var stu_submit_data = {
-              id: this.stu_passphrase_approvalid,
-              date: this.stu_passphrase_approvaldate,
-              name: this.stu_passphrase_approvalname,
-              st_id: this.stu_passphrase_approvalst_id,
-              telenum: this.stu_passphrase_approvaltelenum,
-              email: this.stu_passphrase_approvalemail,
-              institute: this.stu_passphrase_approvalinstitute,
-              campus: this.stu_passphrase_approvalcampus,
-              in_residence: this.stu_passphrase_approvalin_residence,
-              address: this.stu_passphrase_approvaladdress,
-              parent_name: this.stu_passphrase_approvalparent_name,
-              parent_tele: this.stu_passphrase_approvalparent_tele,
-              fever: this.stu_passphrase_approvalfever,
-              contact_patient: this.stu_passphrase_approvalcontact_patient,
-              abroad: this.stu_passphrase_approvalabroad,
-              contact_abroad: this.stu_passphrase_approvalcontact_abroad,
-              roommate: this.stu_passphrase_approvalroommate,
-              macao: this.stu_passphrase_approvalmacao,
-              high_risk: this.stu_passphrase_approvalhigh_risk,
-              medium_risk: this.stu_passphrase_approvalmedium_risk,
-              control_area: this.stu_passphrase_approvalcontrol_area,
-              prevent_area: this.stu_passphrase_approvalprevent_area,
-              certificate: this.stu_passphrase_approvalcertificate,
-              health_code: this.stu_passphrase_approvalhealth_code,
+              id: this.stu_passphrase_approval.id,
+              date: this.stu_passphrase_approval.date,
+              name: this.stu_passphrase_approval.name,
+              st_id: this.stu_passphrase_approval.st_id,
+              telenum: this.stu_passphrase_approval.telenum,
+              email: this.stu_passphrase_approval.email,
+              institute: this.stu_passphrase_approval.institute,
+              campus: this.stu_passphrase_approval.campus,
+              in_residence: this.stu_passphrase_approval.in_residence,
+              address: this.stu_passphrase_approval.address,
+              parent_name: this.stu_passphrase_approval.parent_name,
+              parent_tele: this.stu_passphrase_approval.parent_tele,
+              fever: this.stu_passphrase_approval.fever,
+              contact_patient: this.stu_passphrase_approval.contact_patient,
+              abroad: this.stu_passphrase_approval.abroad,
+              contact_abroad: this.stu_passphrase_approval.contact_abroad,
+              roommate: this.stu_passphrase_approval.roommate,
+              macao: this.stu_passphrase_approval.macao,
+              high_risk: this.stu_passphrase_approval.high_risk,
+              medium_risk: this.stu_passphrase_approval.medium_risk,
+              control_area: this.stu_passphrase_approval.control_area,
+              prevent_area: this.stu_passphrase_approval.prevent_area,
+              certificate: this.stu_passphrase_approval.certificate,
+              health_code: this.stu_passphrase_approval.health_code,
               health_code_list: this.$refs['stu_health_code_upload'].uploadFiles,
               route_list: this.$refs['stu_route_upload'].uploadFiles,
-              route_star: this.stu_passphrase_approvalroute_star,
+              route_star: this.stu_passphrase_approval.route_star,
               nucleic_list: this.$refs['stu_nucleic_upload'].uploadFiles,
-              vaccine: this.stu_passphrase_approvalvaccine,
+              vaccine: this.stu_passphrase_approval.vaccine,
               vaccine_list: this.$refs['stu_vaccine_upload'].uploadFiles,
-              remark: this.stu_passphrase_approvalremark,
-              location: this.stu_passphrase_approvallocation,
-              return_date: this.stu_passphrase_approvalreturn_date,
-              return_period: this.stu_passphrase_approvalreturn_period,
-              vehicle_kind: this.stu_passphrase_approvalvehicle_kind,
-              vehicle: this.stu_passphrase_approvalvehicle,
-              arrive_date: this.stu_passphrase_approvalarrive_date,
-              arrive_time: this.stu_passphrase_approvalarrive_time,
-              transport_num: this.stu_passphrase_approvaltransport_num,
-              arrive_port: this.stu_passphrase_approvalarrive_port,
-              promise: this.stu_passphrase_approvalpromise,
-              auditor_advice: this.stu_passphrase_approvalauditor_advice,
-              auditor_remark: this.stu_passphrase_approvalauditor_remark
+              remark: this.stu_passphrase_approval.remark,
+              location: this.stu_passphrase_approval.location,
+              return_date: this.stu_passphrase_approval.return_date,
+              return_period: this.stu_passphrase_approval.return_period,
+              vehicle_kind: this.stu_passphrase_approval.vehicle_kind,
+              vehicle: this.stu_passphrase_approval.vehicle,
+              arrive_date: this.stu_passphrase_approval.arrive_date,
+              arrive_time: this.stu_passphrase_approval.arrive_time,
+              transport_num: this.stu_passphrase_approval.transport_num,
+              arrive_port: this.stu_passphrase_approval.arrive_port,
+              promise: this.stu_passphrase_approval.promise,
+              status: this.stu_passphrase_approval.status,
+              auditor_remark: this.stu_passphrase_approval.auditor_remark
             }
             stu_passphrase_submit(stu_submit_data).then(res => {
               this.$message.success('提交成功!');
+              this.$router.go(-1);
             }).catch(error => {
                 this.$message.error(error)
             })
           } else {
             var staff_submit_data = {
-              id: this.staff_passphrase_approvalid,
-              date: this.staff_passphrase_approvaldate,
-              name: this.staff_passphrase_approvalname,
-              st_id: this.staff_passphrase_approvalst_id,
-              telenum: this.staff_passphrase_approvaltelenum,
-              email: this.staff_passphrase_approvalemail,
-              institute: this.staff_passphrase_approvalinstitute,
-              campus: this.staff_passphrase_approvalcampus,
-              address: this.staff_passphrase_approvaladdress,
-              fever: this.staff_passphrase_approvalfever,
-              contact_patient: this.staff_passphrase_approvalcontact_patient,
-              abroad: this.staff_passphrase_approvalabroad,
-              contact_abroad: this.staff_passphrase_approvalcontact_abroad,
-              roommate: this.staff_passphrase_approvalroommate,
-              macao: this.staff_passphrase_approvalmacao,
-              high_risk: this.staff_passphrase_approvalhigh_risk,
-              medium_risk: this.staff_passphrase_approvalmedium_risk,
-              control_area: this.staff_passphrase_approvalcontrol_area,
-              prevent_area: this.staff_passphrase_approvalprevent_area,
-              certificate: this.staff_passphrase_approvalcertificate,
-              health_code: this.staff_passphrase_approvalhealth_code,
+              id: this.staff_passphrase_approval.id,
+              date: this.staff_passphrase_approval.date,
+              name: this.staff_passphrase_approval.name,
+              st_id: this.staff_passphrase_approval.st_id,
+              telenum: this.staff_passphrase_approval.telenum,
+              email: this.staff_passphrase_approval.email,
+              institute: this.staff_passphrase_approval.institute,
+              campus: this.staff_passphrase_approval.campus,
+              address: this.staff_passphrase_approval.address,
+              fever: this.staff_passphrase_approval.fever,
+              contact_patient: this.staff_passphrase_approval.contact_patient,
+              abroad: this.staff_passphrase_approval.abroad,
+              contact_abroad: this.staff_passphrase_approval.contact_abroad,
+              roommate: this.staff_passphrase_approval.roommate,
+              macao: this.staff_passphrase_approval.macao,
+              high_risk: this.staff_passphrase_approval.high_risk,
+              medium_risk: this.staff_passphrase_approval.medium_risk,
+              control_area: this.staff_passphrase_approval.control_area,
+              prevent_area: this.staff_passphrase_approval.prevent_area,
+              certificate: this.staff_passphrase_approval.certificate,
+              health_code: this.staff_passphrase_approval.health_code,
               health_code_list: this.$refs['staff_health_code_upload'].uploadFiles,
               route_list: this.$refs['staff_route_upload'].uploadFiles,
-              route_star: this.staff_passphrase_approvalroute_star,
+              route_star: this.staff_passphrase_approval.route_star,
               nucleic_list: this.$refs['staff_nucleic_upload'].uploadFiles,
-              vaccine: this.staff_passphrase_approvalvaccine,
+              vaccine: this.staff_passphrase_approval.vaccine,
               vaccine_list: this.$refs['staff_vaccine_upload'].uploadFiles,
-              remark: this.staff_passphrase_approvalremark,
-              location: this.staff_passphrase_approvallocation,
-              return_date: this.staff_passphrase_approvalreturn_date,
-              return_period: this.staff_passphrase_approvalreturn_period,
-              vehicle_kind: this.staff_passphrase_approvalvehicle_kind,
-              vehicle: this.staff_passphrase_approvalvehicle,
-              arrive_date: this.staff_passphrase_approvalarrive_date,
-              arrive_time: this.staff_passphrase_approvalarrive_time,
-              transport_num: this.staff_passphrase_approvaltransport_num,
-              arrive_port: this.staff_passphrase_approvalarrive_port,
-              promise: this.staff_passphrase_approvalpromise,
-              auditor_advice: this.staff_passphrase_approvalauditor_advice,
-              auditor_remark: this.staff_passphrase_approvalauditor_remark
+              remark: this.staff_passphrase_approval.remark,
+              location: this.staff_passphrase_approval.location,
+              return_date: this.staff_passphrase_approval.return_date,
+              return_period: this.staff_passphrase_approval.return_period,
+              vehicle_kind: this.staff_passphrase_approval.vehicle_kind,
+              vehicle: this.staff_passphrase_approval.vehicle,
+              arrive_date: this.staff_passphrase_approval.arrive_date,
+              arrive_time: this.staff_passphrase_approval.arrive_time,
+              transport_num: this.staff_passphrase_approval.transport_num,
+              arrive_port: this.staff_passphrase_approval.arrive_port,
+              promise: this.staff_passphrase_approval.promise,
+              status: this.staff_passphrase_approval.status,
+              auditor_remark: this.staff_passphrase_approval.auditor_remark
             }
             staff_passphrase_submit(staff_submit_data).then(res => {
               this.$message.success('提交成功!');
+              this.$router.go(-1);
             }).catch(error => {
                 this.$message.error(error)
             })
           }
-          this.$message.success('提交成功!');
         }
         else {
           this.$message.error('表单填写有误，请检查后重新提交!');
