@@ -15,8 +15,8 @@
       :auto-upload="false">
       <el-button size="small" type="primary" style="margin-bottom:15px;">读取excel文件</el-button>
       </el-upload>
-      <el-table 
-        :data="tableData" 
+      <el-table
+        :data="tableData"
         max-height="250"
         border
         style="width: 100%">
@@ -48,7 +48,7 @@
           <el-select v-model="input_result" filterable clearable placeholder="请选择检测结果" >
             <el-option label = "阳性" value="阳性"></el-option>
             <el-option label = "阴性" value="阴性"></el-option>
-          </el-select>          
+          </el-select>
         </el-col>
 
         <el-button @click="addlist()">
@@ -59,7 +59,7 @@
       <el-button-group>
         <el-button type="primary" @click="deleteAll">清空</el-button>
         <el-button type="primary" @click="submitAll">提交</el-button>
-      </el-button-group> 
+      </el-button-group>
     </div>
   </div>
 </template>
@@ -118,7 +118,7 @@ import {nucleicUpload} from '@/api/nucleic.js';
       const fileName = file.name
       const fileType = fileName.substring(fileName.lastIndexOf('.') + 1)
       if (this.fileContent) {
-    
+
         if (fileType === 'xlsx' || fileType === 'xls') {
           this.importfile(this.fileContent)
         }
@@ -128,7 +128,7 @@ import {nucleicUpload} from '@/api/nucleic.js';
             type: 'warning',
             message: '附件格式错误，请重新上传！'})
         }
-      } 
+      }
       else {
         this.$message({
           type: 'warning',
@@ -148,7 +148,7 @@ import {nucleicUpload} from '@/api/nucleic.js';
       const bytes = new Uint8Array(buffer)
       const length = bytes.byteLength
       let binary = ''
-      for (let i = 0; i < length; i++) 
+      for (let i = 0; i < length; i++)
       {
         binary += String.fromCharCode(bytes[i])
       }
@@ -184,16 +184,13 @@ import {nucleicUpload} from '@/api/nucleic.js';
     },
     submitAll: function(){
       console.log(this.tableData)
-      nucleicUpload(this.tableData).then(res=>{
-        if(res.data.success == 0)
-          this.$message.error('传输失败');
-        else
-          this.$message.success('传输成功');
-        });
+      nucleicUpload(this.tableData).then(res=> {
+        this.$message.success("上传成功!")
+      })
     },
   }
 }
-</script> 
+</script>
 
 <style scoped>
 .content-box-title h3{
