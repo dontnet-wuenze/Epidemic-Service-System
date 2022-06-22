@@ -60,11 +60,7 @@ public class UserController {
     QueryWrapper<Message> queryWrapper = new QueryWrapper<>();
     queryWrapper.eq("userid", userid);
     List<Message> result = msgService.list(queryWrapper);
-    if(result.isEmpty()){
-      return Result.fail("This user has no message.");
-    }else{
-      return Result.success(result);
-    }
+    return Result.success(result);
   }
 
   @GetMapping("/code")
