@@ -105,7 +105,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
       return queryWrapper.eq(User::getDepartment, student.getDepartment())
           .eq(User::getPermission, "admin").list().get(0);
     } catch (Exception e) {
-      throw new RuntimeException("No Result!");
+      throw new RuntimeException("No Coordinator!");
     }
   }
 

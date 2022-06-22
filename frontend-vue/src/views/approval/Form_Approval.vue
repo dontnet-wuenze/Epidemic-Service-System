@@ -113,7 +113,7 @@
                 <el-col :span="6" :offset="1">
                   <el-form-item label="联系电话" prop="parent_tele">
                     <el-input v-model="stu_passphrase_approval.parent_tele" readonly="true" style="width: 220px"></el-input>
-                  </el-form-item> 
+                  </el-form-item>
                 </el-col>
               </el-row>
               <el-divider></el-divider>
@@ -683,7 +683,7 @@
 <script>
 import { regionData } from "element-china-area-data";
 import { departmentList } from "@/components/statistic/department"
-import { get_form_approval_list, get_stu_passphrase_form, get_staff_passphrase_form, 
+import { get_form_approval_list, get_stu_passphrase_form, get_staff_passphrase_form,
          stu_passphrase_submit, staff_passphrase_submit } from "@/api/approval"
 
 export default {
@@ -795,8 +795,8 @@ export default {
         this.dialogVisible = true;
     },
     handle_approval(row) {
-      if(row.approval_status == "等待审批") {
-        if(row.application_type == "学生通行码申请") {
+      if(row.approval_status === "等待审核") {
+        if(row.application_type === "学生通行码申请") {
           this.stu_passphrase_form_visible = true;
           get_stu_passphrase_form(row.id).then(res => {
             this.stu_passphrase_approval.id = res.data.id;
@@ -938,7 +938,7 @@ export default {
               arrive_date: this.stu_passphrase_approvalarrive_date,
               arrive_time: this.stu_passphrase_approvalarrive_time,
               transport_num: this.stu_passphrase_approvaltransport_num,
-              arrive_port: this.stu_passphrase_approvalarrive_port, 
+              arrive_port: this.stu_passphrase_approvalarrive_port,
               promise: this.stu_passphrase_approvalpromise,
               auditor_advice: this.stu_passphrase_approvalauditor_advice,
               auditor_remark: this.stu_passphrase_approvalauditor_remark
@@ -986,7 +986,7 @@ export default {
               arrive_date: this.staff_passphrase_approvalarrive_date,
               arrive_time: this.staff_passphrase_approvalarrive_time,
               transport_num: this.staff_passphrase_approvaltransport_num,
-              arrive_port: this.staff_passphrase_approvalarrive_port, 
+              arrive_port: this.staff_passphrase_approvalarrive_port,
               promise: this.staff_passphrase_approvalpromise,
               auditor_advice: this.staff_passphrase_approvalauditor_advice,
               auditor_remark: this.staff_passphrase_approvalauditor_remark
@@ -1009,7 +1009,7 @@ export default {
   async mounted() {
     let _this = this;
     get_form_approval_list().then(res => {
-      _this.tabledata = res.data.tabledata
+      _this.tabledata = res.data
     }).catch(error => {
       console.log(error);
     })
@@ -1022,7 +1022,7 @@ export default {
 .button {
   position: absolute;
   z-index: 0;
-  left: 20px; 
+  left: 20px;
   top: 10px;
   background-color: #ffffff;
   border:2px solid #008cba;

@@ -35,7 +35,7 @@ export default {
   async mounted() {
     let _this = this;
     get_application_log().then(res => {
-      _this.tabledata = res.data.tabledata
+      _this.tabledata = res.data
     }).catch(error=> {
       console.log(error);
     })
@@ -48,7 +48,7 @@ export default {
 .button {
   position: absolute;
   z-index: 0;
-  left: 20px; 
+  left: 20px;
   top: 10px;
   background-color: #ffffff;
   border:2px solid #008cba;
