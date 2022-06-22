@@ -146,8 +146,11 @@ public class FormController {
   }
 
   @PostMapping({"/get_staff_passphrase_form", "/get_stu_passphrase_form", "/get_staff_leave_form", "/get_stu_leave_form"})
-  public Result getForm(@RequestHeader("token") String userId, @RequestBody String formId) {
-    return Result.success(formService.getForm(formId));
+  public Result getForm(@RequestHeader("token") String userId, @RequestBody String formId)
+      throws JsonProcessingException {
+    Form form = formService.getForm(formId);
+    form = new ObjectMapper().readValue(form.getContent(), Form.class);
+    return Result.success(form);
   }
 
   @GetMapping("/get_application_log")
