@@ -47,7 +47,7 @@ public class Form implements Serializable {
      */
     @TableField("staff_id")
     @JsonProperty("staff_id")
-    @JsonAlias("stu_id")
+    @JsonAlias({"stu_id", "st_id"})
     private String staffId;
 
     /**
