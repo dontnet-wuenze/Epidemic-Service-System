@@ -94,7 +94,7 @@
               <img class="elementdoc" src="/icon/github-fill.png">
             </a>
             <a class="icon-box" href="https://cn.vuejs.org" target="_blank">
-              <img class="elementdoc" src="/icon/vue.png">
+              <img class="elementdoc" src="/icon/Vue.png">
             </a>
             <a class="icon-box" href="https://element.eleme.io" target="_blank">
               <img class="elementdoc" src="/icon/Element.png">

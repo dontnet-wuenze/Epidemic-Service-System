@@ -8,7 +8,7 @@ import { getToken } from '@/utils/auth'   //引入拿到的权限tocken
 
 // create an axios instance   创建axios实例
 const service = axios.create({
-    baseURL: process.env.VUE_APP_BASE_API, // api 的 base_url
+    baseURL: "http://localhost:8080/api", // api 的 base_url
     timeout: 5000, // request timeout  设置请求超时时间
     responseType: "json",
     withCredentials: false, // 是否允许带cookie这些
