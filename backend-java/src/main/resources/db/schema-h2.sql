@@ -71,7 +71,7 @@ CREATE TABLE nucleic
     telenum VARCHAR(30) NULL DEFAULT NULL COMMENT '电话号码',
     email VARCHAR(80) NULL DEFAULT NULL COMMENT '电子邮箱',
     campus VARCHAR(30) NULL DEFAULT NULL COMMENT '所在校区',
-    result INT NULL DEFAULT NULL COMMENT '0阴性，1阳性，2未知',
+    result INT NULL DEFAULT NULL COMMENT '0阴性,1阳性,2未知',
     PRIMARY KEY (form_id)
 );
 

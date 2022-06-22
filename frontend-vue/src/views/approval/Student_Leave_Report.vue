@@ -95,7 +95,7 @@
             <el-col :span="6" :offset="1">
               <el-form-item label="联系电话" prop="parent_tele">
                 <el-input v-model="form.parent_tele"></el-input>
-              </el-form-item> 
+              </el-form-item>
             </el-col>
           </el-row>
           <el-row>
@@ -107,7 +107,7 @@
             <el-col :span="6" :offset="1">
               <el-form-item label="联系电话" prop="tutor_tele">
                 <el-input v-model="form.tutor_tele"></el-input>
-              </el-form-item> 
+              </el-form-item>
             </el-col>
           </el-row>
           <el-divider></el-divider>
@@ -167,7 +167,7 @@
           </div>
         </el-form>
       </div>
-    </div>    
+    </div>
   </el-scrollbar>
 </template>
 
@@ -316,11 +316,12 @@ export default {
             address_1: this.form.address_1,
             reason_1: this.form.reason_1,
             remark: this.form.remark,
-            promise: this.form.promise
+            promise: this.form.promise,
+            status: "已接受"
           }
           stu_leave_submit(submit_data).then(res => {
             this.$message.success('提交成功!');
-            router.go(0);
+            this.$router.go(-1);
           }).catch(error => {
               this.$message.error(error)
           })

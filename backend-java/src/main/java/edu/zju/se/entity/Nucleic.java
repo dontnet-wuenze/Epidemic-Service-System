@@ -92,7 +92,7 @@ public class Nucleic implements Serializable {
     private String campus;
 
     /**
-     * 0阴性，1阳性，2未知
+     * 0阴性,1阳性,2未知
      */
     @TableField("result")
     private Integer result;

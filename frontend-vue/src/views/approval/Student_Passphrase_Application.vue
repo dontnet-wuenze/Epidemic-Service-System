@@ -95,7 +95,7 @@
             <el-col :span="6" :offset="1">
               <el-form-item label="联系电话" prop="parent_tele">
                 <el-input v-model="form.parent_tele" style="width: 220px"></el-input>
-              </el-form-item> 
+              </el-form-item>
             </el-col>
           </el-row>
           <el-divider></el-divider>
@@ -339,7 +339,7 @@
           <img width="100%" :src="dialogImageUrl" alt="">
         </el-dialog>
       </div>
-    </div>    
+    </div>
   </el-scrollbar>
 </template>
 
@@ -622,7 +622,7 @@ export default {
             arrive_date: this.form.arrive_date,
             arrive_time: this.form.arrive_time,
             transport_num: this.form.transport_num,
-            arrive_port: this.form.arrive_port, 
+            arrive_port: this.form.arrive_port,
             promise: this.form.promise,
             auditor_advice: this.form.auditor_advice,
             auditor_remark: this.form.auditor_remark
@@ -633,7 +633,7 @@ export default {
           this.$refs['vaccine_upload'].submit()
           stu_passphrase_submit(submit_data).then(res => {
             this.$message.success('提交成功!');
-            router.go(0);
+            router.go(-1);
           }).catch(error => {
               this.$message.error(error)
           })
