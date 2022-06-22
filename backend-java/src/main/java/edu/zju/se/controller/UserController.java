@@ -136,7 +136,7 @@ public class UserController {
 
   @PostMapping("/noticeread")
 //  public Result noticeRead(@RequestHeader("token") String userid, @Validated @RequestBody GetPost getPost){
-  public Result noticeRead(@RequestHeader("token") String userid, @Validated @RequestParam("msgid") List readList){
+  public Result noticeRead(@RequestHeader("token") String userid, @RequestBody List<String> readList){
     return msgService.MsgRead(userid, readList);
 //    return msgService.MsgRead(userid, getPost);
   }

@@ -62,7 +62,7 @@ CREATE TABLE message
 
 CREATE TABLE nucleic
 (
-    form_id VARCHAR(30) NOT NULL COMMENT '主键ID-表单ID',
+    form_id VARCHAR(50) NOT NULL COMMENT '主键ID-表单ID',
     name VARCHAR(30) NULL DEFAULT NULL COMMENT '姓名',
     staff_id VARCHAR(50) NOT NULL COMMENT '学工号',
     app_date VARCHAR(50) NULL DEFAULT NULL COMMENT '预约日期',
@@ -95,12 +95,12 @@ CREATE TABLE punch
 -- 审批表单
 CREATE TABLE form
 (
-    form_id VARCHAR(30) NOT NULL COMMENT '表单 ID',
+    form_id VARCHAR(50) NOT NULL COMMENT '表单 ID',
     staff_id VARCHAR(30) NOT NULL COMMENT '学工号',
     audit_id VARCHAR(30) NULL DEFAULT NULL COMMENT '审批人 ID',
     form_type VARCHAR(30) NULL DEFAULT NULL COMMENT '表单类型',
     status VARCHAR(30) DEFAULT '等待审核' COMMENT '表单状态',
     content VARCHAR(3000) NULL DEFAULT NULL COMMENT '表单内容',
-    application_time VARCHAR(50) NOT NULL COMMENT '申请时间',
+    application_time VARCHAR(50) DEFAULT NULL COMMENT '申请时间',
     PRIMARY KEY (form_id)
 );

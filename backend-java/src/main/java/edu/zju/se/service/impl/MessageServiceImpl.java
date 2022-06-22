@@ -17,7 +17,7 @@ import java.util.List;
 public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> implements IMessageService {
 
 //    public Result MsgRead(String userid, GetPost getPost){
-    public Result MsgRead(String userid, List readList){
+    public Result MsgRead(String userid, List<String> readList){
         QueryWrapper<Message> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("userid", userid);
         java.util.List<Message> userMsg = list(queryWrapper);

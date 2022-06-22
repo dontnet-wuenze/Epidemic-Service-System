@@ -17,25 +17,25 @@ DELETE FROM user;
 DELETE FROM monitor;
 
 INSERT INTO user (id, name, password, identity, permission, department, major, grade, administrativeClass, campus, phone, code, healthycode, attend, nucleic, date) VALUES
-    (123456, '王奕飞', '123456', 'coordinator', 'admin', '计算机科学与技术学院', '计算机科学与技术', '大三', '', '玉泉校区', '13333333333', '1', 'green', false, '已检测', '20220603');
+    (123456, '王奕飞', '123456', 'coordinator', 'admin', '计算机科学与技术学院', '计算机科学与技术', '大三', '', '玉泉校区', '13333333333', '0', 'green', false, '已检测', '20220603');
 
 INSERT INTO user (id, name, password, identity, permission, department, major, grade, administrativeClass, campus, phone, code, healthycode, attend, nucleic, date) VALUES
-    (3190102000, '李博睿', '123456', 'undergraduate', 'student', '计算机科学与技术学院', '计算机科学与技术', '大三', '计科1901', '玉泉校区', '13333333333', '1', 'green', true, '已检测', '20220603');
+    (3190102000, '李博睿', '123456', 'undergraduate', 'student', '计算机科学与技术学院', '计算机科学与技术', '大三', '计科1901', '玉泉校区', '13333333333', '0', 'green', true, '已检测', '20220603');
 
 INSERT INTO user (id, name, password, identity, permission, department, major, grade, administrativeClass, campus, phone, code, healthycode, attend, nucleic, date) VALUES
-    (3190102001, '刘文博', '123456', 'undergraduate', 'student', '计算机科学与技术学院', '软件工程', '大二', '计科1901', '玉泉校区', '13333333333', '1', 'green', false, '已检测', '20220604');
+    (3190102001, '刘文博', '123456', 'undergraduate', 'student', '计算机科学与技术学院', '软件工程', '大二', '计科1901', '玉泉校区', '13333333333', '0', 'green', false, '已检测', '20220604');
 
 INSERT INTO user (id, name, password, identity, permission, department, major, grade, administrativeClass, campus, phone, code, healthycode, attend, nucleic, date) VALUES
-    (3190102002, '王晓', '123456', 'undergraduate', 'student', '计算机科学与技术学院', '计算机科学与技术', '大三', '计科1901', '玉泉校区', '13333333333', '1', 'yellow', false, '已检测', '20220604');
+    (3190102002, '王晓', '123456', 'undergraduate', 'student', '计算机科学与技术学院', '计算机科学与技术', '大三', '计科1901', '玉泉校区', '13333333333', '0', 'yellow', false, '已检测', '20220604');
 
 INSERT INTO user (id, name, password, identity, permission, department, major, grade, administrativeClass, campus, phone, code, healthycode, attend, nucleic, date) VALUES
-    (3190102003, '吴恩泽', '123456', 'undergraduate', 'student', '信息与电子工程学系', '信息工程', '大三', '计科1901', '玉泉校区', '13333333333', '1', 'green', false, '已检测', '20220604');
+    (3190102003, '吴恩泽', '123456', 'undergraduate', 'student', '信息与电子工程学系', '信息工程', '大三', '计科1901', '玉泉校区', '13333333333', '0', 'green', false, '已检测', '20220604');
 
 INSERT INTO user (id, name, password, identity, permission, department, major, grade, administrativeClass, campus, phone, code, healthycode, attend, nucleic, date) VALUES
-    (3190102004, '焦点', '123456', 'undergraduate', 'student', '数学系', '数学与应用数学', '大三', '计科1901', '玉泉校区', '13333333333', '1', 'green', false, '已检测', '20220604');
+    (3190102004, '焦点', '123456', 'undergraduate', 'student', '数学系', '数学与应用数学', '大三', '计科1901', '玉泉校区', '13333333333', '0', 'green', false, '已检测', '20220604');
 
 INSERT INTO user (id, name, password, identity, permission, department, major, grade, administrativeClass, campus, phone, code, healthycode, attend, nucleic, date) VALUES
-    (3190102005, '谷爱凌', '123456', 'undergraduate', 'student', '人文学院', '古典文献学', '大三', '计科1901', '玉泉校区', '13333333333', '1', 'green', false, '已检测', '20220604');
+    (3190102005, '谷爱凌', '123456', 'undergraduate', 'student', '人文学院', '古典文献学', '大三', '计科1901', '玉泉校区', '13333333333', '0', 'green', false, '已检测', '20220604');
 --
 -- INSERT INTO message (userid, msgid, title, date, detail, read) VALUES
 --     (3190102475, 1, '今日未打卡', '2022-05-30 22:33:07', '请及时打卡', 'false');

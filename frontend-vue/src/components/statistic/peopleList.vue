@@ -136,12 +136,10 @@ export default {
         id: row.id,
         title: '今日未打卡',
         detail: '请及时打卡,当日未打卡取消通行码',
-        date: dayjs().format('YYYY-MM-DD HH:mm:ss')
+        date: dayjs().format('YYYY-MM-DD HH:mm:ss'),
       }
       noticeList.push(notice);
-      var send_data = {
-        noticeList: noticeList
-      }
+      var send_data = noticeList
       sendNotice(send_data).then(res=>{
         console.log(res)
         this.$message.success('发送通知成功')

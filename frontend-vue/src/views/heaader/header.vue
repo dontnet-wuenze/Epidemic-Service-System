@@ -117,7 +117,7 @@
           <button class="notice-button" @click="readAllNotice">全部标为已读</button>
         </div>
         <div class="drawer-notice">
-          <div class="notice-container" v-for="notice in currentNotice" :key="notice.id" :class="{'boldFont':notice.read === false}">
+          <div class="notice-container" v-for="notice in currentNotice" :key="notice.msgid" :class="{'boldFont':notice.read === false}">
             <el-row>
               <el-col :span="20">
                 <div class="notice-container-top" >
@@ -129,7 +129,7 @@
                 </div>
               </el-col>
               <el-col :span="4">
-                <button v-if="!notice.read" class="read-button" @click="readNotice(notice.id)">已读</button>
+                <button v-if="!notice.read" class="read-button" @click="readNotice(notice.msgid)">已读</button>
               </el-col>
             </el-row>
           </div>
@@ -151,7 +151,7 @@
 
 <script>
 //import HelloWorld from "@/components/HelloWorld";
-import {sendNotice} from "@/api/statistic";
+import {noticeRead} from "@/api/user";
 import {userNotice} from "@/api/user";
 
 export default {
@@ -215,7 +215,7 @@ export default {
       console.log(id)
       let readList = []
       readList.push(id)
-      sendNotice(readList).then(res=>{
+      noticeRead(readList).then(res=>{
         userNotice().then(res=> {
           this.noticeList = res.data;
           this.notice_num = 0;
@@ -232,10 +232,10 @@ export default {
       let readList = []
       for(const notice of this.noticeList) {
         if(notice.read === false) {
-          readList.push(notice.id)
+          readList.push(notice.msgid)
         }
       }
-      sendNotice(readList).then(res=>{
+      noticeRead(readList).then(res=>{
         userNotice().then(res=> {
           this.noticeList = res.data;
           this.notice_num = 0;

@@ -61,3 +61,10 @@ export function userNotice() {
   })
 }
 
+export function noticeRead(data) {
+  return request({
+    url: '/user/noticeread',
+    method: 'post',
+    data: data
+  })
+}
