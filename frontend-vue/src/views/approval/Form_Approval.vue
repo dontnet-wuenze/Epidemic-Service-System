@@ -799,7 +799,7 @@ export default {
         if(row.application_type === "学生通行码申请") {
           this.stu_passphrase_form_visible = true;
           get_stu_passphrase_form(row.id).then(res => {
-            this.stu_passphrase_approval.id = res.data.id;
+            this.stu_passphrase_approval.id = res.data.form_id;
             this.stu_passphrase_approval.date = res.data.date;
             this.stu_passphrase_approval.name = res.data.name;
             this.stu_passphrase_approval.st_id = res.data.st_id;

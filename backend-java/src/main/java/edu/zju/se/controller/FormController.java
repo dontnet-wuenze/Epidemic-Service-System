@@ -149,7 +149,7 @@ public class FormController {
   public Result getForm(@RequestHeader("token") String userId, @RequestBody String formId)
       throws JsonProcessingException {
     Form form = formService.getForm(formId);
-    form = new ObjectMapper().readValue(form.getContent(), Form.class);
+    form = new ObjectMapper().readValue(form.getContent(), HashMap<String, String>.class);
     return Result.success(form);
   }
 
