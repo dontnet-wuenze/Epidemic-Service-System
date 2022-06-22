@@ -21,99 +21,105 @@
 <script>
 
 import * as echarts from 'echarts';
+import {attendNum} from "@/api/statistic";
 
 export default {
   name: "peopleNumber",
   data () {
     return {
-      graphMode: 'peopleNubmer-Bar'
+      graphMode: 'peopleNubmer-Bar',
+      statisticData: []
     }
   },
-  mounted() {
-    var barChart = echarts.init(document.getElementById('peopleNumber-Bar'));
-    barChart.setOption({
-      title: {
-        text: '本学院打卡人数统计',
-        subtext: '2022-5-20',
-        left: 'center'
-      },
-      tooltip: {},
-      xAxis: {
-        type: 'category',
-        data: ['已打卡', '未打卡']
-      },
-      yAxis: {
-        type: 'value'
-      },
-      series: [
-        {
-          name: '人数',
-          type: 'bar',
-          barWidth: 40,
-          label: {
-            normal: {
-              show: true,
-              position: 'top'
-            }
-          },
-          data: [
-            {
-              value: 100,
-              itemStyle: {
-                normal: {
-                  color: '#00FF00'
-                }
-              }
-            },
-            {
-              value: 20,
-              itemStyle: {
-                normal: {
-                  color: '#FF0000'
-                }
-              }
-            }
-          ]
-        }
-      ]
-    });
+  async mounted() {
 
+    var barChart = echarts.init(document.getElementById('peopleNumber-Bar'));
     // 根据准备好的dom初始化echarts实例
     var pieChart = echarts.init(document.getElementById('peopleNumber-Pie'));
 
-    // 使用刚才指定的配置项和数据显示图表
-    pieChart.setOption({
-      title: {
-        text: '本学院打卡人数统计',
-        subtext: '2022-5-20',
-        left: 'center'
-      },
-      tooltip: {
-        trigger: 'item'
-      },
-      legend: {
-        orient: 'vertical',
-        x:'left',
-        y:'center'
-      },
-      series: [{
-        name: '本学院打卡人数统计',
-        type: 'pie',
-        radius: '50%',
-        data: [
-          { value: 1048, name: '已打卡' },
-          { value: 100, name: '未打卡' },
-        ],
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
+    var _this = this;
+
+    attendNum().then(res=> {
+      _this.statisticData = res.data
+
+      barChart.setOption({
+        title: {
+          text: '本学院打卡人数统计',
+          subtext: '2022-5-20',
+          left: 'center'
+        },
+        tooltip: {},
+        xAxis: {
+          type: 'category',
+          data: ['已打卡', '未打卡']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            name: '人数',
+            type: 'bar',
+            barWidth: 40,
+            label: {
+              normal: {
+                show: true,
+                position: 'top'
+              }
+            },
+            data: [
+              {
+                value: _this.statisticData[0].value,
+                itemStyle: {
+                  normal: {
+                    color: '#00FF00'
+                  }
+                }
+              },
+              {
+                value: _this.statisticData[1].value,
+                itemStyle: {
+                  normal: {
+                    color: '#FF0000'
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      });
+
+      // 使用刚才指定的配置项和数据显示图表
+      pieChart.setOption({
+        title: {
+          text: '本学院打卡人数统计',
+          subtext: '2022-5-20',
+          left: 'center'
+        },
+        tooltip: {
+          trigger: 'item'
+        },
+        legend: {
+          orient: 'vertical',
+          x:'left',
+          y:'center'
+        },
+        series: [{
+          name: '本学院打卡人数统计',
+          type: 'pie',
+          radius: '50%',
+          data: _this.statisticData,
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
           }
         }
-      }
-      ]
-    });
+        ]
+      });
+    })
   }
 }
 </script>

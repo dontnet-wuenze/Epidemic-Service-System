@@ -10,7 +10,7 @@
          <el-row>
            <el-col :span="6">
              <el-form-item label="申请编号">
-               {{form.id}}
+               {{form.form_id}}
              </el-form-item>
            </el-col>
            <el-col :span="7" :offset="3">
@@ -106,7 +106,7 @@ export default {
   data() {
     return {
       form:{
-        id: '',
+        form_id: '',
         name: '',
         staff_id: '',
         date: Date.now(),
@@ -149,7 +149,7 @@ export default {
   async mounted(){
       let _this = this;
       nucleicGetAppointment().then(res=>{
-        _this.form.id = res.data.form_id;
+        _this.form.form_id = res.data.form_id.toString();
       })
   },
   methods: {

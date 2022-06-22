@@ -54,3 +54,10 @@ export function userInfo() {
   })
 }
 
+export function userNotice() {
+  return request({
+    url: '/user/notice',
+    method: 'get'
+  })
+}
+

@@ -99,6 +99,7 @@ import majorJSON from './major.json'
 let majorList = majorJSON.majorList
 
 import {unattendList, sendNotice } from "@/api/statistic";
+const dayjs = require('dayjs');
 
 export default {
   name: "peopleList",
@@ -131,7 +132,13 @@ export default {
     },
     sendSingleNotice(index, row) {
       var noticeList = [];
-      noticeList.push(row.id);
+      let notice = {
+        id: row.id,
+        title: '今日未打卡',
+        detail: '请及时打卡,当日未打卡取消通行码',
+        date: dayjs().format('YYYY-MM-DD HH:mm:ss')
+      }
+      noticeList.push(notice);
       var send_data = {
         noticeList: noticeList
       }
@@ -148,7 +155,13 @@ export default {
       }).then(() => {
         var noticeList = [];
         this.multipleSelection.forEach(value => {
-          noticeList.push(value.id)
+          let notice = {
+            id: value.id,
+            title: '今日未打卡',
+            detail: '请及时打卡,当日未打卡取消通行码',
+            date: dayjs().format('YYYY-MM-DD HH-mm-ss')
+          }
+          noticeList.push(notice)
         })
         var send_data = {
           noticeList: noticeList
@@ -168,7 +181,7 @@ export default {
   async mounted() {
     this.loading = true
     unattendList().then(res=> {
-      this.tableData = res.data.unattendList;
+      this.tableData = res.data;
       this.loading = false;
     })
   }

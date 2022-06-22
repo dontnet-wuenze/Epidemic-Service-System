@@ -15,7 +15,7 @@ import java.util.Map;
  * @since 2022-05-29
  */
 public interface INucleicService extends IService<Nucleic> {
-  public long getNewFormId(String userId);
+  public String getNewFormId(String userId);
   public void postNewForm(Nucleic nucleicForm);
   public Nucleic getResult(String userId);
   public void postResult(List<Nucleic> resultList);

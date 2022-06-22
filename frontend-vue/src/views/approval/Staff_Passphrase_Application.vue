@@ -31,7 +31,7 @@
             </el-col>
             <el-col :span="5" :offset="2">
               <el-form-item label="工号">
-                <el-input v-model="form.staff_id" readonly="true" style="width: 200px"></el-input>
+                <el-input v-model="form.st_id" readonly="true" style="width: 200px"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -77,24 +77,12 @@
               </el-form-item>
             </el-col>
           </el-row>
-          <el-form-item label="领导列表" prop="leader">
-            <el-select v-model="form.leader" clearable filterable placeholder="请选择领导">
-              <el-option
-                v-for="item in leader"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-                <span style="float: left">{{ item.label }}</span>
-                <span style="float: right; color: #8492a6">{{ item.value }}</span>
-              </el-option>
-            </el-select>
-          </el-form-item>
           <el-form-item label="居住地址" prop="address">
             <el-input style="width: 400px" v-model="form.address" ></el-input>
           </el-form-item>
           <el-divider></el-divider>
           <div style="display: flex;"><h4>申请信息</h4></div>
-          <el-form-item label="最近14天内是否有发热、咳嗽、乏力、咽痛、腹泻等症状?" prop="symptom">
+          <el-form-item label="最近14天内是否有发热、咳嗽、乏力、咽痛、腹泻等症状?" prop="fever">
             <el-radio-group v-model="form.fever">
               <el-radio label=true>是</el-radio>
               <el-radio label=false>否</el-radio>
@@ -158,16 +146,13 @@
             <el-input v-model="form.certificate" style="width: 250px" readonly="true"></el-input>
           </el-form-item>
           <el-form-item label="浙江省健康码状态" prop="health_code">
-            <el-input v-model="form.health_code" style="width 150px" readonly="true"></el-input>
+            <el-select v-model="form.health_code" style="width 150px" readonly="true">
+              <el-option label="绿码" value="green"></el-option>
+              <el-option label="黄码" value="yellow"></el-option>
+              <el-option label="红码" value="red"></el-option>
+            </el-select>
           </el-form-item>
-          <el-form-item label="是否对健康码状态有异议" prop="health_code_objection">
-            <el-radio-group v-model="form.health_code_objection">
-              <el-radio label="true">是</el-radio>
-              <el-radio label="false">否</el-radio>
-            </el-radio-group>
-          </el-form-item>
-          <el-form-item v-if="form.health_code_objection == 'true'"
-            label="请上传浙江省健康码" prop="health_code_screenshot">
+          <el-form-item label="请上传浙江省健康码" prop="health_code_screenshot">
             <br>
             <el-upload action="#" list-type="picture-card" :limit="1" :auto-upload="false">
               <i slot="default" class="el-icon-plus"></i>
@@ -213,7 +198,7 @@
               <el-radio label="false">否</el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="请上传18小时核酸阴性证明截图" prop="nucleic_negative">
+          <el-form-item label="请上传48小时核酸阴性证明截图" prop="nucleic_negative">
             <br>
             <el-upload ref="nucleic_upload" action="#" list-type="picture-card" :limit="1" :auto-upload="false">
               <i slot="default" class="el-icon-plus"></i>
@@ -347,10 +332,13 @@
 </template>
 
 <script>
-import { regionData } from "element-china-area-data";
+import { departmentList } from "@/components/statistic/department"
+import { regionData } from "element-china-area-data"
+import { staff_passphrase_submit, get_apply_id } from "@/api/approval"
+import router from "@/router"
 
 export default {
-  name: "student_leave_report",
+  name: "student_passphrase_form",
   data() {
     let validCascader = (rule, value, callback) => {
       if (this.form.location.length === 0) {
@@ -359,8 +347,47 @@ export default {
         callback();
       }
     }
-    let vlidator_transport_num = (rule, value, callback) => {
-      if (this.form.vehicle == "public_transport") {
+    let validator_public_transport= (rule, value, callback) => {
+      if (this.form.vehicle_kind == "plane" || this.form.vehicle_kind == "train" || this.form.vehicle_kind == "coach") {
+        if(!value) {
+          callback(new Error('该栏不能为空'));
+        } else {
+          callback();
+        }
+      } else {
+        callback();
+      }
+    }
+    let validator_health_code = (rule, value, callback) => {
+      if(this.$refs['health_code_upload'].uploadFiles.length === 0) {
+        callback(new Error('请上传健康码截图'));
+      } else {
+        callback();
+      }
+    }
+    let validator_route = (rule, value, callback) => {
+      if(this.$refs['route_upload'].uploadFiles.length === 0) {
+        callback(new Error('请上传行程码截图'));
+      } else {
+        callback();
+      }
+    }
+    let validator_nucleic = (rule, value, callback) => {
+      if(this.$refs['nucleic_upload'].uploadFiles.length === 0) {
+        callback(new Error('请上传核酸检测截图'));
+      } else {
+        callback();
+      }
+    }
+    let validator_vaccine = (rule, value, callback) => {
+      if(this.$refs['vaccine_upload'].uploadFiles.length === 0) {
+        callback(new Error('请上传疫苗接种截图'));
+      } else {
+        callback();
+      }
+    }
+    let validator_vehicle = (rule, value, callback) => {
+      if(this.form.vehicle_kind == "others") {
         if(!value) {
           callback(new Error('该栏不能为空'));
         } else {
@@ -372,45 +399,47 @@ export default {
     }
     return {
       form: {
-        id: '1145141919810',
-        name: 'Lingsing',
-        staff_id: '3190103176',
-        date: Date.now(),
+        id: '',
+        date: '',
+        name: '',
+        st_id: '',
+        telenum: '',
+        email: '',
+        institute: '',
+        campus: '',
+        address: '',
+        fever: '',
+        contact_patient: '',
+        abroad: '',
+        contact_abroad: '',
+        roommate: '',
+        macao: '',
+        high_risk: '',
+        medium_risk: '',
+        control_area: '',
+        prevent_area: '',
+        certificate: '',
+        health_code: '',
+        route_star: '',
+        vaccine: '',
+        remark: '',
         location:[],
-        certificate: '330903197805145114',
-        health_code: '绿码'
+        return_date: '',
+        return_period: '',
+        vehicle_kind: '',
+        vehicle: '',
+        arrive_date: '',
+        arrive_time: '',
+        transport_num: '',
+        arrive_port: '',
+        promise: '',
+        auditor_advice: '',
+        auditor_remark: ''
       },
       locations:regionData,
-      leaders: [{
-        value: '0000001',
-        label: '领导A'
-      },{
-        value: '0000002',
-        label: '领导B'
-      }],
-      //选项不完整，待完成
-      institutes: [{
-       value: 'BaoWeiChu',
-       label: '安全保卫处' 
-      },{
-        value: 'BeiJing',
-        label: '北京研究院'
-      },{
-        value: 'BenKe',
-        label: '本科生院'
-      },{
-        value: 'CaiGou',
-        label: '采购管理办公室'
-      },{
-        value: 'DangWei',
-        label: '党委办公室(含保密办公室、信访办公室)'
-      }],
-      route_list: [],
-      nucleic_list: [],
-      vaccine_list: [],
+      institutes: departmentList,
       dialogImageUrl: '',
       dialogVisible: false,
-      //校验，等待完善
       rules: {
         telenum: [
           { required: true, message: "该栏不能为空", trigger: "blur" }
@@ -425,23 +454,62 @@ export default {
         campus: [
           { required: true, message: "请选择所在校区", trigger: "change" }
         ],
-        in_residence: [
-          { required: true, message: "请选择是否住校", trigger: "change" }
-        ],
         address: [
           { required: true, message: "该栏不能为空", trigger: "blur" }
         ],
-        parent_name: [
-          { required: true, message: "该栏不能为空", trigger: "blur" }
+        fever: [
+          { required: true, message: "请选择是否有症状", trigger: "change" }
         ],
-        parent_tele: [
-          { required: true, message: "该栏不能为空", trigger: "blur" }
+        contact_patient: [
+          { required: true, message: "请选择是否有接触", trigger: "change" }
         ],
-        tutor_name: [
-          { required: true, message: "该栏不能为空", trigger: "blur" }
+        abroad: [
+          { required: true, message: "请选择是否有国外旅居史", trigger: "change" }
         ],
-        tutor_tele: [
-          { required: true, message: "该栏不能为空", trigger: "blur" }
+        contact_abroad: [
+          { required: true, message: "请选择是否有接触", trigger: "change" }
+        ],
+        roommate: [
+          { required: true, message: "请选择是否有症状", trigger: "change" }
+        ],
+        macao: [
+          { required: true, message: "请选择是否是澳门", trigger: "change" }
+        ],
+        high_risk: [
+          { required: true, message: "请选择是否经过高风险区", trigger: "change" }
+        ],
+        medium_risk: [
+          { required: true, message: "请选择是否经过中风险区", trigger: "change"}
+        ],
+        control_area: [
+          { required: true, message: "请选择是否经过风控区或管控区", trigger: "change"}
+        ],
+        prevent_area: [
+          { required: true, message: "请选择是否经过防范区", trigger: "change"}
+        ],
+        certificate: [
+          { required: true, message: "请输入证件号码", trigger: "blur"}
+        ],
+        health_code: [
+          { required: true, message: "请选择健康码状态", trigger: "change"}
+        ],
+        health_code_screenshot: [
+          { required: true, validator: validator_health_code, trigger: "change"}
+        ],
+        route_screenshot: [
+          { required: true, validator: validator_route, trigger: "change"}
+        ],
+        route_star: [
+          { required: true, message: "请选择行程码是否有星号", trigger: "change"}
+        ],
+        nucleic_negative: [
+          { required: true, validator: validator_nucleic, trigger: "change"}
+        ],
+        vaccine: [
+          { required: true, message: "请选择疫苗接种情况", trigger: "change"}
+        ],
+        vaccine_screenshot: [
+          { required: true, validator: validator_vaccine, trigger: "change"}
         ],
         location: [
           { required: true, validator:validCascader, trigger: "change" }
@@ -456,16 +524,19 @@ export default {
           { required: true, message: "请选择交通工具种类", trigger: "change"}
         ],
         vehicle: [
-          { required: true, message: "该栏不能为空", trigger: "blur"}
+          { required: true, validator: validator_vehicle, trigger: "blur"}
+        ],
+        arrive_date: [
+          { required: true, validator: validator_public_transport, trigger: "blur" }
+        ],
+        arrive_time: [
+          { required: true, validator: validator_public_transport, trigger: "blur" }
         ],
         transport_num: [
-          { required: true, validator:vlidator_transport_num, trigger: "blur" }
+          { required: true, validator: validator_public_transport, trigger: "blur" }
         ],
-        address_1: [
-          { required: true, message: "该栏不能为空", trigger: "blur"}
-        ],
-        reason_1: [
-          { required: true, message: "该栏不能为空", trigger: "blur"}
+        arrive_port: [
+          { required: true, validator: validator_public_transport, trigger: "blur" }
         ],
         promise: [
           { required: true, message: "请确认已知", trigger: "change" }
@@ -487,7 +558,58 @@ export default {
     submitForm(form_name) {
       this.$refs[form_name].validate((valid) =>{
         if(valid) {
-          this.$message.success('提交成功!');
+          var submit_data = {
+            id: this.form.id,
+            date: this.form.date,
+            name: this.form.name,
+            st_id: this.form.st_id,
+            telenum: this.form.telenum,
+            email: this.form.email,
+            institute: this.form.institute,
+            campus: this.form.campus,
+            address: this.form.address,
+            fever: this.form.fever,
+            contact_patient: this.form.contact_patient,
+            abroad: this.form.abroad,
+            contact_abroad: this.form.contact_abroad,
+            roommate: this.form.roommate,
+            macao: this.form.macao,
+            high_risk: this.form.high_risk,
+            medium_risk: this.form.medium_risk,
+            control_area: this.form.control_area,
+            prevent_area: this.form.prevent_area,
+            certificate: this.form.certificate,
+            health_code: this.form.health_code,
+            health_code_list: this.$refs['health_code_upload'].uploadFiles,
+            route_list: this.$refs['route_upload'].uploadFiles,
+            route_star: this.form.route_star,
+            nucleic_list: this.$refs['nucleic_upload'].uploadFiles,
+            vaccine: this.form.vaccine,
+            vaccine_list: this.$refs['vaccine_upload'].uploadFiles,
+            remark: this.form.remark,
+            location: this.form.location,
+            return_date: this.form.return_date,
+            return_period: this.form.return_period,
+            vehicle_kind: this.form.vehicle_kind,
+            vehicle: this.form.vehicle,
+            arrive_date: this.form.arrive_date,
+            arrive_time: this.form.arrive_time,
+            transport_num: this.form.transport_num,
+            arrive_port: this.form.arrive_port, 
+            promise: this.form.promise,
+            auditor_advice: this.form.auditor_advice,
+            auditor_remark: this.form.auditor_remark
+          }
+          this.$refs['health_code_upload'].submit()
+          this.$refs['route_upload'].submit()
+          this.$refs['nucleic_upload'].submit()
+          this.$refs['vaccine_upload'].submit()
+          staff_passphrase_submit(submit_data).then(res => {
+            this.$message.success('提交成功!');
+            router.go(0);
+          }).catch(error => {
+              this.$message.error(error)
+          })
         }
         else {
           this.$message.error('表单填写有误，请检查后重新提交!');
@@ -495,6 +617,17 @@ export default {
         }
       });
     }
+  },
+  async mounted() {
+    let _this = this;
+    get_apply_id().then(res => {
+      _this.form.id = res.data.id;
+      _this.form.date = Date.now();
+      _this.form.name = res.data.name;
+      _this.form.st_id = res.data.staff_id;
+    }).catch(error=> {
+      console.log(error);
+    })
   }
 }
 </script>

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,11 +18,12 @@ import lombok.Setter;
  * </p>
  *
  * @author Boris Li
- * @since 2022-06-01
+ * @since 2022-06-10
  */
 @Getter
 @Setter
 @Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 @TableName("nucleic")
 public class Nucleic implements Serializable {
 
@@ -30,9 +32,9 @@ public class Nucleic implements Serializable {
     /**
      * 主键ID-表单ID
      */
-    @JsonProperty("form_id")
     @TableId(value = "form_id", type = IdType.ASSIGN_ID)
-    private Long formId;
+    @JsonProperty("form_id")
+    private String formId;
 
     /**
      * 姓名
@@ -43,25 +45,28 @@ public class Nucleic implements Serializable {
     /**
      * 学工号
      */
-    @JsonProperty("staff_id")
     @TableField("staff_id")
+    @JsonProperty("staff_id")
     private String staffId;
 
     /**
      * 预约日期
      */
+    @JsonProperty("appDate")
     @TableField("app_date")
     private String appDate;
 
     /**
      * 预约时间(1/2/3/4代表四个时间段)
      */
+    @JsonProperty("appTime")
     @TableField("app_time")
     private Integer appTime;
 
     /**
      * 预约检查点
      */
+    @JsonProperty("appAddress")
     @TableField("app_address")
     private String appAddress;
 
@@ -88,5 +93,6 @@ public class Nucleic implements Serializable {
      */
     @TableField("result")
     private Integer result;
+
 
 }

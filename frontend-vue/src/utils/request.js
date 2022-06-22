@@ -11,9 +11,12 @@ const service = axios.create({
     baseURL: process.env.VUE_APP_BASE_API, // api 的 base_url
     timeout: 5000, // request timeout  设置请求超时时间
     responseType: "json",
-    withCredentials: true, // 是否允许带cookie这些
+    withCredentials: false, // 是否允许带cookie这些
     headers: {
-    "Content-Type": "application/json;charset=utf-8"
+        "Content-Type": "application/json;charset=utf-8",
+        "Access-Control-Allow-Origin" : "*",
+        "Access-Control-Allow-Headers" : "Origin,Access-Control-Request-Headers,Access-Control-Allow-Headers,DNT,X-Requested-With,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Accept,Connection,Cookie,X-XSRF-TOKEN,X-CSRF-TOKEN,Authorization",
+        "Access-Control-Allow-Methods" : "GET, POST, OPTIONS"
     }
 })
 
@@ -57,10 +60,19 @@ service.interceptors.response.use(
         // 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据
         // 否则的话抛出错误
         if (response.status === 200) {
+            if(response.data.code !== 200) {
+                Message({
+                    message: response.data.msg,
+                    duration: 1500,
+                    forbidClick: true
+                });
+                return Promise.reject(response)
+            }
             response = response.data;
             console.log(response);
             return Promise.resolve(response);
         } else {
+            console("throw reject")
             return Promise.reject(response);
         }
     },
