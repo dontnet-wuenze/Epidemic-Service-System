@@ -7,8 +7,6 @@ import edu.zju.se.entity.Form;
 import edu.zju.se.entity.User;
 import edu.zju.se.service.IFormService;
 import edu.zju.se.service.IUserService;
-import edu.zju.se.service.impl.UserServiceImpl;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,10 +22,10 @@ import java.util.List;
 import java.util.Map;
 
 enum FormType {
-  STU_LEAVE_FORM("stu_leave_form"),
-  STU_PASSPHRASE_FORM("stu_passphrase_form"),
-  STAFF_LEAVE_FORM("staff_leave_form"),
-  STAFF_PASSPHRASE_FORM("staff_passphrase_form");
+  学生离校申请("stu_leave_form"),
+  学生通行码申请("stu_passphrase_form"),
+  教职工离校申请("staff_leave_form"),
+  教职工通行码申请("staff_passphrase_form");
 
   private final String formType;
   FormType(String formType) {
@@ -73,7 +71,7 @@ public class FormController {
     Form form = new ObjectMapper().readValue(rawJson, Form.class);
     form = Form.builder()
         .formId(form.getFormId())
-        .formType(FormType.STU_LEAVE_FORM.name())
+        .formType(FormType.学生离校申请.name())
         .staffId(userId)
         .content(rawJson)
         .applicationTime(new Date().toString())
@@ -92,7 +90,7 @@ public class FormController {
     Form form = new ObjectMapper().readValue(rawJson, Form.class);
     form = Form.builder()
         .formId(form.getFormId())
-        .formType(FormType.STAFF_LEAVE_FORM.name())
+        .formType(FormType.教职工离校申请.name())
         .staffId(userId)
         .content(rawJson)
         .applicationTime(new Date().toString())
@@ -111,7 +109,7 @@ public class FormController {
     Form form = new ObjectMapper().readValue(rawJson, Form.class);
     form = Form.builder()
         .formId(form.getFormId())
-        .formType(FormType.STU_PASSPHRASE_FORM.name())
+        .formType(FormType.学生通行码申请.name())
         .staffId(userId)
         .auditId(form.getAuditId())
         .content(rawJson)
@@ -132,7 +130,7 @@ public class FormController {
     Form form = new ObjectMapper().readValue(rawJson, Form.class);
     form = Form.builder()
         .formId(form.getFormId())
-        .formType(FormType.STAFF_PASSPHRASE_FORM.name())
+        .formType(FormType.教职工通行码申请.name())
         .staffId(userId)
         .auditId(form.getAuditId())
         .content(rawJson)
