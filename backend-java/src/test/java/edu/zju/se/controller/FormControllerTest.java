@@ -19,11 +19,7 @@ class FormControllerTest {
   }
 
   @Test void testGetForm() {
-    Form form = Form.builder()
-        .formId("11111111")
-        .staffId("3190102303")
-        .build();
-    formController.getForm("3190102303", form);
+    formController.getForm("3190102303", "11111111");
   }
 
   @Test void testGetUserFormList() {
