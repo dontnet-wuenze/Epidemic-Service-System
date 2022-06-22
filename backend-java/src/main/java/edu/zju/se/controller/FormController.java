@@ -1,6 +1,7 @@
 package edu.zju.se.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.zju.se.common.Result;
 import edu.zju.se.entity.Form;
@@ -75,6 +76,7 @@ public class FormController {
         .staffId(userId)
         .content(rawJson)
         .applicationTime(new Date().toString())
+        .status(form.getStatus())
         .build();
     try {
       formService.postLeaveForm(form);
@@ -94,6 +96,7 @@ public class FormController {
         .staffId(userId)
         .content(rawJson)
         .applicationTime(new Date().toString())
+        .status(form.getStatus())
         .build();
     try {
       formService.postLeaveForm(form);
@@ -115,6 +118,7 @@ public class FormController {
         .content(rawJson)
         .applicationTime(new Date().toString())
         .auditId(userService.getAdminOfStudent(userId).getId())
+        .status(form.getStatus())
         .build();
     try {
       formService.postPassPhraseForm(form);
@@ -136,6 +140,7 @@ public class FormController {
         .content(rawJson)
         .applicationTime(new Date().toString())
         .auditId(userService.getAdminOfStudent(userId).getId())
+        .status(form.getStatus())
         .build();
     try {
       formService.postPassPhraseForm(form);
@@ -149,8 +154,8 @@ public class FormController {
   public Result getForm(@RequestHeader("token") String userId, @RequestBody String formId)
       throws JsonProcessingException {
     Form form = formService.getForm(formId);
-    form = new ObjectMapper().readValue(form.getContent(), HashMap<String, String>.class);
-    return Result.success(form);
+    Map<String, Object> res = new ObjectMapper().readValue(form.getContent(), new TypeReference<Map<String,Object>>(){});
+    return Result.success(res);
   }
 
   @GetMapping("/get_application_log")
