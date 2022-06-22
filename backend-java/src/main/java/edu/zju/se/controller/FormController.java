@@ -76,6 +76,7 @@ public class FormController {
         .staffId(userId)
         .content(rawJson)
         .applicationTime(new Date().toString())
+        .status(form.getStatus())
         .build();
     try {
       formService.postLeaveForm(form);
@@ -95,6 +96,7 @@ public class FormController {
         .staffId(userId)
         .content(rawJson)
         .applicationTime(new Date().toString())
+        .status(form.getStatus())
         .build();
     try {
       formService.postLeaveForm(form);
@@ -116,6 +118,7 @@ public class FormController {
         .content(rawJson)
         .applicationTime(new Date().toString())
         .auditId(userService.getAdminOfStudent(userId).getId())
+        .status(form.getStatus())
         .build();
     try {
       formService.postPassPhraseForm(form);
@@ -137,6 +140,7 @@ public class FormController {
         .content(rawJson)
         .applicationTime(new Date().toString())
         .auditId(userService.getAdminOfStudent(userId).getId())
+        .status(form.getStatus())
         .build();
     try {
       formService.postPassPhraseForm(form);

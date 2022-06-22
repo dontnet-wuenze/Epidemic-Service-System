@@ -1,6 +1,5 @@
 package edu.zju.se.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import edu.zju.se.entity.Nucleic;
@@ -109,9 +108,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
   }
 
-  @Override public void updateCodeToYellow(String userId) {
+  @Override public void updateCode(String userId, String color) {
     lambdaUpdate().eq(User::getId, userId)
-        .set(User::getCode, "1")
+        .set(User::getCode, color)
         .update();
   }
 

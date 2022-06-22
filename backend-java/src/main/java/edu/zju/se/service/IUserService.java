@@ -1,7 +1,6 @@
 package edu.zju.se.service;
 
 import edu.zju.se.entity.Nucleic;
-import edu.zju.se.entity.Punch;
 import edu.zju.se.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -28,5 +27,5 @@ public interface IUserService extends IService<User> {
 
   User getAdminOfStudent(String stu_id);
 
-  void updateCodeToYellow(String userId);
+  void updateCode(String userId, String color);
 }
