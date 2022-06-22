@@ -145,9 +145,9 @@ public class FormController {
     }
   }
 
-  @GetMapping({"/get_staff_passphrase_form", "/get_stu_passphrase_form", "/get_staff_leave_form", "/get_stu_leave_form"})
-  public Result getForm(@RequestHeader("token") String userId, @RequestBody Form form) {
-    return Result.success(formService.getForm(form.getFormId()));
+  @PostMapping({"/get_staff_passphrase_form", "/get_stu_passphrase_form", "/get_staff_leave_form", "/get_stu_leave_form"})
+  public Result getForm(@RequestHeader("token") String userId, @RequestBody String formId) {
+    return Result.success(formService.getForm(formId));
   }
 
   @GetMapping("/get_application_log")
