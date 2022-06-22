@@ -1,6 +1,7 @@
 package edu.zju.se.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.zju.se.common.Result;
 import edu.zju.se.entity.Form;
@@ -149,8 +150,8 @@ public class FormController {
   public Result getForm(@RequestHeader("token") String userId, @RequestBody String formId)
       throws JsonProcessingException {
     Form form = formService.getForm(formId);
-    form = new ObjectMapper().readValue(form.getContent(), Form.class);
-    return Result.success(form);
+    Map<String, Object> res = new ObjectMapper().readValue(form.getContent(), new TypeReference<Map<String,Object>>(){});
+    return Result.success(res);
   }
 
   @GetMapping("/get_application_log")
