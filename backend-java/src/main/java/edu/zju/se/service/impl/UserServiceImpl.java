@@ -97,13 +97,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
   }
 
+  /**
+   * Get the administrator of a specified student.
+   * @param stu_id the user_id of a specified student.
+   * @return the User Entity of the requested admin.
+   */
   @Override public User getAdminOfStudent(String stu_id) {
     try {
-      User student = getById(stu_id);
+      User student = getById(stu_id); // get the student entity
+      // create queryWrapper with baseMapper
       LambdaQueryChainWrapper<User> queryWrapper = new LambdaQueryChainWrapper<>(getBaseMapper());
+      // the admin has the same department field with the student
       return queryWrapper.eq(User::getDepartment, student.getDepartment())
           .eq(User::getPermission, "admin").list().get(0);
     } catch (Exception e) {
+      // if there is no matched coordinator.
       throw new RuntimeException("No Coordinator!");
     }
   }
