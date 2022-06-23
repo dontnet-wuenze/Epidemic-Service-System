@@ -18,7 +18,8 @@ import java.util.*;
 @Data
 @Builder
 class Returned_w{
-    private long value;
+    private long value1;
+    private long value2;
     private String name;
 }
 
@@ -30,6 +31,13 @@ class Returned_u{
     private long value2;
     private String name1;
     private String name2;
+}
+
+@Data
+@Builder
+class Returned_i{
+    private long value;
+    private String name;
 }
 
 @RestController
@@ -49,11 +57,11 @@ public class MonitorController {
         List<Returned_w> myList = new ArrayList<Returned_w>(){
             {
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper1))
+                        .value1(userService.count(queryWrapper1))
                         .name("已完成核酸检测")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper2))
+                        .value2(userService.count(queryWrapper2))
                         .name("未完成核酸检测")
                         .build());
             }
@@ -64,72 +72,105 @@ public class MonitorController {
     //全校人员核酸校区统计
     @GetMapping("/w_campus")
     public Result getNucleic_Campus(){
-        QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper2 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper3 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper4 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper5 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper6 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper7 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper8 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper9 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper10 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper11 = new QueryWrapper<>();
-        queryWrapper1.eq("campus", "紫金港校区").eq("nucleic", "已检测");
-        queryWrapper2.eq("campus", "玉泉校区").eq("nucleic", "已检测");
-        queryWrapper3.eq("campus", "西溪校区").eq("nucleic", "已检测");
-        queryWrapper4.eq("campus", "华家池校区").eq("nucleic", "已检测");
-        queryWrapper5.eq("campus", "之江校区").eq("nucleic", "已检测");
-        queryWrapper6.eq("campus", "海宁校区").eq("nucleic", "已检测");
-        queryWrapper7.eq("campus", "舟山校区").eq("nucleic", "已检测");
-        queryWrapper8.eq("campus", "宁波校区").eq("nucleic", "已检测");
-        queryWrapper9.eq("campus", "工程师学院").eq("nucleic", "已检测");
-        queryWrapper10.eq("campus", "杭州国际科创中心").eq("nucleic", "已检测");
-        queryWrapper11.eq("campus", "其他").eq("nucleic", "已检测");
+        QueryWrapper<User> queryWrapper1_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper2_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper3_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper4_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper5_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper6_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper7_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper8_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper9_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper10_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper11_1 = new QueryWrapper<>();
+        queryWrapper1_1.eq("campus", "紫金港校区").eq("nucleic", "已检测");
+        queryWrapper2_1.eq("campus", "玉泉校区").eq("nucleic", "已检测");
+        queryWrapper3_1.eq("campus", "西溪校区").eq("nucleic", "已检测");
+        queryWrapper4_1.eq("campus", "华家池校区").eq("nucleic", "已检测");
+        queryWrapper5_1.eq("campus", "之江校区").eq("nucleic", "已检测");
+        queryWrapper6_1.eq("campus", "海宁校区").eq("nucleic", "已检测");
+        queryWrapper7_1.eq("campus", "舟山校区").eq("nucleic", "已检测");
+        queryWrapper8_1.eq("campus", "宁波校区").eq("nucleic", "已检测");
+        queryWrapper9_1.eq("campus", "工程师学院").eq("nucleic", "已检测");
+        queryWrapper10_1.eq("campus", "杭州国际科创中心").eq("nucleic", "已检测");
+        queryWrapper11_1.eq("campus", "其他").eq("nucleic", "已检测");
+        QueryWrapper<User> queryWrapper1_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper2_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper3_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper4_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper5_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper6_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper7_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper8_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper9_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper10_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper11_2 = new QueryWrapper<>();
+        queryWrapper1_2.eq("campus", "紫金港校区").eq("nucleic", "未检测");
+        queryWrapper2_2.eq("campus", "玉泉校区").eq("nucleic", "未检测");
+        queryWrapper3_2.eq("campus", "西溪校区").eq("nucleic", "未检测");
+        queryWrapper4_2.eq("campus", "华家池校区").eq("nucleic", "未检测");
+        queryWrapper5_2.eq("campus", "之江校区").eq("nucleic", "未检测");
+        queryWrapper6_2.eq("campus", "海宁校区").eq("nucleic", "未检测");
+        queryWrapper7_2.eq("campus", "舟山校区").eq("nucleic", "未检测");
+        queryWrapper8_2.eq("campus", "宁波校区").eq("nucleic", "未检测");
+        queryWrapper9_2.eq("campus", "工程师学院").eq("nucleic", "未检测");
+        queryWrapper10_2.eq("campus", "杭州国际科创中心").eq("nucleic", "未检测");
+        queryWrapper11_2.eq("campus", "其他").eq("nucleic", "未检测");
         List<Returned_w> myList = new ArrayList<Returned_w>(){
             {
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper1))
+                        .value1(userService.count(queryWrapper1_1))
+                        .value2(userService.count(queryWrapper1_2))
                         .name("紫金港校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper2))
+                        .value1(userService.count(queryWrapper2_1))
+                        .value2(userService.count(queryWrapper2_2))
                         .name("玉泉校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper3))
+                        .value1(userService.count(queryWrapper3_1))
+                        .value2(userService.count(queryWrapper3_2))
                         .name("西溪校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper4))
+                        .value1(userService.count(queryWrapper4_1))
+                        .value2(userService.count(queryWrapper4_2))
                         .name("华家池校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper5))
+                        .value1(userService.count(queryWrapper5_1))
+                        .value2(userService.count(queryWrapper5_2))
                         .name("之江校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper6))
+                        .value1(userService.count(queryWrapper6_1))
+                        .value2(userService.count(queryWrapper6_2))
                         .name("海宁校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper7))
+                        .value1(userService.count(queryWrapper7_1))
+                        .value2(userService.count(queryWrapper7_2))
                         .name("舟山校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper8))
+                        .value1(userService.count(queryWrapper8_1))
+                        .value2(userService.count(queryWrapper8_2))
                         .name("宁波校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper9))
+                        .value1(userService.count(queryWrapper9_1))
+                        .value2(userService.count(queryWrapper9_2))
                         .name("工程师学院")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper10))
+                        .value1(userService.count(queryWrapper10_1))
+                        .value2(userService.count(queryWrapper10_2))
                         .name("杭州国际科创中心")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper11))
+                        .value1(userService.count(queryWrapper11_1))
+                        .value2(userService.count(queryWrapper11_2))
                         .name("其他")
                         .build());
             }
@@ -265,72 +306,105 @@ public class MonitorController {
     //本科生核酸统计校区统计
     @GetMapping("/under_campus")
     public Result getNucleic_Student_Campus(){
-        QueryWrapper<User> queryWrapper1 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper2 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper3 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper4 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper5 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper6 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper7 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper8 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper9 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper10 = new QueryWrapper<>();
-        QueryWrapper<User> queryWrapper11 = new QueryWrapper<>();
-        queryWrapper1.eq("campus", "紫金港校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
-        queryWrapper2.eq("campus", "玉泉校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
-        queryWrapper3.eq("campus", "西溪校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
-        queryWrapper4.eq("campus", "华家池校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
-        queryWrapper5.eq("campus", "之江校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
-        queryWrapper6.eq("campus", "海宁校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
-        queryWrapper7.eq("campus", "舟山校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
-        queryWrapper8.eq("campus", "宁波校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
-        queryWrapper9.eq("campus", "工程师学院").eq("nucleic", "已检测").eq("identity", "undergraduate");
-        queryWrapper10.eq("campus", "杭州国际科创中心").eq("nucleic", "已检测").eq("identity", "undergraduate");
-        queryWrapper11.eq("campus", "其他").eq("nucleic", "已检测").eq("identity", "undergraduate");
+        QueryWrapper<User> queryWrapper1_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper2_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper3_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper4_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper5_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper6_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper7_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper8_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper9_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper10_1 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper11_1 = new QueryWrapper<>();
+        queryWrapper1_1.eq("campus", "紫金港校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
+        queryWrapper2_1.eq("campus", "玉泉校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
+        queryWrapper3_1.eq("campus", "西溪校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
+        queryWrapper4_1.eq("campus", "华家池校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
+        queryWrapper5_1.eq("campus", "之江校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
+        queryWrapper6_1.eq("campus", "海宁校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
+        queryWrapper7_1.eq("campus", "舟山校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
+        queryWrapper8_1.eq("campus", "宁波校区").eq("nucleic", "已检测").eq("identity", "undergraduate");
+        queryWrapper9_1.eq("campus", "工程师学院").eq("nucleic", "已检测").eq("identity", "undergraduate");
+        queryWrapper10_1.eq("campus", "杭州国际科创中心").eq("nucleic", "已检测").eq("identity", "undergraduate");
+        queryWrapper11_1.eq("campus", "其他").eq("nucleic", "已检测").eq("identity", "undergraduate");
+        QueryWrapper<User> queryWrapper1_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper2_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper3_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper4_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper5_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper6_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper7_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper8_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper9_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper10_2 = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper11_2 = new QueryWrapper<>();
+        queryWrapper1_2.eq("campus", "紫金港校区").eq("nucleic", "未检测").eq("identity", "undergraduate");
+        queryWrapper2_2.eq("campus", "玉泉校区").eq("nucleic", "未检测").eq("identity", "undergraduate");
+        queryWrapper3_2.eq("campus", "西溪校区").eq("nucleic", "未检测").eq("identity", "undergraduate");
+        queryWrapper4_2.eq("campus", "华家池校区").eq("nucleic", "未检测").eq("identity", "undergraduate");
+        queryWrapper5_2.eq("campus", "之江校区").eq("nucleic", "未检测").eq("identity", "undergraduate");
+        queryWrapper6_2.eq("campus", "海宁校区").eq("nucleic", "未检测").eq("identity", "undergraduate");
+        queryWrapper7_2.eq("campus", "舟山校区").eq("nucleic", "未检测").eq("identity", "undergraduate");
+        queryWrapper8_2.eq("campus", "宁波校区").eq("nucleic", "未检测").eq("identity", "undergraduate");
+        queryWrapper9_2.eq("campus", "工程师学院").eq("nucleic", "未检测").eq("identity", "undergraduate");
+        queryWrapper10_2.eq("campus", "杭州国际科创中心").eq("nucleic", "未检测").eq("identity", "undergraduate");
+        queryWrapper11_2.eq("campus", "其他").eq("nucleic", "未检测").eq("identity", "undergraduate");
         List<Returned_w> myList = new ArrayList<Returned_w>(){
             {
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper1))
+                        .value1(userService.count(queryWrapper1_1))
+                        .value2(userService.count(queryWrapper1_2))
                         .name("紫金港校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper2))
+                        .value1(userService.count(queryWrapper2_1))
+                        .value2(userService.count(queryWrapper2_2))
                         .name("玉泉校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper3))
+                        .value1(userService.count(queryWrapper3_1))
+                        .value2(userService.count(queryWrapper3_2))
                         .name("西溪校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper4))
+                        .value1(userService.count(queryWrapper4_1))
+                        .value2(userService.count(queryWrapper4_2))
                         .name("华家池校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper5))
+                        .value1(userService.count(queryWrapper5_1))
+                        .value2(userService.count(queryWrapper5_2))
                         .name("之江校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper6))
+                        .value1(userService.count(queryWrapper6_1))
+                        .value2(userService.count(queryWrapper6_2))
                         .name("海宁校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper7))
+                        .value1(userService.count(queryWrapper7_1))
+                        .value2(userService.count(queryWrapper7_2))
                         .name("舟山校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper8))
+                        .value1(userService.count(queryWrapper8_1))
+                        .value2(userService.count(queryWrapper8_2))
                         .name("宁波校区")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper9))
+                        .value1(userService.count(queryWrapper9_1))
+                        .value2(userService.count(queryWrapper9_2))
                         .name("工程师学院")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper10))
+                        .value1(userService.count(queryWrapper10_1))
+                        .value2(userService.count(queryWrapper10_2))
                         .name("杭州国际科创中心")
                         .build());
                 add(Returned_w.builder()
-                        .value(userService.count(queryWrapper11))
+                        .value1(userService.count(queryWrapper11_1))
+                        .value2(userService.count(queryWrapper11_2))
                         .name("其他")
                         .build());
             }
@@ -371,49 +445,49 @@ public class MonitorController {
         queryWrapper9.eq("campus", "工程师学院");
         queryWrapper10.eq("campus", "杭州国际科创中心");
         queryWrapper11.eq("campus", "其他");
-        List<Returned_w> myList = new ArrayList<Returned_w>(){
+        List<Returned_i> myList = new ArrayList<Returned_i>(){
             {
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper1))
                         .name("紫金港校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper2))
                         .name("玉泉校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper3))
                         .name("西溪校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper4))
                         .name("华家池校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper5))
                         .name("之江校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper6))
                         .name("海宁校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper7))
                         .name("舟山校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper8))
                         .name("宁波校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper9))
                         .name("工程师学院")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper10))
                         .name("杭州国际科创中心")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper11))
                         .name("其他")
                         .build());
@@ -453,49 +527,49 @@ public class MonitorController {
         queryWrapper9.eq("campus", "工程师学院").eq("attend", true);
         queryWrapper10.eq("campus", "杭州国际科创中心").eq("attend", true);
         queryWrapper11.eq("campus", "其他").eq("attend", true);
-        List<Returned_w> myList = new ArrayList<Returned_w>(){
+        List<Returned_i> myList = new ArrayList<Returned_i>(){
             {
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper1))
                         .name("紫金港校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper2))
                         .name("玉泉校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper3))
                         .name("西溪校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper4))
                         .name("华家池校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper5))
                         .name("之江校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper6))
                         .name("海宁校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper7))
                         .name("舟山校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper8))
                         .name("宁波校区")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper9))
                         .name("工程师学院")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper10))
                         .name("杭州国际科创中心")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper11))
                         .name("其他")
                         .build());
@@ -510,13 +584,13 @@ public class MonitorController {
         QueryWrapper<User> queryWrapper2 = new QueryWrapper<>();
         queryWrapper1.eq("attend", true);
         queryWrapper2.eq("attend", false);
-        List<Returned_w> myList = new ArrayList<Returned_w>(){
+        List<Returned_i> myList = new ArrayList<Returned_i>(){
             {
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper1))
                         .name("已打卡")
                         .build());
-                add(Returned_w.builder()
+                add(Returned_i.builder()
                         .value(userService.count(queryWrapper2))
                         .name("未打卡")
                         .build());
