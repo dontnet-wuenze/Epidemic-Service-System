@@ -83,6 +83,9 @@
       <div class="footer-top">
         <div class="footer-main">
           <h3>链接</h3>
+          <div class="link-box" @click="change('/index')">
+            <p style="cursor: pointer">帮助文档</p>
+          </div>
         </div>
         <div class="footer-main">
           <h3>关于我们</h3>
@@ -282,6 +285,14 @@ export default {
   100% {
     filter: hue-rotate(360deg);
   }
+}
+
+.link-box {
+  height: 20px;
+}
+
+.link-font {
+  font: black;
 }
 
 .blue-bg{
