@@ -47,7 +47,7 @@ INSERT INTO user (id, name, password, identity, permission, department, major, g
 --     (3190102303, 3, '今日未打卡', '2022-05-30 22:33:08', '请及时打卡', 'true');
 
 INSERT INTO punch (id, name, date, campus, region, oncampus, codestatus, fever, control, contact, status) VALUES
-    (3190102000, '李博睿', '2022-06-22', '玉泉校区', '天津市,市辖区,和平区', 'false', '0', 'false', 'false', 'false', 'true');
+    (3190102000, '李博睿', '2022-06-22', '玉泉校区', '天津市,市辖区,和平区', 'false', '0', 'false', 'false', 'false', 'false');
 
 INSERT INTO punch (id, name, date, campus, region, oncampus, codestatus, fever, control, contact, status) VALUES
     (3190102001, '刘文博', '2022-06-22', '玉泉校区', '天津市,市辖区,南开区', 'false', '0', 'false', 'false', 'false', 'false');
