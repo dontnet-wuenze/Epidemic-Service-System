@@ -28,7 +28,7 @@
           <div class="scroll-container-form">
             <el-form ref="StuPassphraseApplication" :label-position="labelPosition" :model="stu_passphrase_approval" :rules="rules">
               <el-row>
-                <el-col :span="6">
+                <el-col :span="8">
                   <el-form-item label="申请编号">
                     <el-input v-model="stu_passphrase_approval.id" readonly="true" style="width: 220px"></el-input>
                   </el-form-item>
@@ -188,50 +188,11 @@
                   <el-option label="红码" value="red"></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="请上传浙江省健康码" prop="health_code_screenshot">
-                <br>
-                <el-upload ref="stu_health_code_upload" action="#" list-type="picture-card" :limit="1" :auto-upload="false">
-                  <div slot="file" slot-scope="{file}">
-                    <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
-                    <span class="el-upload-list__item-actions">
-                      <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
-                        <i class="el-icon-zoom-in"></i>
-                      </span>
-                    </span>
-                  </div>
-                </el-upload>
-              </el-form-item>
-              <el-form-item label="请上传14天通行数据查询截图" prop="route_screenshot">
-                <br>
-                <el-upload ref="stu_route_upload" action="#" list-type="picture-card" :limit="1" :auto-upload="false">
-                  <div slot="file" slot-scope="{file}">
-                    <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
-                    <span class="el-upload-list__item-actions">
-                      <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
-                        <i class="el-icon-zoom-in"></i>
-                      </span>
-                    </span>
-                  </div>
-                </el-upload>
-              </el-form-item>
               <el-form-item label="14天行程卡是否有杭州外其他地区星号" prop="route_star">
                 <el-radio-group v-model="stu_passphrase_approval.route_star" disabled>
                   <el-radio label="true">是</el-radio>
                   <el-radio label="false">否</el-radio>
                 </el-radio-group>
-              </el-form-item>
-              <el-form-item label="请上传48小时核酸阴性证明截图" prop="nucleic_negative">
-                <br>
-                <el-upload ref="stu_nucleic_upload" action="#" list-type="picture-card" :limit="1" :auto-upload="false">
-                  <div slot="file" slot-scope="{file}">
-                    <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
-                    <span class="el-upload-list__item-actions">
-                      <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
-                        <i class="el-icon-zoom-in"></i>
-                      </span>
-                    </span>
-                  </div>
-                </el-upload>
               </el-form-item>
               <el-form-item label="疫苗接种情况" prop="vaccine">
                 <el-select v-model="stu_passphrase_approval.vaccine" disabled>
@@ -241,19 +202,6 @@
                   <el-option label="已接种第二针（已满六个月）" value="second_more_than_six_months"></el-option>
                   <el-option label="已接种第三针" value="third"></el-option>
                 </el-select>
-              </el-form-item>
-              <el-form-item label="请上传支付宝健康疫苗接种页截图（支付宝-健康码-新冠疫苗接种）" prop="vaccine_screenshot">
-                <br>
-                <el-upload ref="stu_vaccine_upload" action="#" list-type="picture-card" :limit="1" :auto-upload="false">
-                  <div slot="file" slot-scope="{file}">
-                    <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
-                    <span class="el-upload-list__item-actions">
-                      <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
-                        <i class="el-icon-zoom-in"></i>
-                      </span>
-                    </span>
-                  </div>
-                </el-upload>
               </el-form-item>
               <el-row>
                 <el-col span="12">
@@ -503,56 +451,17 @@
                 <el-input v-model="staff_passphrase_approval.certificate" style="width: 250px" readonly="true"></el-input>
               </el-form-item>
               <el-form-item label="浙江省健康码状态" prop="health_code">
-            <el-select v-model="staff_passphrase_approval.health_code" style="width 150px" disabled>
-              <el-option label="绿码" value="green"></el-option>
-              <el-option label="黄码" value="yellow"></el-option>
-              <el-option label="红码" value="red"></el-option>
-            </el-select>
-          </el-form-item>
-              <el-form-item label="请上传浙江省健康码" prop="health_code_screenshot">
-                <br>
-                <el-upload ref="staff_health_code_upload" action="#" list-type="picture-card" :limit="1" :auto-upload="false">
-                  <div slot="file" slot-scope="{file}">
-                    <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
-                    <span class="el-upload-list__item-actions">
-                    </span>
-                  </div>
-                </el-upload>
-                <el-dialog :visible.sync="dialogVisible">
-                  <img width="100%" :src="dialogImageUrl" alt="">
-                </el-dialog>
-              </el-form-item>
-              <el-form-item label="请上传14天通行数据查询截图" prop="route_screenshot">
-                <br>
-                <el-upload ref="staff_route_upload" action="#" list-type="picture-card" :limit="1" :auto-upload="false">
-                  <div slot="file" slot-scope="{file}">
-                    <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
-                    <span class="el-upload-list__item-actions">
-                      <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
-                        <i class="el-icon-zoom-in"></i>
-                      </span>
-                    </span>
-                  </div>
-                </el-upload>
+                <el-select v-model="staff_passphrase_approval.health_code" style="width 150px" disabled>
+                  <el-option label="绿码" value="green"></el-option>
+                  <el-option label="黄码" value="yellow"></el-option>
+                  <el-option label="红码" value="red"></el-option>
+                </el-select>
               </el-form-item>
               <el-form-item label="14天行程卡是否有杭州外其他地区星号" prop="route_star">
                 <el-radio-group v-model="staff_passphrase_approval.route_star" disabled>
                   <el-radio label="true">是</el-radio>
                   <el-radio label="false">否</el-radio>
                 </el-radio-group>
-              </el-form-item>
-              <el-form-item label="请上传48小时核酸阴性证明截图" prop="nucleic_negative">
-                <br>
-                <el-upload ref="staff_nucleic_upload" action="#" list-type="picture-card" :limit="1" :auto-upload="false">
-                  <div slot="file" slot-scope="{file}">
-                    <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
-                    <span class="el-upload-list__item-actions">
-                      <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
-                        <i class="el-icon-zoom-in"></i>
-                      </span>
-                    </span>
-                  </div>
-                </el-upload>
               </el-form-item>
               <el-form-item label="疫苗接种情况" prop="vaccine">
                 <el-select v-model="staff_passphrase_approval.vaccine" disabled>
@@ -562,19 +471,6 @@
                   <el-option label="已接种第二针（已满六个月）" value="second_more_than_six_months"></el-option>
                   <el-option label="已接种第三针" value="third"></el-option>
                 </el-select>
-              </el-form-item>
-              <el-form-item label="请上传支付宝健康疫苗接种页截图（支付宝-健康码-新冠疫苗接种）" prop="vaccine_screenshot">
-                <br>
-                <el-upload ref="staff_vaccine_upload" action="#" list-type="picture-card" :limit="1" :auto-upload="false">
-                  <div slot="file" slot-scope="{file}">
-                    <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
-                    <span class="el-upload-list__item-actions">
-                      <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
-                        <i class="el-icon-zoom-in"></i>
-                      </span>
-                    </span>
-                  </div>
-                </el-upload>
               </el-form-item>
               <el-row>
                 <el-col span="12">
@@ -836,10 +732,6 @@ export default {
             this.stu_passphrase_approval.transport_num = res.data.transport_num;
             this.stu_passphrase_approval.arrive_port = res.data.arrive_port;
             this.stu_passphrase_approval.promise = res.data.promise;
-            this.$refs['stu_health_code_upload'].uploadFiles = res.data.health_code_list;
-            this.$refs['stu_route_upload'].uploadFiles = res.data.route_list;
-            this.$refs['stu_nucleic_upload'].uploadFiles = res.data.nucleic_list;
-            this.$refs['stu_vaccine_upload'].uploadFiles = res.data.vaccine_list;
           }).catch(error => {
             console.log(error);
           })
@@ -881,10 +773,6 @@ export default {
             this.staff_passphrase_approval.transport_num = res.data.transport_num;
             this.staff_passphrase_approval.arrive_port = res.data.arrive_port;
             this.staff_passphrase_approval.promise = res.data.promise;
-            this.$refs['staff_health_code_upload'].uploadFiles = res.data.health_code_list;
-            this.$refs['staff_route_upload'].uploadFiles = res.data.route_list;
-            this.$refs['staff_nucleic_upload'].uploadFiles = res.data.nucleic_list;
-            this.$refs['staff_vaccine_upload'].uploadFiles = res.data.vaccine_list;
           }).catch(error => {
             console.log(error)
           })
@@ -923,12 +811,8 @@ export default {
               prevent_area: this.stu_passphrase_approval.prevent_area,
               certificate: this.stu_passphrase_approval.certificate,
               health_code: this.stu_passphrase_approval.health_code,
-              health_code_list: this.$refs['stu_health_code_upload'].uploadFiles,
-              route_list: this.$refs['stu_route_upload'].uploadFiles,
               route_star: this.stu_passphrase_approval.route_star,
-              nucleic_list: this.$refs['stu_nucleic_upload'].uploadFiles,
               vaccine: this.stu_passphrase_approval.vaccine,
-              vaccine_list: this.$refs['stu_vaccine_upload'].uploadFiles,
               remark: this.stu_passphrase_approval.remark,
               location: this.stu_passphrase_approval.location,
               return_date: this.stu_passphrase_approval.return_date,
@@ -972,12 +856,8 @@ export default {
               prevent_area: this.staff_passphrase_approval.prevent_area,
               certificate: this.staff_passphrase_approval.certificate,
               health_code: this.staff_passphrase_approval.health_code,
-              health_code_list: this.$refs['staff_health_code_upload'].uploadFiles,
-              route_list: this.$refs['staff_route_upload'].uploadFiles,
               route_star: this.staff_passphrase_approval.route_star,
-              nucleic_list: this.$refs['staff_nucleic_upload'].uploadFiles,
               vaccine: this.staff_passphrase_approval.vaccine,
-              vaccine_list: this.$refs['staff_vaccine_upload'].uploadFiles,
               remark: this.staff_passphrase_approval.remark,
               location: this.staff_passphrase_approval.location,
               return_date: this.staff_passphrase_approval.return_date,

@@ -10,7 +10,7 @@
       <div class="scroll-container-form">
         <el-form ref="StaffLeaveForm" :label-position="labelPosition" :model="form" label-width="auto" :rules="rules">
           <el-row>
-            <el-col :span="6">
+            <el-col :span="8">
               <el-form-item label="申请编号">
                 <el-input v-model="form.id" readonly="true"></el-input>
               </el-form-item>
@@ -94,7 +94,7 @@
               <el-option label="公共交通工具" value="public_transport"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item v-if="form.vehicle == 'public_transport'" label="具体车次" prop="transport_num">
+          <el-form-item v-if="form.vehicle_kind == 'public_transport'" label="具体车次" prop="transport_num">
             <el-input v-model="form.transport_num" style="width: 500px"></el-input>
           </el-form-item>
           <el-row>
@@ -209,19 +209,13 @@ export default {
         address: [
           { required: true, message: "该栏不能为空", trigger: "blur" }
         ],
-        tutor_name: [
-          { required: true, message: "该栏不能为空", trigger: "blur" }
-        ],
-        tutor_tele: [
-          { required: true, message: "该栏不能为空", trigger: "blur" }
-        ],
         leave_date: [
           { required: true, message: "请选择日期", trigger: "change" }
         ],
         return_date: [
           { required: true, message: "请选择日期", trigger: "change" }
         ],
-        vehicle: [
+        vehicle_kind: [
           { required: true, message: "请选择乘坐交通工具", trigger: "change"}
         ],
         transport_num: [
@@ -271,7 +265,7 @@ export default {
           }
           staff_leave_submit(submit_data).then(res => {
             this.$message.success('提交成功!');
-            router.go(0);
+            router.go(-1);
           }).catch(error => {
               this.$message.error(error)
           })
@@ -289,7 +283,7 @@ export default {
       _this.form.id = res.data.id;
       _this.form.date = Date.now();
       _this.form.name = res.data.name;
-      _this.form.st_id = res.data.st_id;
+      _this.form.st_id = res.data.staff_id;
     }).catch(error=> {
       console.log(error);
     })
