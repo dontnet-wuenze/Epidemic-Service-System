@@ -125,7 +125,8 @@ export default {
           { required: true, message: "该栏不能为空", trigger: "blur" }
         ],
         telenum: [
-          { required: true, message: "该栏不能为空", trigger: "blur" }
+          { required: true, message: "该栏不能为空", trigger: "blur" },
+          { max: 11, message: "超过长度限制", trigger: "blur"}
         ],
         email: [
           { required: true, message: "该栏不能为空", trigger: "blur" },
