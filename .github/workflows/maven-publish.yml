@@ -38,7 +38,7 @@ jobs:
         SOURCE: "backend-java/target/*.jar"
         REMOTE_HOST: "47.96.239.198"
         REMOTE_USER: "root"
-        TARGET: "/dist/backend/backend.jar"
+        TARGET: "/dist/backend/"
         
 #     - name: Publish to GitHub Packages Apache Maven
 #       run: mvn deploy -s $GITHUB_WORKSPACE/backend-java/settings.xml
