@@ -55,6 +55,7 @@ export default {
     }
   },
   async mounted() {
+    // 设置加载等待
     const loading = this.$loading({
       lock: true,
       text: 'Loading',
@@ -66,11 +67,13 @@ export default {
       _this.read_date = dayjs().format('MM月DD日 HH:mm:ss'); // 修改数据date
     }, 1000)
     userCode().then(res => {
+      // 获取响应结果赋值
       _this.user_code = res.data.code;
       _this.user_name = res.data.name;
       _this.user_department = res.data.department;
       _this.user_grade = "本科生";
       setTimeout(() => {
+        // 加载完成
         loading.close();
       }, 1000);
     }).catch(err=> {
