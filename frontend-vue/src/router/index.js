@@ -29,6 +29,15 @@ const routeList=[
                 component:()=>import('../views/indexPage/index.vue')
             },
 
+            {
+                path:'/help',
+                name: 'help',
+                meta: {
+                    title: "帮助文档"
+                },
+                component:()=>import('../views/heaader/help.vue')
+            },
+
             // 核酸检测模块
             {
                 path:'/nucleic/appointment',

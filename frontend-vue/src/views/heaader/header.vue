@@ -83,7 +83,7 @@
       <div class="footer-top">
         <div class="footer-main">
           <h3>链接</h3>
-          <div class="link-box" @click="change('/index')">
+          <div class="link-box" @click="change('/help')">
             <p style="cursor: pointer">帮助文档</p>
           </div>
         </div>
