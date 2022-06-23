@@ -28,6 +28,7 @@
 <script>
 
 import { userLogin } from '@/api/user';
+let sha256 = require("js-sha256").sha256
 
 export default {
   data() {
@@ -54,6 +55,7 @@ submitForm(formName){
       this.$refs[formName].validate( (valid) =>{
         if(valid){
           var user_data = this.rulesForm
+          //user_data.password = sha256(user_data.password)
           console.log(user_data)
           //如果校检通过，在这里向后端发送用户名和密码
           this.$store.dispatch('login', user_data).then(() => {
