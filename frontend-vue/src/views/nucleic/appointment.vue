@@ -108,7 +108,7 @@ export default {
       form:{
         form_id: '',
         name: '',
-        staff_id: '',
+        staff_id: localStorage.getItem('token'),
         date: Date.now(),
         appDate: "",
         appTime: "",
