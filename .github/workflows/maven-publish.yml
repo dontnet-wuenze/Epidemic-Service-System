@@ -29,8 +29,18 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package -DskipTests --file backend-java/pom.xml
-
-    - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -s $GITHUB_WORKSPACE/backend-java/settings.xml
+      
+    - name: deploy to Alibaba-Cloud
+      uses: easingthemes/ssh-deploy@v2.1.5
       env:
-        GITHUB_TOKEN: ${{ github.token }}
+        SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        ARGS: "-rltgoDzvO --delete"
+        SOURCE: "backend-java/target/*.jar"
+        REMOTE_HOST: "47.96.239.198"
+        REMOTE_USER: "root"
+        TARGET: "/root/backend/"
+        
+#     - name: Publish to GitHub Packages Apache Maven
+#       run: mvn deploy -s $GITHUB_WORKSPACE/backend-java/settings.xml
+#       env:
+#         GITHUB_TOKEN: ${{ github.token }}
