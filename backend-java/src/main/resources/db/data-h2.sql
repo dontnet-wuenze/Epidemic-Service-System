@@ -66,3 +66,6 @@ INSERT INTO punch (id, name, date, campus, region, oncampus, codestatus, fever, 
 
 INSERT INTO punch (id, name, date, campus, region, oncampus, codestatus, fever, control, contact, status) VALUES
     (123456, '王奕飞', '2022-06-22', '玉泉校区', '天津市,市辖区,和平区', 'false', '0', 'false', 'false', 'false', 'false');
+
+INSERT INTO form (form_id, staff_id, audit_id, form_type, status, content, application_time) VALUES
+    (11111111, 3190102303, 123456, 'stu_passphrase_form', '等待审核','{"name": "lingsing"}' ,'2022-7-10')

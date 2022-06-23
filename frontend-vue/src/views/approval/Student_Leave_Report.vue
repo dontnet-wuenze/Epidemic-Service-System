@@ -10,7 +10,7 @@
       <div class="scroll-container-form">
         <el-form ref="StuLeaveForm" :label-position="labelPosition" :model="form" label-width="auto" :rules="rules">
           <el-row>
-            <el-col :span="6">
+            <el-col :span="8">
               <el-form-item label="申请编号">
                 <el-input v-model="form.id" readonly="true"></el-input>
               </el-form-item>

@@ -2,14 +2,14 @@ import request from '@/utils/request'
 
 export function get_apply_id() {
     return request({
-      url: 'apply/get_apply_id',
+      url: '/apply/get_apply_id',
       method: 'get'
     })
   }
 
 export function stu_leave_submit(data) {
   return request({
-    url: 'apply/stu_leave_form',
+    url: '/apply/stu_leave_form',
     method: 'post',
     data: data
   })
@@ -17,7 +17,7 @@ export function stu_leave_submit(data) {
 
 export function staff_leave_submit(data) {
   return request({
-    url: '/user/staff_leave_form',
+    url: '/apply/staff_leave_form',
     method: 'post',
     data: data
   })

@@ -9,7 +9,7 @@
       </div>
       <el-table :data="tabledata" style="width: 75%; margin: auto" max-height="550">
         <el-table-column prop="applicant" label="申请人" width="150"></el-table-column>
-        <el-table-column prop="application_time" label="申请时间" width="250"></el-table-column>
+        <el-table-column prop="application_time" label="申请时间" width="300  "></el-table-column>
         <el-table-column prop="application_type" label="申请种类" width="150"></el-table-column>
         <el-table-column prop="audit_status" label="审核状态" width="200"></el-table-column>
       </el-table>
