@@ -48,7 +48,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
   @Override
   public boolean signUp(User user) {
-    if (getById(user.getId()) != null) {
+    User oldUser = getById(user.getId());
+    if (oldUser != null) {
+      user.setPassword(oldUser.getPassword());
       updateById(user);
     } else {
       try {
