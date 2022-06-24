@@ -49,7 +49,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
   @Override
   public boolean signUp(User user) {
     if (getById(user.getId()) != null) {
-      return false;
+      updateById(user);
     } else {
       try {
         if (user.getPassword() == null || user.getPassword().isEmpty()) {
@@ -57,13 +57,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
       } catch (Exception e) {
         throw new RuntimeException("ID cannot shorter than 6.", e);
-      } saveOrUpdate(user);
+      }
+      saveOrUpdate(user);
       punchService.save(Punch.builder()
               .id(user.getId())
               .status(false)
               .build());
-      return true;
     }
+    return true;
   }
 
   @Override
